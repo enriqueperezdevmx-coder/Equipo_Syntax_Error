@@ -1,25 +1,17 @@
 {
-  "name": "equipo_syntax_error",
-  "version": "1.0.0",
-  "description": "/______Creacion de HTML base /______Historico",
-  "main": "index.js",
+  "name": "equipo-syntax-error",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/enriqueperezdevmx-coder/Equipo_Syntax_Error.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/enriqueperezdevmx-coder/Equipo_Syntax_Error/issues"
-  },
-  "homepage": "https://github.com/enriqueperezdevmx-coder/Equipo_Syntax_Error#readme",
   "devDependencies": {
-    "vite": "^8.0.14"
+    "vite": "^8.0.12"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
   }
 }
