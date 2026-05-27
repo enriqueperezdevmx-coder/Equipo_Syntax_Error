@@ -1,0 +1,138 @@
+/* =========================================
+   Estilos - Mensajería Total (Versión Final)
+   ========================================= */
+
+:root {
+    /* --- COLORES DEL MANUAL --- */
+    --mt-primary: #0DA74A;       
+    --mt-text-dark: #36403C;     
+    --mt-title-green: #34c759;   
+    --mt-text-white: #FFFFFF;    
+
+    /* --- TIPOGRAFÍAS DEL MANUAL --- */
+    --font-base: 'Playfair Display', serif;
+    --font-titulos-prin: 'Playfair Display SC', serif;
+    --font-secciones: 'Poppins', sans-serif;
+    --font-texto-info: 'Montserrat', sans-serif;
+    --font-formularios: 'Open Sans', sans-serif;
+
+    /* --- TAMAÑOS ESCALADOS (Figma / 4 para Web) --- */
+    --size-base: 18px;         /* 72 / 4 */
+    --size-titulos-prin: 30px; /* 120 / 4 */
+    --size-secciones: 24px;    /* 96 / 4 */
+    --size-texto-info: 16px;   /* 64 / 4 */
+    --size-formularios: 12px;  /* 48 / 4 */
+}
+
+/* --- ESTILOS GENERALES --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-base);
+    background-color: #EAEAEA; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- CONTENEDOR PRINCIPAL VERDE --- */
+.main-green-wrapper {
+    background-color: var(--mt-primary);
+    width: 100%;
+    max-width: 900px;
+    padding: 60px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- SECCIÓN: MISIÓN Y VISIÓN --- */
+.mision-vision-container {
+    display: flex;
+    gap: 40px;
+}
+
+.info-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Alineación exacta de Misión (Derecha) */
+.mision-block {
+    align-items: flex-end; 
+}
+.mision-block .white-text {
+    text-align: right; 
+}
+
+/* Alineación exacta de Visión (Izquierda) */
+.vision-block {
+    align-items: flex-start; 
+}
+.vision-block .white-text {
+    text-align: left; 
+}
+
+/* --- LAS PÍLDORAS BLANCAS --- */
+.pill-header {
+    background-color: var(--mt-text-white);
+    padding: 10px 35px;
+    border-radius: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+}
+
+/* Títulos de secciones según manual (Poppins, 24px) */
+.pill-header h2 {
+    font-family: var(--font-secciones);
+    font-size: var(--size-secciones);
+    color: var(--mt-primary);
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* --- ÍCONOS SVG --- */
+.icono-svg {
+    width: 35px;
+    height: 35px;
+    object-fit: contain; /* Evita que se deformen */
+}
+
+/* --- TEXTO BLANCO GENERAL (Montserrat, 16px) --- */
+.white-text {
+    font-family: var(--font-texto-info);
+    font-size: var(--size-texto-info);
+    color: var(--mt-text-white);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- SECCIÓN: VALORES --- */
+.valores-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-pill {
+    margin-bottom: 40px; 
+}
+
+/* --- CARDS DE BOOTSTRAP (Paleta de Marca) --- */
+.tarjeta-valor {
+    background-color: var(--mt-text-white); /* Fondo blanco puro */
+    border-radius: 12px;
+    border-bottom: 4px solid var(--mt-primary) !important; /* Detalle corporativo */
+    transition: transform
+}
+
