@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/enriqueperezdevmx-coder/Equipo_Syntax_Error#readme",
   "devDependencies": {
+    "sass": "^1.100.0",
     "vite": "^8.0.14"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.13.1"
   }
 }

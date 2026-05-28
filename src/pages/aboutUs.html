@@ -1,20 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
+<html lang="es">
+<head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otra Página</title>
-    <!-- nada más aquí -->
-  </head>
-  <body>
-      <div id="navbar"></div>
-      <br><br><br><br><br><br><br><br><br>
-      <h1>nosotros</h1>
-     
-      <br><br><br><br><br> <br><br><br><br><br> <br><br><br><br><br>
-      <main></main>
-      <div id="footer"></div>
+    <title>About Us</title>
+    
+    <!-- CSS de Bootstrap y estilos de Janice -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css"> <!-- Verifica que esta ruta apunte bien a tus CSS -->
+</head>
+<body>
+    
+    <!-- Tu Navbar -->
+    <div id="navbar"></div>
+
+    <br><br><br>
+    <h1>nosotros</h1>
+    <br><br>
+
+    <!-- CARDS de Janice -->
+    <section class="container py-5">
+        <div id="cards-container"></div>
+    </section>
+
+    <!-- Tu Footer -->
+    <div id="footer"></div>
+
+    <!-- Scripts de Janice (Bootstrap y Cards) -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../js/aboutUs.js"></script>
+
+    <!-- Tus Scripts (Navbar y Footer) -->
     <script src="/src/js/navbar.js"></script>
     <script src="/src/js/footer.js"></script>
-  </body>
+
+</body>
 </html>
