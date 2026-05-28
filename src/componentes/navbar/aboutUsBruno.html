@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/css/aboutUs.css">
 </head>
 <body>
 <main class="about-us-container">
   
-  <!-- SECCIÓN 1: Hero con corte diagonal -->
   <section class="about-hero">
     <div class="hero-green-box">
   <h1>TU NEGOCIO NO SE DETIENE,<br>Y TUS ENVÍOS TAMPOCO</h1>
@@ -17,18 +17,14 @@
   <p>Somos una empresa de mensajería express con un objetivo claro: hacer que tu logística sea más fácil y eficiente.</p>
 </div>
     <div class="hero-image-box">
-      <!-- Cambia esta ruta por la de tu imagen en el proyecto -->
       <img src="/src/assets/motoInicio.svg" alt="Repartidor de Mensajería Total en motocicleta">
     </div>
   </section>
 
-  <!-- SECCIÓN 2: Íconos y características -->
   <section class="about-features">
-    <!-- Línea conectora de fondo -->
     <div class="connecting-line"></div>
     
     <div class="feature-item">
-      <!-- Reemplaza con tus SVGs o iconos -->
       <img src="/src/assets/trofeo.svg" alt="Trofeo" class="feature-icon">
       <div class="dot"></div>
       <p>Trayectoria impecable,<br>13 años de experiencia</p>
@@ -53,7 +49,6 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 3 -->
   <section class="about-cta">
     <h2>MENSAJERÍA TOTAL</h2>
     <h3>LA MENSAJERÍA QUE TÚ Y TUS CLIENTES SE MERECEN</h3>
@@ -85,43 +80,14 @@
         <section class="valores-container">
             
            <div class="pill-header center-pill">
-    <img src="/src/assets/no juzgeuis o sereis jusgaos.svg" alt="icono valores" style="width: 35px; height: 35px; object-fit: contain;">
-    <h2>VALORES</h2>
-</div>
-            
-            <div class="valores-grid">
-                
-                <div class="valores-col">
-                    <div class="valor-item">
-                        <h3>Responsabilidad</h3>
-                        <p>Cumplimos cada entrega de manera segura, eficiente y dentro del tiempo acordado, actuando con profesionalismo en cada servicio.</p>
-                    </div>
-                    <div class="valor-item">
-                        <h3>Compromiso</h3>
-                        <p>Trabajamos con dedicación para brindar soluciones de mensajería de calidad que satisfagan las necesidades de nuestros clientes.</p>
-                    </div>
-                    <div class="valor-item">
-                        <h3>Respeto</h3>
-                        <p>Mantenemos una relación basada en la amabilidad, la empatía y el profesionalismo con clientes, colaboradores y socios.</p>
-                    </div>
-                </div>
-
-                <div class="valores-col">
-                    <div class="valor-item">
-                        <h3>Puntualidad</h3>
-                        <p>Valoramos el tiempo de nuestros clientes, garantizando entregas oportunas y un servicio confiable.</p>
-                    </div>
-                    <div class="valor-item">
-                        <h3>Confianza</h3>
-                        <p>Manejamos cada envío con honestidad, cuidado y transparencia, generando seguridad en cada entrega.</p>
-                    </div>
-                    <div class="valor-item">
-                        <h3>Eficiencia</h3>
-                        <p>Optimizamos nuestros procesos para realizar entregas rápidas, organizadas y efectivas, ofreciendo un servicio ágil y de calidad.</p>
-                    </div>
-                </div>
-
+                <img src="/src/assets/no juzgeuis o sereis jusgaos.svg" alt="icono valores" style="width: 35px; height: 35px; object-fit: contain;">
+                <h2>VALORES</h2>
             </div>
+            
+            <div class="container mt-4">
+                <div id="cards-container"></div>
+            </div>
+
         </section>
 
         <section style="width: 100%; margin-top: 60px; overflow: hidden;">
@@ -129,5 +95,8 @@
         </section>
         
 </main>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/src/js/aboutUs.js"></script>
 </body>
 </html>
