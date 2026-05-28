@@ -32,7 +32,7 @@
       font-family: 'Nunito', sans-serif;
       background-color: var(--gris-suave);
       /* Padding-top: deja espacio para la navbar flotante fija */
-      padding-top: 100px;
+      padding-top: 10px;
       min-height: 200vh; /* Solo para poder hacer scroll y ver efecto sticky */
     }
 
