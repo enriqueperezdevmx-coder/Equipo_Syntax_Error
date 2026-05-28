@@ -7,27 +7,32 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; //importo los iconos de boots
 const valores = [
     {
         titulo : "Responsabilidad",
-        descripcion : "Cumplimos cada entrega de manera segura, eficiente y dentro del tiempo acordado.",
+        descripcion : "Cumplimos cada entrega de manera segura, eficiente y dentro del tiempo acordado, actuando con profesionalismo en cada servicio.",
         icon: "bi-shield-check" //Icono de escudo
     },
     {
         titulo : "Puntualidad",
-        descripcion : "Valoramos el tiempo de nuestros clientes garantizando entregas oportunas.",
+        descripcion : "Valoramos el tiempo de nuestros clientes, garantizando entregas oportunas y un servicio confiable.",
         icon: "bi-clock-history" //icono de reloj
     },
     {
         titulo : "Compromiso",
-        descripcion : "Trabajamos con dedicación para brindar soluciones de mensajería de calidad.",
+        descripcion : "Trabajamos con dedicación para brindar soluciones de mensajería de calidad que satisfagan las necesidades de nuestros clientes.",
         icon: "bi-hand-thumbs-up" //icono de pulgar arriba
     },
     {
         titulo : "Confianza",
-        descripcion : "Manejamos una relación basada en la amabilidad y el profesionalismo",
+        descripcion : "Manejamos cada envío con honestidad, cuidado y transparencia, generando seguridad en cada entrega.",
         icon: "bi-heart-fill" //icono de corazon
     },
     {
+        titulo : "Respeto",
+        descripcion : "Mantenemos una relación basada en la amabilidad, la empatía y el profesionalismo con clientes, colaboradores y socios.",
+        icon: "#" //icono de pendiente por definir
+    },
+    {
         titulo : "Eficiencia",
-        descripcion : "Optimizamos nuestroc procesos para realizar entregas rápidas y efectivas.",
+        descripcion : "Optimizamos nuestros procesos para realizar entregas rápidas, organizadas y efectivas, ofreciendo un servicio ágil y de calidad.",
         icon: "bi-lightning-charge" //Icono de rayo
     }
 ];
