@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- USAMOS LOS ICONOS DE BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Demo</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!--  CSS -->
+  <link rel="stylesheet" href="../../css/navbar.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-mt">
   <div class="container-fluid">
 
-    <!-- AQUI VA NUESTRO LOGO -->
+    <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="###" alt="Logo" width="80" height="60">
+      <img src="../../assets/mensajeria.png" alt="Logo">
     </a>
 
-    <!-- AQUI VAN LOS ICONOS DE COTIZACION Y PERFIL-->
+    <!-- Íconos en móvil -->
     <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
-      <a href="#" class="text-dark fs-5"><i class="bi bi-clipboard"></i></a>
-      <a href="#" class="text-dark fs-5"><i class="bi bi-person-circle"></i></a>
+      <a href="#" class="icono-accion"><i class="bi bi-clipboard"></i></a>
+      <a href="#" class="icono-accion"><i class="bi bi-person-circle"></i></a>
     </div>
 
-    <!-- BOTON HAMBURGESA SI ES MOVIL -->
+    <!-- Botón hamburguesa -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" 
             aria-controls="navbarSupportedContent" 
@@ -33,39 +35,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Menú colapsable -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <!-- NABAR -->
+      <!-- Links -->
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active fw-bold" aria-current="page" href="/index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Servicios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Cotizar envío</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Rastreo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
-        </li>
+        <li class="nav-item"><a class="nav-link active" href="/index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Cotizar envío</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Rastreo</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
       </ul>
 
-      <!-- Íconos en escritorio (ocultos en móvil porque ya están arriba) -->
-      <div class="d-none d-lg-flex align-items-center gap-2">
-        <a href="#" class="text-dark fs-5"><i class="bi bi-clipboard"></i></a>
-        <a href="#" class="text-dark fs-5"><i class="bi bi-person-circle"></i></a>
+      <!-- Íconos en escritorio -->
+      <div class="d-none d-lg-flex align-items-center gap-2 iconos-desktop">
+        <a href="#" class="icono-accion"><i class="bi bi-clipboard"></i></a>
+        <a href="#" class="icono-accion"><i class="bi bi-person-circle"></i></a>
       </div>
 
     </div>
   </div>
 </nav>
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
