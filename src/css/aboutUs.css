@@ -214,3 +214,43 @@
     flex-direction: column;
   }
 }
+.value-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    /* overflow: hidden;  <-- COMENTA O QUITA ESTA LÍNEA si necesitas que la descripción se extienda */
+}
+
+/* Efecto de sombra y aumento al pasar el mouse */
+.value-card:hover {
+    transform: translateY(-10px); /* Se levanta un poco */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra más fuerte, ES IMPORTANTE */
+}
+
+/* La descripción está oculta por defecto */
+.card-desc {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+    margin-top: 0;
+    font-size: 0.95rem; /más pequeño/
+}
+
+/* Cuando se activa el hover, mostramos la descripción */
+.value-card.hover-active .card-desc {
+    opacity: 1;
+    max-height: 150px; /* Ajusta este valor si la descripción se corta */
+    margin-top: 10px;
+}
+
+/* Animaciones del icono al hacer hover */
+.value-card:hover .icon-container i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/*cards con altura mínima para que se vean bien */
+.value-card{
+  min-width: 250px;
+}
