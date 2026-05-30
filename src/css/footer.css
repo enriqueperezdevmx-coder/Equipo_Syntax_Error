@@ -1,0 +1,109 @@
+/* =====================================================
+   FOOTER RENOVADO MINIMALISTA
+===================================================== */
+footer {
+  background-color: var(--gris-suave); /* fondo claro y discreto */
+  color: var(--gris-texto);
+  padding: 20px 0;
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-size: 0.9rem;
+}
+
+footer .container {
+  max-width: 1100px;
+}
+
+footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Logo más discreto */
+footer img {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+/* Títulos de sección */
+footer p {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--verde-principal);
+  font-size: 0.95rem;
+}
+
+/* Listas */
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+footer ul li a {
+  color: var(--gris-texto);
+  text-decoration: none;
+  transition: color var(--transicion);
+}
+
+footer ul li a:hover {
+  color: var(--verde-medio);
+}
+
+/* Iconos */
+footer i {
+  color: var(--verde-principal);
+  font-size: 1rem;
+}
+
+/* Copyright */
+footer .text-muted {
+  color: rgba(0,0,0,0.5) !important;
+  font-size: 0.8rem;
+  margin-top: 15px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 768px) {
+  footer .row {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  footer ul li {
+    justify-content: center;
+  }
+
+  footer img {
+    margin: 0 auto 15px;
+  }
+}
+
+/* =====================================================
+   STICKY FOOTER FIX
+===================================================== */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
