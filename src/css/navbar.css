@@ -2,243 +2,249 @@
        VARIABLES GLOBALES
        Centraliza colores y medidas para fácil mantenimiento
     ===================================================== */
-    :root {
-      --verde-principal: #0DA74A;   /* Verde oscuro corporativo */
-      --verde-medio:     #72C550;   /* Verde medio para gradientes */
-      --verde-claro:     #86b276;   /* Verde claro para acentos/hover */
-      --verde-ultra:     #D6EDCC;   /* Verde muy claro para detalles sutiles */
-      --blanco:          #FFFFFF;
-      --gris-texto:      #1A1A1A;   /* Texto principal casi negro */
-      --gris-suave:      #F5F7F5;   /* Fondo de página muy suave */
+:root {
+  --verde-principal: #0da74a; /* Verde oscuro corporativo */
+  --verde-medio: #72c550; /* Verde medio para gradientes */
+  --verde-claro: #86b276; /* Verde claro para acentos/hover */
+  --verde-ultra: #d6edcc; /* Verde muy claro para detalles sutiles */
+  --blanco: #ffffff;
+  --gris-texto: #1a1a1a; /* Texto principal casi negro */
+  --gris-suave: #f5f7f5; /* Fondo de página muy suave */
 
-      /* Sombra verde tenue que da profundidad a la navbar flotante */
-      --sombra-navbar: 0 8px 32px rgba(46, 125, 50, 0.15),
-                       0 2px 8px  rgba(0, 0, 0, 0.08);
+  /* Sombra verde tenue que da profundidad a la navbar flotante */
+  --sombra-navbar:
+    0 8px 32px rgba(46, 125, 50, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
 
-      /* Duración estándar de todas las transiciones de UI */
-      --transicion: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  /* Duración estándar de todas las transiciones de UI */
+  --transicion: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    /* =====================================================
+/* =====================================================
        RESET Y BASE
     ===================================================== */
-    *, *::before, *::after {
-      box-sizing: border-box;  /* Modelo de caja predecible */
-      margin: 0;
-      padding: 0;
-    }
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Modelo de caja predecible */
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      background-color: var(--gris-suave);
-      /* Padding-top: deja espacio para la navbar flotante fija */
-      padding-top: 10px;
-      min-height: 200vh; /* Solo para poder hacer scroll y ver efecto sticky */
-    }
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: var(--gris-suave);
+  /* Padding-top: deja espacio para la navbar flotante fija */
+  padding-top: 10px;
+  min-height: 200vh; /* Solo para poder hacer scroll y ver efecto sticky */
+}
 
-    /* =====================================================
+/* =====================================================
        NAVBAR PRINCIPAL
        Flotante: position fixed + margin lateral para efecto "isla"
     ===================================================== */
-    .navbar-mt {
-      position: fixed;          /* Siempre visible al hacer scroll */
-      top: 16px;                /* Espacio superior para efecto "flotante" */
-      left: 50%;                /* Centrado horizontal con transformación */
-      transform: translateX(-50%);
-      width: calc(100% - 40px); /* Márgenes laterales de 20px c/u */
-      max-width: 1200px;        /* No se expande demasiado en pantallas grandes */
-      z-index: 1050;            /* Por encima de todo el contenido */
+.navbar-mt {
+  position: fixed; /* Siempre visible al hacer scroll */
+  top: 16px; /* Espacio superior para efecto "flotante" */
+  left: 50%; /* Centrado horizontal con transformación */
+  transform: translateX(-50%);
+  width: calc(100% - 40px); /* Márgenes laterales de 20px c/u */
+  max-width: 1200px; /* No se expande demasiado en pantallas grandes */
+  z-index: 1050; /* Por encima de todo el contenido */
 
-      /* Glassmorphism: fondo blanco semi-transparente con desenfoque */
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(16px);             /* Desenfoque del contenido detrás */
-      -webkit-backdrop-filter: blur(16px);     /* Soporte Safari */
+  /* Glassmorphism: fondo blanco semi-transparente con desenfoque */
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px); /* Desenfoque del contenido detrás */
+  -webkit-backdrop-filter: blur(16px); /* Soporte Safari */
 
-      border-radius: 20px;                     /* Bordes muy redondeados = aspecto moderno */
-      border: 1.5px solid rgba(102, 187, 106, 0.3); /* Borde verde sutil */
-      box-shadow: var(--sombra-navbar);
-      padding: 10px 24px;                      /* Espaciado interno cómodo */
+  border-radius: 20px; /* Bordes muy redondeados = aspecto moderno */
+  border: 1.5px solid rgba(102, 187, 106, 0.3); /* Borde verde sutil */
+  box-shadow: var(--sombra-navbar);
+  padding: 10px 24px; /* Espaciado interno cómodo */
 
-      /* Animación de entrada al cargar la página */
-      animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-    }
+  /* Animación de entrada al cargar la página */
+  animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
 
-    /* Animación: la navbar cae desde arriba al cargar */
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-    }
+/* Animación: la navbar cae desde arriba al cargar */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
 
-    /* =====================================================
+/* =====================================================
        LOGO
     ===================================================== */
-    .navbar-mt .navbar-brand img {
-      height: 80px;           /* Tamaño cómodo y proporcional */
-      width: auto;
-      transition: transform var(--transicion); /* Micro-interacción al hover */
-    }
+.navbar-mt .navbar-brand img {
+  height: 80px; /* Tamaño cómodo y proporcional */
+  width: auto;
+  transition: transform var(--transicion); /* Micro-interacción al hover */
+}
 
-    .navbar-mt .navbar-brand:hover img {
-      transform: scale(1.05); /* Ligero zoom para feedback visual */
-    }
+.navbar-mt .navbar-brand:hover img {
+  transform: scale(1.05); /* Ligero zoom para feedback visual */
+}
 
-    /* =====================================================
+/* =====================================================
        LINKS DE NAVEGACIÓN
     ===================================================== */
-    .navbar-mt .nav-link {
-      font-family: 'Syne', sans-serif;  /* Fuente display para los links */
-      font-weight: 600;
-      font-size: 0.96rem;
-      color: var(--gris-texto);
-      padding: 10px 16px !important;     /* Área de clic generosa */
-      border-radius: 10px;
-      position: relative;               /* Necesario para el pseudo-elemento de línea */
-      transition: color var(--transicion), background var(--transicion);
-      letter-spacing: 0.01em;
-      margin: 0 30px;                 /* más separación externa */
-    }
+.navbar-mt .nav-link {
+  font-family: "Syne", sans-serif; /* Fuente display para los links */
+  font-weight: 600;
+  font-size: 0.96rem;
+  color: var(--gris-texto);
+  padding: 10px 16px !important; /* Área de clic generosa */
+  border-radius: 10px;
+  position: relative; /* Necesario para el pseudo-elemento de línea */
+  transition:
+    color var(--transicion),
+    background var(--transicion);
+  letter-spacing: 0.01em;
+  margin: 0 30px; /* más separación externa */
+}
 
-    /* Línea animada debajo del link al hacer hover */
-    .navbar-mt .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 4px;              /* Justo debajo del texto */
-      left: 50%;                /* Empieza desde el centro */
-      transform: translateX(-50%) scaleX(0); /* Escala 0 = invisible */
-      width: 70%;
-      height: 2.5px;
-      background: linear-gradient(90deg, var(--verde-principal), var(--verde-claro));
-      border-radius: 2px;
-      /* Transición de expansión: se abre desde el centro */
-      transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+/* Línea animada debajo del link al hacer hover */
+.navbar-mt .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px; /* Justo debajo del texto */
+  left: 50%; /* Empieza desde el centro */
+  transform: translateX(-50%) scaleX(0); /* Escala 0 = invisible */
+  width: 70%;
+  height: 2.5px;
+  background: linear-gradient(
+    90deg,
+    var(--verde-principal),
+    var(--verde-claro)
+  );
+  border-radius: 2px;
+  /* Transición de expansión: se abre desde el centro */
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    /* Al hover: la línea se expande */
-    .navbar-mt .nav-link:hover::after,
-    .navbar-mt .nav-link.active::after {
-      transform: translateX(-50%) scaleX(1);
-    }
+/* Al hover: la línea se expande */
+.navbar-mt .nav-link:hover::after,
+.navbar-mt .nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
 
-    /* Cambio de color del texto en hover */
-    .navbar-mt .nav-link:hover {
-      color: var(--verde-principal);
-      background: rgba(102, 187, 106, 0.08); /* Fondo muy sutil */
-    }
+/* Cambio de color del texto en hover */
+.navbar-mt .nav-link:hover {
+  color: var(--verde-principal);
+  background: rgba(102, 187, 106, 0.08); /* Fondo muy sutil */
+}
 
-    /* Estado activo: color verde permanente */
-    .navbar-mt .nav-link.active {
-      color: var(--verde-principal) !important;
-      font-weight: 700;
-    }
+/* Estado activo: color verde permanente */
+.navbar-mt .nav-link.active {
+  color: var(--verde-principal) !important;
+  font-weight: 700;
+}
 
-    /* =====================================================
+/* =====================================================
        ICONOS DE ACCIÓN (Cotización y Perfil)
     ===================================================== */
-    .navbar-mt .icono-accion {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;            /* Cuadrado redondeado */
-      color: var(--gris-texto);
-      font-size: 1.7rem;
-      margin: 0 6px; 
-      text-decoration: none;
-      transition: background var(--transicion),
-                  color var(--transicion),
-                  transform var(--transicion);
-    }
+.navbar-mt .icono-accion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px; /* Cuadrado redondeado */
+  color: var(--gris-texto);
+  font-size: 1.7rem;
+  margin: 0 6px;
+  text-decoration: none;
+  transition:
+    background var(--transicion),
+    color var(--transicion),
+    transform var(--transicion);
+}
 
-    .navbar-mt .icono-accion:hover {
-      background: var(--verde-principal); /* Fondo verde sólido al hover */
-      color: var(--blanco);               /* Icono blanco */
-      transform: translateY(-2px);        /* Sube ligeramente = feedback */
-    }
+.navbar-mt .icono-accion:hover {
+  background: var(--verde-principal); /* Fondo verde sólido al hover */
+  color: var(--blanco); /* Icono blanco */
+  transform: translateY(-2px); /* Sube ligeramente = feedback */
+}
 
-    /* =====================================================
+/* =====================================================
        SEPARADOR VERTICAL entre iconos
     ===================================================== */
-    .navbar-mt .divisor {
-      width: 1px;
-      height: 22px;
-      background: rgba(46, 125, 50, 0.25);
-      margin: 0 6px;
-    }
+.navbar-mt .divisor {
+  width: 1px;
+  height: 22px;
+  background: rgba(46, 125, 50, 0.25);
+  margin: 0 6px;
+}
 
-    /* =====================================================
+/* =====================================================
        BOTÓN HAMBURGUESA (móvil)
        Estilo personalizado que reemplaza el default de Bootstrap
     ===================================================== */
-    .navbar-mt .navbar-toggler {
-      border: none;
-      padding: 6px;
-      border-radius: 10px;
-      transition: background var(--transicion);
-      outline: none !important;
-      box-shadow: none !important; /* Elimina borde de foco de Bootstrap */
-    }
+.navbar-mt .navbar-toggler {
+  border: none;
+  padding: 6px;
+  border-radius: 10px;
+  transition: background var(--transicion);
+  outline: none !important;
+  box-shadow: none !important; /* Elimina borde de foco de Bootstrap */
+}
 
-    .navbar-mt .navbar-toggler:hover {
-      background: rgba(46, 125, 50, 0.1);
-    }
+.navbar-mt .navbar-toggler:hover {
+  background: rgba(46, 125, 50, 0.1);
+}
 
-    /* Ícono del toggler con color verde en lugar del default gris */
-    .navbar-mt .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%232E7D32' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
+/* Ícono del toggler con color verde en lugar del default gris */
+.navbar-mt .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%232E7D32' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
 
-
-    /* =====================================================
+/* =====================================================
        MENÚ COLAPSADO EN MÓVIL
        Panel que aparece debajo de la navbar al abrir el menú
     ===================================================== */
-    .navbar-mt .navbar-collapse {
-      /* En móvil: el menú se expande dentro de la navbar flotante */
-    }
+.navbar-mt .navbar-collapse {
+  /* En móvil: el menú se expande dentro de la navbar flotante */
+}
 
-    /* En pantallas pequeñas: el menú desplegado tiene padding y separación */
-    @media (max-width: 991.98px) {
-      .navbar-mt .navbar-collapse {
-        padding-top: 12px;
-        border-top: 1px solid rgba(46, 125, 50, 0.12); /* Separador sutil */
-        margin-top: 8px;
-      }
+/* En pantallas pequeñas: el menú desplegado tiene padding y separación */
+@media (max-width: 991.98px) {
+  .navbar-mt .navbar-collapse {
+    padding-top: 12px;
+    border-top: 1px solid rgba(46, 125, 50, 0.12); /* Separador sutil */
+    margin-top: 8px;
+  }
 
-      /* Links verticales en móvil: más padding para facilidad de toque */
-      .navbar-mt .nav-link {
-        padding: 10px 12px !important;
-        border-radius: 10px;
-      }
+  /* Links verticales en móvil: más padding para facilidad de toque */
+  .navbar-mt .nav-link {
+    padding: 10px 12px !important;
+    border-radius: 10px;
+  }
 
-      /* Los iconos en móvil se muestran como fila al final del menú */
-      .navbar-mt .iconos-desktop {
-        padding: 8px 0 4px;
-        border-top: 1px solid rgba(46, 125, 50, 0.12);
-        margin-top: 4px;
-      }
-    }
+  /* Los iconos en móvil se muestran como fila al final del menú */
+  .navbar-mt .iconos-desktop {
+    padding: 8px 0 4px;
+    border-top: 1px solid rgba(46, 125, 50, 0.12);
+    margin-top: 4px;
+  }
+}
 
-    /* =====================================================
+/* =====================================================
        AJUSTE DE NAVBAR EN PANTALLAS MEDIANAS (tablets)
     ===================================================== */
-    @media (max-width: 575.98px) {
-      .navbar-mt {
-        top: 10px;                        /* Menos margen superior en móvil */
-        width: calc(100% - 20px);         /* Márgenes laterales más pequeños */
-        padding: 8px 14px;
-        border-radius: 16px;             /* Bordes un poco menos redondeados */
-      }
+@media (max-width: 575.98px) {
+  .navbar-mt {
+    top: 10px; /* Menos margen superior en móvil */
+    width: calc(100% - 20px); /* Márgenes laterales más pequeños */
+    padding: 8px 14px;
+    border-radius: 16px; /* Bordes un poco menos redondeados */
+  }
 
-      .navbar-mt .navbar-brand img {
-        height: 44px;  /* Logo ligeramente más pequeño en móvil */
-      }
-    }
-
-    
+  .navbar-mt .navbar-brand img {
+    height: 44px; /* Logo ligeramente más pequeño en móvil */
+  }
+}
