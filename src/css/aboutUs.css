@@ -22,7 +22,7 @@
    CONTENEDOR PRINCIPAL
    ================================ */
 .about-us-container {
-  padding: 40px 20px;
+  padding: 40px 40px;
   font-family: 'Segoe UI', Arial, sans-serif;
   color: #333;
 }
@@ -37,19 +37,21 @@
   justify-content: center;
   margin-bottom: 60px;
   position: relative;
+  gap: 0;   /* ← quita cualquier gap entre flex-items */
 }
 
 /* Caja verde con corte diagonal y texto centrado */
 .hero-green-box {
   flex: 1 1 50%;
-  background-color: #198754; /* Verde Bootstrap */
+  background-color: #0DA74A; /* Verde principal */
   color: #fff;
-  padding: 40px;
+  padding: 50px;
   display: flex;              /* activa flexbox interno */
   flex-direction: column;     /* organiza en columna */
   justify-content: center;    /* centra verticalmente el contenido */
   border-radius: 8px 0 0 8px; /* esquinas redondeadas en el lado izquierdo */
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); /* corte diagonal */
+  /*clip-path: polygon(0 0, 92% 0, 78% 100%, 0% 100%);*/
   z-index: 2; /* encima de la imagen */
 }
 
@@ -60,6 +62,7 @@
 
 .hero-green-box p {
   margin-bottom: 10px;
+  padding-right: 40px;
 }
 
 /* Imagen con corte complementario */
@@ -67,7 +70,10 @@
   flex: 1 1 50%;
   overflow: hidden;
   border-radius: 0 8px 8px 0; /* esquinas redondeadas en el lado derecho */
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); /* corte diagonal inverso */
+  /*clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); /* corte diagonal inverso */
+  /*z-index: 1;*/
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  margin-left: -9%;   /* ← solapa la imagen sobre el corte diagonal */
   z-index: 1;
 }
 
@@ -99,6 +105,17 @@
   width: 60px;
   height: 60px;
 }
+/* Línea horizontal que une los puntos */
+.about-features::after {
+  content: '';
+  position: absolute;
+  top: calc(60px + 10px + 25px); /* altura icono + margen dot + mitad del dot */
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background-color: #198754;
+  z-index: 0;
+}
 
 .dot {
   width: 12px;
@@ -106,6 +123,9 @@
   background-color: #198754;
   border-radius: 50%;
   margin: 10px auto;
+  position: relative;
+  z-index: 1; /* ← encima de la línea */
+
 }
 
 /* ================================
@@ -118,7 +138,7 @@
 
 .about-cta h2 {
   font-weight: 700;
-  color: #198754;
+  color: #0DA74A;
 }
 
 .about-cta h3 {
@@ -138,7 +158,7 @@
 
 .info-block {
   flex: 1 1 45%;
-  background-color: #198754;
+  background-color: #0DA74A;
   color: #fff;
   padding: 30px;
   border-radius: 12px;
@@ -194,6 +214,32 @@
   font-size: 0.95rem;
   line-height: 1.5;
 }
+/* Wrapper que agrupa valores + imagen */
+.valores-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 60px;
+}
+
+/* La imagen de fondo translúcida */
+.valores-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;   /* ← ajusta entre 0.12 – 0.25 al gusto */
+  z-index: 0;
+}
+
+/* Las cards de valores encima */
+.valores-container {
+  position: relative;
+  z-index: 1;
+  padding: 40px 20px 60px;
+  margin-top: 0;   /* el margin ahora va en el wrapper */
+}
 
 /* ================================
    RESPONSIVE (Pantallas pequeñas)
@@ -234,7 +280,7 @@
     overflow: hidden;
     transition: opacity 0.4s ease, max-height 0.4s ease;
     margin-top: 0;
-    font-size: 0.95rem; /más pequeño/
+    font-size: 0.95rem; /*más pequeño*/
 }
 
 /* Cuando se activa el hover, mostramos la descripción */
