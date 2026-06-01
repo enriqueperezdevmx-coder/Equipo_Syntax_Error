@@ -1,0 +1,20 @@
+/* ═══════════════════════════════════════════
+   variables.css
+   Colores globales del proyecto
+   NOTA IMPORTANTE:Importar PRIMERO antes que cualquier otro CSS
+═══════════════════════════════════════════ */
+
+:root {
+  --verde-principal: #0DA74A;
+  --verde-medio:     #72C550;
+  --verde-claro:     #86b276;
+  --verde-ultra:     #D6EDCC;
+  --blanco:          #FFFFFF;
+  --gris-texto:      #1A1A1A;
+  --gris-suave:      #F5F7F5;
+/* Sombra verde tenue que da profundidad a la navbar flotante */
+  --sombra-navbar: 0 8px 32px rgba(46, 125, 50, 0.15),
+                       0 2px 8px  rgba(0, 0, 0, 0.08);
+/* Duración estándar de todas las transiciones de UI */
+  --transicion: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }

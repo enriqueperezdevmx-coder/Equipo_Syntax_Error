@@ -1,23 +1,8 @@
-/* =====================================================
-       VARIABLES GLOBALES
-       Centraliza colores y medidas para fácil mantenimiento
-    ===================================================== */
-    :root {
-      --verde-principal: #0DA74A;   /* Verde oscuro corporativo */
-      --verde-medio:     #72C550;   /* Verde medio para gradientes */
-      --verde-claro:     #86b276;   /* Verde claro para acentos/hover */
-      --verde-ultra:     #D6EDCC;   /* Verde muy claro para detalles sutiles */
-      --blanco:          #FFFFFF;
-      --gris-texto:      #1A1A1A;   /* Texto principal casi negro */
-      --gris-suave:      #F5F7F5;   /* Fondo de página muy suave */
-
-      /* Sombra verde tenue que da profundidad a la navbar flotante */
-      --sombra-navbar: 0 8px 32px rgba(46, 125, 50, 0.15),
-                       0 2px 8px  rgba(0, 0, 0, 0.08);
-
-      /* Duración estándar de todas las transiciones de UI */
-      --transicion: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+/* ═══════════════════════════════════════════
+   navbar.css
+   Estilos para la navbar
+   Importante: /src/css/variables.css cargado primero <- aqui estan la paleta de colores globales
+═══════════════════════════════════════════ */
 
     /* =====================================================
        RESET Y BASE
