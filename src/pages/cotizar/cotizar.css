@@ -1,0 +1,63 @@
+/*=══════════════════*/
+/*Quita las flechas en Chrome, Safari, Edge y Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*═════════════════════════ */
+
+/*Inicio de formulario tipo de envio*/
+.tarjeta-formulario {
+  /* Separación obligatoria de la Navbar sin romper el flujo */
+  margin-top: 35px !important;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background-color: var(--blanco);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.etiqueta-envio {
+  font-family: sans-serif;
+  font-weight: 600;
+  color: black;
+}
+
+.selector-envio {
+  font-family: sans-serif;
+  padding: 8px 36px 8px 12px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  background-color: var(--blanco);
+  color: #4a5568;
+
+  min-width: 300px;
+  cursor: pointer;
+}
+/*Fin de formulario tipo de envio*/
+
+/* Inicio Formulario general */
+
+.form-control {
+  padding: 6px 10px !important;
+  border: 1px solid #cccccc !important;
+  border-radius: 6px !important;
+  font-family: sans-serif;
+  font-size: 14px !important;
+}
+
+/* boton enviar */
+.boton-enviar {
+  padding: 12px 12px !important;
+  border: 1px solid var(--verde-principal) !important;
+  border-radius: 6px !important;
+  font-family: sans-serif;
+  background-color: var(--verde-principal) !important;
+  color: var(--blanco) !important;
+}
+/* Fin Formulario general */
