@@ -19,14 +19,14 @@
 
   <body>
     <div id="navbar"></div>
-    <!--Formulario-->
 
-    <!--Inicio de formulario tipo de envio-->
-    <div class="tarjeta-formulario">
-      <label for="Tipo de envio" class="etiqueta-envio">Tipo de envio:</label>
+    <div class="tarjeta-formulario mb-4 d-flex align-items-center">
+      <label for="tipo-de-envio" class="etiqueta-envio me-3 mb-0"
+        >Tipo de envio:</label
+      >
       <select
         id="tipo-de-envio"
-        class="selector-envio"
+        class="form-select selector-envio"
         aria-label="Selecciona el tipo de envio"
       >
         <option selected disabled>Selecciona el tipo de envio</option>
@@ -36,129 +36,146 @@
         <option value="4">Extraordinario</option>
       </select>
     </div>
-    <!-- Fin de formulario tipo de envio -->
+    <div class="row g-4">
+      <div class="col-md-6 d-flex flex-column gap-3">
+        <div class="row g-2">
+          <div class="col-12">
+            <label class="form-label mb-1 fw-semibold"
+              >Nombre del Remitente</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre completo"
+              aria-label="text"
+            />
+          </div>
+          <div class="col-md-8">
+            <label class="form-label mb-1 fw-semibold"
+              >Direccion de Origen</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              aria-label="text"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label mb-1 fw-semibold">C.P. Origen</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder=" "
+              aria-label="Zip"
+            />
+          </div>
+        </div>
 
-    <!--Inicio Formulario general-->
+        <div>
+          <label class="form-label mb-1 fw-semibold">Correo electronico</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder=""
+            aria-label="email"
+          />
+        </div>
 
-    <div class="row g-3">
-      <div class="col-sm">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Codigo Postal de Origen"
-          aria-label="Zip"
-        />
+        <div class="row g-2">
+          <div class="col-12">
+            <label class="form-label mb-1 fw-semibold"
+              >Nombre del Destinatario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre completo"
+              aria-label="text"
+            />
+          </div>
+          <div class="col-md-8">
+            <label class="form-label mb-1 fw-semibold"
+              >Direccion del Destinatario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Direccion completa"
+              aria-label="text"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label mb-1 fw-semibold">C.P. Destino</label>
+            <input type="number" class="form-control" aria-label="Zip" />
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label mb-1 fw-semibold"
+            >Telefono del Destinatario</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder="A 10 digitos"
+            aria-label="tel"
+          />
+        </div>
       </div>
 
-      <div class="col-sm">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Codigo Postal de Destino"
-          aria-label="Zip"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Peso del Paquete (Kg)"
-          aria-label="Zip"
-        />
+      <div class="col-md-6 d-flex flex-column gap-1">
+        <div class="flex-grow-1 d-flex flex-column">
+          <label class="form-label mb-1 fw-semibold"
+            >Descripcion del Contenido</label
+          >
+          <textarea
+            class="form-control flex-grow-1"
+            placeholder="Sea lo mas descriptivo posible"
+            aria-label="text"
+            rows="4"
+          ></textarea>
+        </div>
+        <div>
+          <label class="form-label mb-1 fw-semibold"
+            >Peso del Paquete (Kg)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            aria-label="number"
+          />
+        </div>
+        <div>
+          <label class="form-label mb-1 fw-semibold"
+            >Ancho del paquete (cm)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            aria-label="number"
+          />
+        </div>
+        <div>
+          <label class="form-label mb-1 fw-semibold"
+            >Alto del paquete (cm)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            aria-label="number"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="row g-3">
-      <div class="col-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Nombre del Remitente"
-          aria-label="text"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Nombre del Destinatario"
-          aria-label="text"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Ancho del paquete (cm)"
-          aria-label="number"
-        />
-      </div>
+    <div class="d-flex justify-content-end mt-4">
+      <button type="button" class="btn boton-enviar boton-sm">Enviar</button>
     </div>
 
-    <div class="row g-3">
-      <div class="col-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Direccion de Origen"
-          aria-label="text"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Direccion del Destinatario"
-          aria-label="text"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Alto del paquete (cm)"
-          aria-label="number"
-        />
-      </div>
-    </div>
-
-    <div class="row g-3">
-      <div class="col-sm">
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Correo electronico"
-          aria-label="email"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Telefono del Destinatario"
-          aria-label="number"
-        />
-      </div>
-
-      <div class="col-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Descripcion del Contenido"
-          aria-label="text"
-        />
-      </div>
-    </div>
-
-    <!--Fin Formulario general-->
-
-    <!--Forms -->
     <!-- FOOTER -->
     <div id="footer"></div>
 
