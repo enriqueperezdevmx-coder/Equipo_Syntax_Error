@@ -1,0 +1,33 @@
+/*Inicio de formulario tipo de envio*/
+.tarjeta-formulario {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background-color: --bla;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+}
+.etiqueta-envio {
+  font-family: sans-serif;
+  font-weight: 600;
+  color: black;
+}
+.selector-envio {
+  font-family: sans-serif;
+  padding: 8px 36px 8px 12px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #4a5568;
+
+  min-width: 300px;
+  cursor: pointer;
+}
+/*Fin de formulario tipo de envio*/
+
+/* Inicio Formulario general */
+
+/* Fin Formulario general */
