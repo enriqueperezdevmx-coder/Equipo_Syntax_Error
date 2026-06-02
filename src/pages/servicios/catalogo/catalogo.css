@@ -1,0 +1,116 @@
+/* ============================================================
+   catalogo.css — Página de catálogo individual
+   Variables de /src/css/variables.css
+============================================================ */
+
+/* ── Hero section wrapper ─────────────────────────────────── */
+.catalogo-hero {
+  background-color: var(--blanco);
+}
+
+/* ── Título del servicio ──────────────────────────────────── */
+.servicio-titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--verde-principal) !important;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Estrellas ────────────────────────────────────────────── */
+.estrellas .bi {
+  color: #ffc107;
+  font-size: 1rem;
+}
+
+.rating-texto {
+  font-size: 0.875rem;
+  color: var(--gris-texto);
+}
+
+/* ── Precio ───────────────────────────────────────────────── */
+.servicio-precio {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--verde-medio);
+  margin-bottom: 1rem;
+}
+
+/* ── Descripción ──────────────────────────────────────────── */
+.servicio-descripcion {
+  font-size: 0.95rem;
+  color: var(--gris-texto);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Beneficios ───────────────────────────────────────────── */
+.beneficios-titulo {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--gris-texto);
+}
+
+.beneficios-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+}
+
+.beneficios-lista .bi-check-circle-fill {
+  color: var(--verde-principal);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── Botón CTA ────────────────────────────────────────────── */
+.btn-cotizar {
+  display: block;
+  background-color: var(--verde-principal) !important;
+  color: var(--blanco) !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transicion);
+}
+
+.btn-cotizar:hover {
+  background-color: var(--verde-medio) !important;
+  color: var(--blanco) !important;
+}
+
+/* ── Carousel ─────────────────────────────────────────────── */
+.carousel-img {
+  border-radius: 12px;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+#expressCarousel {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--verde-ultra);
+}
+
+#expressCarousel .carousel-control-prev-icon,
+#expressCarousel .carousel-control-next-icon {
+  filter: invert(28%) sepia(60%) saturate(600%) hue-rotate(100deg);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .servicio-titulo {
+    font-size: 2rem;
+  }
+
+  .catalogo-hero {
+    padding-top: 1rem;
+  }
+}
