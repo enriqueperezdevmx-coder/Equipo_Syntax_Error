@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Express - Syntax Logistics</title>
+
+  <!--  LINKS -->
+  <link rel="stylesheet" href="/src/css/variables.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+y
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <!-- ============================================================
+       SECCIÓN PRINCIPAL: INFO + CAROUSEL
+       Layout: dos columnas en desktop, una columna en móvil
+  ============================================================ -->
+  <section class="catalogo-hero">
+    <div class="container py-5">
+      <div class="row align-items-center g-4">
+
+        <!-- COLUMNA IZQUIERDA: Información del servicio -->
+        <div class="col-12 col-lg-5">
+
+          <!-- Nombre del servicio -->
+          <h1 class="servicio-titulo">Extraordinario</h1>
+
+          <!-- Estrellas y reseñas -->
+          <!--! seran reseñas reales? -->
+          <div class="servicio-rating d-flex align-items-center gap-2 mb-2">
+            <div class="estrellas">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <span class="rating-texto">(4.9 stars) • 234 reviews</span>
+          </div>
+
+          <!-- Precio -->
+          <!--! cambiar el precio segun el servicio no hay documentacion  -->
+          <p class="servicio-precio">Desde $120mxn</p>
+
+          <!-- Descripción -->
+          <!-- 🔧 PERSONALIZAR: Escribe la descripción real de tu servicio aquí -->
+          <p class="servicio-descripcion">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse varius enim in eros elementum tristique. Duis cursus,
+            mi quis viverra ornare, eros dolor interdum nulla, ut commodo
+            diam libero vitae erat.
+          </p>
+
+          <!-- Beneficios -->
+          <!--! falta agregar los befeficios no hay documentacion -->
+          <div class="servicio-beneficios mb-4">
+            <p class="beneficios-titulo">Beneficios:</p>
+            <ul class="beneficios-lista list-unstyled">
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                Lorem ipsum dolor sit amet, consectetur.
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                Lorem ipsum dolor sit amet, consectetur.
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                Lorem ipsum dolor sit amet, consectetur.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Botón CTA -->
+          <a href="/src/pages/cotizar/cotizar.html" class="btn btn-cotizar w-100">
+            Cotizar Ahora
+          </a>
+
+        </div>
+
+        <!-- COLUMNA DERECHA: Carousel de imágenes -->
+        <div class="col-12 col-lg-7">
+          <div id="expressCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+              <!--! falta cambiar imagenes -->
+              <div class="carousel-item active">
+                <img src="/src/assets/testear.jpg" class="d-block w-100 carousel-img" alt="Express imagen 1">
+              </div>
+
+              <div class="carousel-item">
+                <img src="/src/assets/testear.jpg" class="d-block w-100 carousel-img" alt="Express imagen 2">
+              </div>
+
+              <div class="carousel-item">
+                <img src="/src/assets/testear.jpg" class="d-block w-100 carousel-img" alt="Express imagen 3">
+              </div>
+
+            </div>
+
+            <!-- Controles del carousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#expressCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#expressCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER 
+  ============================================================ -->
+  <div id="footer"></div>
+
+
+  <!-- SCRIPTS  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/src/js/navbar.js"></script>
+  <script src="/src/js/footer.js"></script>
+
+</body>
+</html>
