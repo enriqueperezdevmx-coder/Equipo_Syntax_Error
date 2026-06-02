@@ -1,3 +1,13 @@
+/*=══════════════════*/
+/*Quita las flechas en Chrome, Safari, Edge y Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*═════════════════════════ */
+
 /*Inicio de formulario tipo de envio*/
 .tarjeta-formulario {
   /* Separación obligatoria de la Navbar sin romper el flujo */

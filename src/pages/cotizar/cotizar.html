@@ -61,13 +61,18 @@
               aria-label="text"
             />
           </div>
+
+          <!--!Checate aqui igual JS para bloquear cualquier otro simbolo que no sea los numeros den cp.-->
           <div class="col-md-4">
             <label class="form-label mb-1 fw-semibold">C.P. Origen</label>
             <input
-              type="number"
-              class="form-control"
-              placeholder=" "
-              aria-label="Zip"
+              id="codigo_postal"
+              name="codigo_postal"
+              pattern="\d{5}"
+              maxlength="5"
+              placeholder="12345"
+              title="El código postal debe tener exactamente 5 dígitos"
+              required
             />
           </div>
         </div>
@@ -105,12 +110,23 @@
               aria-label="text"
             />
           </div>
+          <!--!Checate aqui igual JS para bloquear cualquier otro simbolo que no sea los numeros den cp.-->
           <div class="col-md-4">
             <label class="form-label mb-1 fw-semibold">C.P. Destino</label>
-            <input type="number" class="form-control" aria-label="Zip" />
+            <input
+              type="text"
+              id="codigo_postal"
+              name="codigo_postal"
+              pattern="\d{5}"
+              maxlength="5"
+              placeholder="12345"
+              title="El código postal debe tener exactamente 5 dígitos"
+              required
+            />
           </div>
         </div>
 
+        <!--!En JS checate como limitar el numero maximo de digitos para telefono-->
         <div>
           <label class="form-label mb-1 fw-semibold"
             >Telefono del Destinatario</label
@@ -118,8 +134,11 @@
           <input
             type="number"
             class="form-control"
-            placeholder="A 10 digitos"
-            aria-label="tel"
+            placeholder="A 10 digitos, sin lada"
+            aria-label="number"
+            maxlength="10"
+            inputmode="numeric"
+            pattern="[0-9]*"
           />
         </div>
       </div>
