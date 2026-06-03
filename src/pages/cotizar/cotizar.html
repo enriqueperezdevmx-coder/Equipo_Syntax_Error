@@ -19,6 +19,8 @@
 
   <body>
     <div id="navbar"></div>
+    <main class="container my-5">
+      <form class="tarjeta-flotante">
 
     <div class="tarjeta-formulario mb-4 d-flex align-items-center">
       <label for="tipo-de-envio" class="etiqueta-envio me-3 mb-0"
@@ -64,10 +66,12 @@
 
           <!--!Checate aqui igual JS para bloquear cualquier otro simbolo que no sea los numeros den cp.-->
           <div class="col-md-4">
-            <label class="form-label mb-1 fw-semibold">C.P. Origen</label>
+            <label class="form-label mb-1 fw-semibold">C.P. Destinos</label>
             <input
-              id="codigo_postal"
-              name="codigo_postal"
+            type="text"
+              id="codigo_postal_destino"
+              name="codigo_postal_destino"
+              class="form-control"
               pattern="\d{5}"
               maxlength="5"
               placeholder="12345"
@@ -132,7 +136,7 @@
             >Telefono del Destinatario</label
           >
           <input
-            type="number"
+            type="text"
             class="form-control"
             placeholder="A 10 digitos, sin lada"
             aria-label="number"
@@ -192,9 +196,10 @@
     </div>
 
     <div class="d-flex justify-content-end mt-4">
-      <button type="button" class="btn boton-enviar boton-sm">Enviar</button>
+      <button type="submit" class="btn boton-enviar boton-sm">Enviar</button>
     </div>
-
+    </form>
+</main>
     <!-- FOOTER -->
     <div id="footer"></div>
 
