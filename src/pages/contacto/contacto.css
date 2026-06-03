@@ -271,3 +271,10 @@ body {
 .form-footer i {
     margin-right: 4px;
 }
+/* Clase para campos con error */
+.form-group input.error, 
+.form-group select.error, 
+.form-group textarea.error {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8;
+}
