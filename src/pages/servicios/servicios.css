@@ -128,3 +128,23 @@
   border-color: var(--verde-medio) !important;
   color: var(--blanco) !important;
 }
+.btn-cotizar {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cotizar .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-anim 0.4s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
