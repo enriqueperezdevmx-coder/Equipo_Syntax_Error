@@ -1,0 +1,273 @@
+:root {
+    --primary-color: #1b7339; /* Verde de la marca */
+    --bg-color: #fafbf9;      /* Fondo suave ligeramente verdoso/crema */
+    --text-dark: #2d3732;     /* Texto oscuro desaturado */
+    --text-light: #616b66;    /* Texto secundario */
+    --card-border: #e1e8e3;   /* Bordes sutiles */
+    --input-bg: #f5f7f5;      /* Fondo de los inputs */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    padding: 50px 20px;
+    display: block;
+}
+
+.container {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+/* Encabezado */
+.header-section {
+    margin-bottom: 45px;
+}
+
+.header-section h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.header-section p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* Distribución principal en dos columnas */
+.content-grid {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.info-column {
+    display: table-cell;
+    width: 42%;
+    vertical-align: top;
+    padding-right: 40px;
+}
+
+.form-card {
+    display: table-cell;
+    width: 58%;
+    vertical-align: top;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--card-border);
+}
+
+/* Adaptabilidad para dispositivos móviles */
+@media (max-width: 768px) {
+    .content-grid, .info-column, .form-card {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+    }
+    .info-column {
+        margin-bottom: 40px;
+    }
+}
+
+/* Tarjetas de Información de Contacto */
+.info-card {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 18px;
+    display: block;
+    position: relative;
+}
+
+.info-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    line-height: 46px;
+    font-size: 1.25rem;
+    vertical-align: middle;
+    margin-right: 18px;
+}
+
+/* Colores específicos para los iconos de Bootstrap */
+.icon-tel { background-color: #eaf6ed; color: #1b7339; }
+.icon-mail { background-color: #e8f0fe; color: #1a73e8; }
+.icon-office { background-color: #fef7e0; color: #b78103; }
+
+.info-details {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 70px);
+}
+
+.info-details span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.info-details h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #111512;
+    margin-bottom: 2px;
+}
+
+.info-details p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Badge del Estado Horario */
+.status-badge {
+    background: #eaf6ed;
+    border: 1px solid #c3e6cb;
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-size: 0.88rem;
+    display: inline-block;
+    margin-top: 10px;
+    color: #14592b;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Estilos de Formulario */
+.form-card h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+    color: #111512;
+}
+
+.form-row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 4px;
+}
+
+.form-row .form-group {
+    display: table-cell;
+    width: 50%;
+}
+
+.form-row .form-group:first-child {
+    padding-right: 10px;
+}
+
+.form-row .form-group:last-child {
+    padding-left: 10px;
+}
+
+@media (max-width: 480px) {
+    .form-row, .form-row .form-group {
+        display: block;
+        width: 100%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+/* Botón Enviar */
+.btn-submit {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-submit i {
+    margin-right: 8px;
+}
+
+.btn-submit:hover {
+    background-color: #135429;
+}
+
+/* Footer del Formulario */
+.form-footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.form-footer i {
+    margin-right: 4px;
+}
