@@ -1,63 +1,147 @@
-/*=══════════════════*/
-/*Quita las flechas en Chrome, Safari, Edge y Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+/* =======================================================
+   ESTILOS EXACTOS DE FIGMA (CORREGIDO: INPUTS BLANCOS)
+   ======================================================= */
+:root {
+    --verde-boton: #15803d;        /* Verde oscuro para el botón final */
+    --verde-titulo: #166534;       /* Verde oscuro para los textos de sección */
+    --verde-borde-activo: #22c55e; /* Verde brillante de la pestaña activa */
+    --verde-fondo-activo: #f0fdf4; /* Verde ultra pálido (solo para pestaña activa y círculos) */
+    --fondo-inputs: #ffffff;       /* ¡CORREGIDO! Blanco puro para las casillas */
+    --fondo-general: #f8fafb;      /* Gris muy tenue para el fondo de la página */
+    --gris-borde: #e5e7eb;         /* Gris sutil para los bordes inactivos */
+    --gris-texto: #6b7280;         /* Gris para las etiquetas (labels) */
 }
 
-/*═════════════════════════ */
-
-/*Inicio de formulario tipo de envio*/
-.tarjeta-formulario {
-  /* Separación obligatoria de la Navbar sin romper el flujo */
-  margin-top: 35px !important;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  background-color: var(--blanco);
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 20px;
+body {
+    background-color: var(--fondo-general) !important;
 }
 
-.etiqueta-envio {
-  font-family: sans-serif;
-  font-weight: 600;
-  color: black;
+/* ==========================================
+   1. TABS DE CATEGORÍA
+   ========================================== */
+.nav-pills .nav-link {
+    color: #1f2937 !important; /* Texto gris muy oscuro/negro siempre */
 }
 
-.selector-envio {
-  font-family: sans-serif;
-  padding: 8px 36px 8px 12px;
-  border: 1px solid #000000;
-  border-radius: 6px;
-  background-color: var(--blanco);
-  color: #4a5568;
-
-  min-width: 300px;
-  cursor: pointer;
+.caja-categoria {
+    background-color: #ffffff !important;
+    border: 1px solid var(--gris-borde) !important;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    transition: all 0.2s ease;
+    text-align: left;
+    position: relative;
 }
-/*Fin de formulario tipo de envio*/
 
-/* Inicio Formulario general */
+.caja-categoria .icono-check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: none;
+    color: var(--verde-borde-activo);
+    font-size: 1.2rem;
+}
+
+/* EL ESTADO ACTIVO (La pestaña seleccionada) */
+.nav-pills .nav-link.active.caja-categoria {
+    background-color: var(--verde-fondo-activo) !important;
+    border: 1.5px solid var(--verde-borde-activo) !important;
+}
+
+.nav-pills .nav-link.active.caja-categoria .icono-check { 
+    display: block; 
+}
+
+/* ==========================================
+   2. CAJAS DEL FORMULARIO
+   ========================================== */
+.caja-seccion {
+    border: 1px solid var(--gris-borde);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   3. TÍTULOS Y CÍRCULOS VERDES
+   ========================================== */
+.titulo-seccion { 
+    color: var(--verde-titulo); 
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem; 
+}
+
+.circulo-icono {
+    background-color: var(--verde-fondo-activo);
+    color: var(--verde-borde-activo);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.subtitulo-seccion { 
+    color: var(--gris-texto); 
+    font-size: 0.85rem; 
+    margin-bottom: 1.5rem; 
+    margin-left: 45px; 
+}
+
+/* ==========================================
+   4. LUGARES DE CAPTURA (INPUTS)
+   ========================================== */
+.form-label { 
+    color: var(--gris-texto); 
+    font-size: 0.85rem;
+    font-weight: 500; 
+    margin-bottom: 0.4rem; 
+}
 
 .form-control {
-  padding: 6px 10px !important;
-  border: 1px solid #cccccc !important;
-  border-radius: 6px !important;
-  font-family: sans-serif;
-  font-size: 14px !important;
+    background-color: var(--fondo-inputs) !important; /* Blanco garantizado */
+    border: 1px solid var(--gris-borde) !important;   /* Borde gris definido */
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+    color: #1f2937;
+    transition: all 0.2s ease;
 }
 
-/* boton enviar */
-.boton-enviar {
-  padding: 12px 12px !important;
-  border: 1px solid var(--verde-principal) !important;
-  border-radius: 6px !important;
-  font-family: sans-serif;
-  background-color: var(--verde-principal) !important;
-  color: var(--blanco) !important;
+/* Cuando das clic para escribir */
+.form-control:focus {
+    background-color: #ffffff !important;
+    border-color: var(--verde-borde-activo) !important;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15) !important; 
+    outline: none;
 }
-/* Fin Formulario general */
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+/* ==========================================
+   5. BOTÓN PRINCIPAL
+   ========================================== */
+.btn-solicitar {
+    background-color: var(--verde-boton) !important;
+    color: white !important;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-solicitar:hover { background-color: #14532d !important; }
+.btn-solicitar:active { transform: scale(0.98); }
+
+/* Alerta amarilla de Compartido */
+.text-warning {
+    color: #d97706 !important;
+}
