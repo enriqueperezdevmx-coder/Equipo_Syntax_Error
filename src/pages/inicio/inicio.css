@@ -1,8 +1,6 @@
-:root {
-  --verde-principal: #0da74a;
-  --verde-claro: #d6edcc;
-  --blanco: #fff;
-}
+/* ==========================================================================
+   VARIABLES LOCALES — solo las que no están en variables.css global
+   ========================================================================== */
 
 body {
   overflow-x: hidden;
@@ -26,7 +24,7 @@ body {
 }
 
 .hero-green-box {
-  background-color: #fff;
+  background-color: var(--blanco);
   color: var(--verde-principal);
   border-radius: 30px;
   padding: 20px;
@@ -77,11 +75,11 @@ body {
 .section-title {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  color: #0da74a;
+  color: var(--verde-principal);
 }
 
 /* ==========================================================================
-   TARJETAS 
+   TARJETAS
    ========================================================================== */
 
 .why-card {
@@ -93,7 +91,7 @@ body {
 }
 
 .why-card h3 {
-  color: white;
+  color: var(--blanco);
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   margin-top: 15px;
@@ -104,7 +102,7 @@ body {
 
 .why-card p {
   font-family: "Montserrat", sans-serif;
-  color: #fff;
+  color: var(--blanco);
 }
 
 .why-card:hover {
@@ -122,11 +120,6 @@ body {
    SECCIÓN ¿CÓMO FUNCIONA?
    ========================================================================== */
 
-.how-works-section {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
 .how-left-img {
   max-width: 100%;
   height: auto;
@@ -137,13 +130,11 @@ body {
   transform: scale(1.02);
 }
 
-/* Contenedor Flex principal */
 .steps-wrapper {
   gap: 15px;
   flex-wrap: wrap;
 }
 
-/* Elemento de cada paso */
 .step-item {
   flex: 1;
   display: flex;
@@ -156,7 +147,6 @@ body {
   transform: scale(1.08);
 }
 
-/* Iconos (Tratamiento proporcional) */
 .icon-formulario {
   width: 100px;
   height: 100px;
@@ -182,11 +172,10 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #333;
+  /* color heredado de variables.css para evitar hardcode */
   line-height: 1.3;
 }
 
-/* Flechas conectoras ajustadas */
 .step-arrow {
   width: 40px;
   height: auto;
@@ -196,10 +185,13 @@ body {
   display: block;
 }
 
-/* Botón interactivo */
+/* ==========================================================================
+   BOTÓN CON EFECTO RIPPLE
+   ========================================================================== */
+
 .btn-more-info {
   background-color: var(--verde-principal) !important;
-  color: white !important;
+  color: var(--blanco) !important;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -207,9 +199,7 @@ body {
   border-radius: 10px;
   width: 100%;
   max-width: 380px;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
   display: inline-block;
   text-decoration: none;
@@ -242,9 +232,13 @@ body {
    CTA / ESLOGAN FINAL
    ========================================================================== */
 
+.cta-section {
+  padding: 60px 20px;
+}
+
 .cta-overlay {
   font-family: "Poppins", sans-serif;
-  font-weight: 700 !important;
+  font-weight: 700;
   font-size: 2.2rem;
   text-align: center;
   color: var(--verde-principal);
@@ -255,7 +249,6 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
-  color: #555;
   line-height: 1.7;
   max-width: 800px;
   margin-left: auto;
@@ -267,26 +260,35 @@ body {
    MEDIA QUERIES (RESPONSIVE)
    ========================================================================== */
 
+/* Tablet */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 1.6rem;
   }
+
   .hero-image {
     max-width: 280px;
   }
+
   .cta-overlay {
     font-size: 1.6rem;
   }
+
+  /* Ocultar flechas cuando los steps se apilan en tablet */
+  .step-arrow {
+    display: none;
+  }
 }
 
+/* Móvil */
 @media (max-width: 576px) {
+  /* Reducir padding lateral para no desperdiciar espacio */
+  .home-container {
+    padding: 10px 16px 40px 16px;
+  }
+
   .steps-wrapper {
     flex-direction: column;
     gap: 30px;
-  }
-
-  .step-arrow {
-    transform: rotate(90deg);
-    margin: 10px 0;
   }
 }
