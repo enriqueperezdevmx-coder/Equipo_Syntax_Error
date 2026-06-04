@@ -24,6 +24,7 @@ body {
 .container {
     max-width: 1040px;
     margin: 0 auto;
+    margin-top: 80px;
 }
 
 /* Encabezado */
@@ -42,7 +43,7 @@ body {
 .header-section p {
     color: var(--text-light);
     font-size: 1.05rem;
-    max-width: 620px;
+    max-width: 100%;
     line-height: 1.6;
 }
 
