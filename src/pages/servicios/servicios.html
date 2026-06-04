@@ -13,18 +13,7 @@
 </head>
 <body>
     
-<div id="navbar">
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#serviciosCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#serviciosCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Siguiente</span>
-    </button>
-
-  </div>
+<div id="navbar"></div>
 
   <!--CARDS DE SERVICIOS-->
   <section class="servicios-section">
@@ -76,7 +65,7 @@
             <h5>Extraordinario</h5>
             <p>Envíos especiales de carga pesadas o de gran volumen</p>
             
-            <a href="/src/pages/servicios/catalogo/extraordinario.html" class="btn-cotizar">Cotizar precio</a>
+            <a href="./catalogo/extraordinario.html" class="btn-cotizar">Cotizar precio</a>
           </div>
         </div>
 
@@ -84,14 +73,14 @@
     </div>
   </section>
 
-  </div>
+
 
   <!-- FOOTER -->
   <div id="footer"></div>
 
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/src/js/navbar.js"></script> <!-- IMPORTANTE: naEs mejor usar ruta absoluta porque evita problemas con las rutas relativas -->
+    <script src="/src/js/navbar.js"></script> <!-- usar ruta absoluta para evitar problemas con rutas relativas -->
     <script src="/src/js/footer.js"></script>
     <script src="/src/pages/servicios/catalogo/catalogo.js"></script> <!--es para darle la funcion de gota a los botones -->
 </body>

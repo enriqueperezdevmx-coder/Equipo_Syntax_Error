@@ -3,32 +3,6 @@
    Estilos para la página de servicios
    Importante: /src/css/variables.css cargado primero <- aqui estan la paleta de colores
 ═══════════════════════════════════════════ */
-
-/*CAROUSEL*/
-#serviciosCarousel {
-  margin-top: 20px;
-  border: 2.5px solid var(--verde-ultra);
-  overflow: hidden;
-  max-height: 350px;
-}
-
-#serviciosCarousel img {
-  object-fit: cover;        /* ← la imagen llena sin deformarse */
-  height: 450px;
-  width: 100%;
-}
-
-.carousel-inner {
-  background: var(--gris-suave);
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1) brightness(0.4);
-  width: 1.4rem;
-  height: 1.4rem;
-}
-
 /* SECCIÓN CARDS */
 .servicios-section {
   padding: 2.5rem 1.5rem;
