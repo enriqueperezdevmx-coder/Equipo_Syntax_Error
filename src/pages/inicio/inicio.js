@@ -1,36 +1,44 @@
-// Seleccionamos todos los enlaces con el efecto de ola
-const rippleLinks = document.querySelectorAll(".effect-ripple");
+// Importa todo lo global: Bootstrap, variables.css, navbar y footer
+import '/src/main.js';
 
-rippleLinks.forEach((link) => {
-  link.addEventListener("click", function (e) {
-    // 1. Detenemos temporalmente el salto inmediato del navegador
-    e.preventDefault();
+// Lógica exclusiva de la página de inicio
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Guardamos la dirección a la que quiere ir el usuario
-    const targetUrl = this.getAttribute("href");
+  // Seleccionamos todos los enlaces con el efecto de ola
+  const rippleLinks = document.querySelectorAll('.effect-ripple');
 
-    // 2. Calculamos la posición del clic usando 'this' en lugar de 'e.target'
-    //    Esto blinda tu código si el usuario da clic directo en las letras
-    const rect = this.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  rippleLinks.forEach((link) => {
+    link.addEventListener('click', function (e) {
+      // Detenemos el salto inmediato del navegador
+      e.preventDefault();
 
-    // 3. Creamos y posicionamos la onda de agua
-    const ripple = document.createElement("span");
-    ripple.classList.add("ripple-wave");
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
+      // Guardamos la dirección a la que quiere ir el usuario
+      const targetUrl = this.getAttribute('href');
 
-    this.appendChild(ripple);
+      // Calculamos la posición del clic relativa al botón
+      // Usar 'this' en lugar de 'e.target' blinda el código si el usuario
+      // hace clic directo sobre el texto del enlace
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    // 4. Esperamos 300ms a que la animación se despliegue y redirigimos
-    setTimeout(() => {
-      ripple.remove();
+      // Creamos y posicionamos la onda
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple-wave');
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
 
-      // Si el enlace tiene una página real, navegamos a ella
-      if (targetUrl && targetUrl !== "#") {
-        window.location.href = targetUrl;
-      }
-    }, 300);
+      this.appendChild(ripple);
+
+      // Esperamos a que la animación se despliegue antes de navegar
+      setTimeout(() => {
+        ripple.remove();
+
+        if (targetUrl && targetUrl !== '#') {
+          window.location.href = targetUrl;
+        }
+      }, 300);
+    });
   });
+
 });
