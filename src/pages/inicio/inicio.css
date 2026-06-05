@@ -292,3 +292,71 @@ body {
     gap: 30px;
   }
 }
+/* ==========================================================================
+   AJUSTE NAVBAR FLOTANTE FIJA
+   ========================================================================== */
+.home-container {
+  margin-top: 100px; /* espacio para navbar flotante fija */
+}
+
+/* ==========================================================================
+   BREAKPOINT 375px — Móvil pequeño
+   ========================================================================== */
+@media (max-width: 375px) {
+  .home-container {
+    padding: 10px 10px 30px 10px;
+    margin-top: 85px;
+  }
+
+  .hero-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+  }
+
+  .hero-image {
+    max-width: 200px;
+  }
+
+  .cta-overlay {
+    font-size: 1.2rem;
+  }
+
+  .slogan-intro {
+    font-size: 0.9rem;
+  }
+
+  .btn-more-info {
+    font-size: 0.9rem;
+    padding: 10px 24px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 1280px+ — Desktop grande
+   ========================================================================== */
+@media (min-width: 1280px) {
+  .home-container {
+    padding: 10px 80px 60px 80px;
+    margin-top: 110px;
+  }
+
+  .hero-green-box {
+    max-width: 1200px;
+    padding: 40px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-image {
+    max-width: 380px;
+  }
+
+  .cta-overlay {
+    font-size: 2.6rem;
+  }
+}

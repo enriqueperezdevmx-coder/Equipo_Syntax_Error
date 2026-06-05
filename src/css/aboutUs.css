@@ -23,8 +23,9 @@
    ================================ */
 .about-us-container {
   padding: 40px 40px;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  color: #333;
+  margin-top: 100px; /* espacio para navbar flotante fija */
+  font-family: var(--fuente-cuerpo);
+  color: var(--gris-texto);
 }
 
 /* ================================
@@ -299,4 +300,31 @@
 /*cards con altura mínima para que se vean bien */
 .value-card{
   min-width: 250px;
+}
+/* ==========================================================================
+   BREAKPOINT 375px — Móvil pequeño
+   ========================================================================== */
+@media (max-width: 375px) {
+  .about-us-container {
+    padding: 16px 12px;
+    margin-top: 85px;
+  }
+
+  .about-hero {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 1280px+ — Desktop grande
+   ========================================================================== */
+@media (min-width: 1280px) {
+  .about-us-container {
+    padding: 60px 80px;
+    margin-top: 110px;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

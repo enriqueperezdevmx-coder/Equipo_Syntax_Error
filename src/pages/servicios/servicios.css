@@ -1,15 +1,22 @@
 /* ═══════════════════════════════════════════
    servicios.css
-   Estilos para la página de servicios
-   Importante: /src/css/variables.css cargado primero <- aqui estan la paleta de colores
+   Página de Servicios — Equipo Syntax Error
+   Usa variables globales de /src/css/variables.css
 ═══════════════════════════════════════════ */
-/* SECCIÓN CARDS */
+
+/* =====================================================
+   SECCIÓN PRINCIPAL — sin flex extra del sticky footer
+===================================================== */
 .servicios-section {
   padding: 2.5rem 1.5rem;
   background: var(--blanco);
+  margin-top: 100px;
+  flex: 0 0 auto !important; /* evita espacio vacío del sticky footer */
 }
 
-/*CARD INDIVIDUAL*/
+/* =====================================================
+   CARD INDIVIDUAL
+===================================================== */
 .servicio-card {
   border: 1px solid var(--verde-ultra);
   border-radius: 12px;
@@ -24,10 +31,12 @@
   transform: translateY(-3px);
 }
 
-/*IMAGEN PLACEHOLDER*/
+/* =====================================================
+   IMAGEN
+===================================================== */
 .card-img-placeholder {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 220px;
   background: var(--blanco);
   border-radius: 8px;
   display: flex;
@@ -40,12 +49,15 @@
 .card-img-placeholder img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 
-/*TEXTO DE LA CARD*/
+/* =====================================================
+   TEXTO
+===================================================== */
 .servicio-card h5 {
+  font-family: var(--fuente-secciones);
   font-size: 1rem;
   font-weight: 700;
   color: var(--verde-principal);
@@ -53,15 +65,16 @@
 }
 
 .servicio-card p {
+  font-family: var(--fuente-cuerpo);
   font-size: 0.82rem;
   color: var(--gris-texto);
   line-height: 1.45;
   margin-bottom: 1rem;
 }
 
-/*BOTONES*/
-
-/* Botón con precio — borde verde, fondo blanco */
+/* =====================================================
+   BOTONES
+===================================================== */
 .btn-precio {
   display: block;
   border: 1.5px solid var(--verde-principal) !important;
@@ -74,7 +87,7 @@
   width: 100%;
   text-align: center;
   text-decoration: none !important;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background var(--transicion), color var(--transicion);
 }
 
 .btn-precio:hover {
@@ -83,18 +96,21 @@
 }
 
 .btn-cotizar {
+  position: relative;
+  overflow: hidden;
   display: block;
   border: 1.5px solid var(--verde-principal) !important;
   color: var(--blanco) !important;
   background: var(--verde-principal) !important;
   border-radius: 6px;
+  font-family: var(--fuente-secciones);
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.35rem 0.9rem;
   width: 100%;
   text-align: center;
   text-decoration: none !important;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background var(--transicion), border-color var(--transicion);
 }
 
 .btn-cotizar:hover {
@@ -102,11 +118,8 @@
   border-color: var(--verde-medio) !important;
   color: var(--blanco) !important;
 }
-.btn-cotizar {
-  position: relative;
-  overflow: hidden;
-}
 
+/* Efecto ripple */
 .btn-cotizar .ripple {
   position: absolute;
   border-radius: 50%;
@@ -117,19 +130,44 @@
 }
 
 @keyframes ripple-anim {
-  to {
-    transform: scale(6);
-    opacity: 0;
-  }
-}
-.card-img-placeholder {
-  height: 220px;        
-  overflow: hidden;
-  border-radius: 8px;
+  to { transform: scale(6); opacity: 0; }
 }
 
-.card-img-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; 
+/* =====================================================
+   RESPONSIVE — 375px
+===================================================== */
+@media (max-width: 375px) {
+  .servicios-section {
+    padding: 1.5rem 0.75rem;
+    margin-top: 85px;
+  }
+
+  .servicio-card { padding: 1rem; }
+  .servicio-card h5 { font-size: 0.95rem; }
+  .card-img-placeholder { height: 160px; }
+}
+
+/* =====================================================
+   RESPONSIVE — 768px
+===================================================== */
+@media (max-width: 768px) {
+  .servicios-section {
+    padding: 2rem 1rem;
+    margin-top: 90px;
+  }
+
+  .card-img-placeholder { height: 190px; }
+}
+
+/* =====================================================
+   RESPONSIVE — 1280px+
+===================================================== */
+@media (min-width: 1280px) {
+  .servicios-section {
+    padding: 3rem 3rem;
+    margin-top: 110px;
+  }
+
+  .servicio-card h5 { font-size: 1.1rem; }
+  .card-img-placeholder { height: 260px; }
 }

@@ -175,3 +175,49 @@ body {
 .beneficios-lista li {
   text-align: justify;
 }
+/* ── Espacio para navbar flotante fija ───────────────────── */
+.catalogo-hero {
+  margin-top: 100px;
+}
+
+/* ── Breakpoint 375px ────────────────────────────────────── */
+@media (max-width: 375px) {
+  .catalogo-hero {
+    margin-top: 80px;
+  }
+
+  .servicio-titulo {
+    font-size: 1.6rem;
+  }
+
+  .servicio-img-wrapper {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* ── Breakpoint 768px ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .catalogo-hero {
+    margin-top: 90px;
+  }
+
+  .servicio-titulo {
+    font-size: 1.8rem;
+  }
+}
+
+/* ── Breakpoint 1280px+ ──────────────────────────────────── */
+@media (min-width: 1280px) {
+  .catalogo-hero {
+    margin-top: 110px;
+  }
+
+  .servicio-titulo {
+    font-size: 3rem;
+  }
+}
+
+/* Evita espacio vacío por el sticky footer flex */
+.catalogo-hero {
+  flex: 0 0 auto !important;
+}
