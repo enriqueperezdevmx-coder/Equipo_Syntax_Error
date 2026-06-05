@@ -12,6 +12,16 @@
   --blanco:          #FFFFFF;
   --gris-texto:      #1A1A1A;
   --gris-suave:      #F5F7F5;
+
+  --azul-badge:    #2563eb;
+  --morado-badge:  #7c3aed;
+  --naranja-badge: #d97706;
+  --hover-verde:   rgba(13, 167, 74, 0.15);
+  
+  --verde-titulo: #166534;
+  --gris-borde: #e5e7eb;
+  --gris-texto-local: #6b7280;
+  
 /* Sombra verde tenue que da profundidad a la navbar flotante */
   --sombra-navbar: 0 8px 32px rgba(46, 125, 50, 0.15),
                        0 2px 8px  rgba(0, 0, 0, 0.08);

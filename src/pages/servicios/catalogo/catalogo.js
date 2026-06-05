@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ripple.addEventListener('animationend', () => {
         ripple.remove();
         // navega después del efecto
-        if (btn.href) window.location.href = btn.href;
+        const destino = btn.getAttribute('href');
+        if (destino) window.location.href = destino;
       });
     });
   });

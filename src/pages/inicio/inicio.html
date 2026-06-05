@@ -12,31 +12,57 @@
     <!-- Variables globales primero -->
     <link rel="stylesheet" href="/src/css/variables.css">
     <link rel="stylesheet" href="/src/css/navbar.css">
+    <link rel="stylesheet" href="/src/css/layout.css">
     <link rel="stylesheet" href="/src/css/footer.css">
     <link rel="stylesheet" href="./inicio.css" />
   </head>
   <body>
     <div id="navbar"></div>
 
-    <main class="home-container">
-      <section class="hero-section container-fluid">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-12 hero-left">
-            <div class="hero-green-box text-center">
-              <h2 class="hero-title">
-                ¿Cansado/a de entregas tardías, falta de comunicación y
-                desconfianza sobre dónde se encuentra tu envío?
-              </h2>
-              <img
-                src="/src/assets/MT-1.jfif"
-                alt="Hero principal"
-                class="hero-image img-fluid"
-              />
-              <p class="hero-text">
-                En Mensajería Total nos dedicamos al traslado y entrega de
-                paquetería, documentos y mercancía ligera
-              </p>
+    <main class="page-container">
+      <section class="hero-section">
+        <div class="hero-inner">
+          <!-- IZQUIERDA: texto + stats -->
+          <div class="hero-left">
+            <span class="hero-tag">
+              <i class="ti ti-bolt"></i> ENTREGA RÁPIDA Y SEGURA
+            </span>
+            <h1 class="hero-title">
+              Tu paquete,<br>
+              <span class="hero-title-accent">en tiempo récord.</span>
+            </h1>
+            <p class="hero-text">
+              En Mensajería Total nos dedicamos al traslado y entrega de
+              paquetería, documentos y mercancía ligera. Rastreo en tiempo
+              real y atención personalizada.
+            </p>
+            <div class="hero-btns">
+              <a href="/src/pages/cotizar/cotizar.html" class="btn-hero-primary effect-ripple">
+                Cotizar envío &rsaquo;
+              </a>
+              <a href="/src/pages/rastreo/rastreo.html" class="btn-hero-outline effect-ripple">
+                <i class="ti ti-search"></i> Rastrear paquete
+              </a>
             </div>
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="hero-stat-n">+12K</span>
+                <span class="hero-stat-l">Envíos al mes</span>
+              </div>
+              <div class="hero-stat">
+                <span class="hero-stat-n">98%</span>
+                <span class="hero-stat-l">Entregas a tiempo</span>
+              </div>
+              <div class="hero-stat">
+                <span class="hero-stat-n">10+</span>
+                <span class="hero-stat-l">Años de trayectoria</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DERECHA: imagen -->
+          <div class="hero-right">
+            <img src="/src/assets/MT-1.jfif" alt="Mensajería Total — entrega de paquetes" class="hero-image" />
           </div>
         </div>
       </section>

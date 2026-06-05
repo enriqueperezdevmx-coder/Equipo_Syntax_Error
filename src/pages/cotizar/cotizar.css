@@ -2,27 +2,16 @@
    cotizar.css — usa /src/css/variables.css para colores globales
    Variables locales solo para lo específico de esta página
 ═══════════════════════════════════════════ */
-:root {
-    --verde-boton: var(--verde-principal);     /* Usa variable global */
-    --verde-titulo: #166534;
-    --verde-borde-activo: var(--verde-medio);  /* Usa variable global */
-    --verde-fondo-activo: var(--verde-ultra);  /* Usa variable global */
-    --fondo-inputs: var(--blanco);             /* Usa variable global */
-    --fondo-general: var(--gris-suave);        /* Usa variable global */
-    --gris-borde: #e5e7eb;
-    --gris-texto-local: #6b7280;
-}
 
 /* Espacio para navbar flotante fija */
 #vista-formulario {
-    padding-top: 120px;
     padding-bottom: 60px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
 body {
-    background-color: var(--fondo-general) !important;
+    background-color: var(--gris-suave) !important;
 }
 
 /* ==========================================
@@ -47,14 +36,14 @@ body {
     top: 12px;
     right: 12px;
     display: none;
-    color: var(--verde-borde-activo);
+    color: var(--verde-medio);
     font-size: 1.2rem;
 }
 
 /* EL ESTADO ACTIVO (La pestaña seleccionada) */
 .nav-pills .nav-link.active.caja-categoria {
-    background-color: var(--verde-fondo-activo) !important;
-    border: 1.5px solid var(--verde-borde-activo) !important;
+    background-color: var(--verde-ultra) !important;
+    border: 1.5px solid var(--verde-medio) !important
 }
 
 .nav-pills .nav-link.active.caja-categoria .icono-check { 
@@ -85,8 +74,8 @@ body {
 }
 
 .circulo-icono {
-    background-color: var(--verde-fondo-activo);
-    color: var(--verde-borde-activo);
+    background-color: var(--verde-ultra); 
+    color: var(--verde-medio);  
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -115,7 +104,7 @@ body {
 }
 
 .form-control {
-    background-color: var(--fondo-inputs) !important; /* Blanco garantizado */
+    background-color: var(--blanco) !important; /* Blanco garantizado */
     border: 1px solid var(--gris-borde) !important;   /* Borde gris definido */
     border-radius: 6px;
     padding: 0.7rem 1rem;
@@ -140,8 +129,8 @@ body {
    5. BOTÓN PRINCIPAL
    ========================================== */
 .btn-solicitar {
-    background-color: var(--verde-boton) !important;
-    color: white !important;
+    background-color: var(--verde-principal) !important;
+    color: var(--blanco) !important;
     border-radius: 8px;
     border: none;
     transition: all 0.2s;
@@ -159,7 +148,6 @@ body {
    ========================================================================== */
 @media (max-width: 375px) {
   #vista-formulario {
-    padding-top: 95px;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -203,6 +191,5 @@ body {
 @media (min-width: 1280px) {
   #vista-formulario {
     max-width: 1100px !important;
-    padding-top: 130px;
   }
 }

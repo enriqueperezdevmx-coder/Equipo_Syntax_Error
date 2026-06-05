@@ -4,23 +4,10 @@
    Usa variables globales de /src/css/variables.css
 ═══════════════════════════════════════════ */
 
-@import "/src/css/variables.css";
-
 /* =====================================================
    RESET Y BASE
 ===================================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
-body {
-  background-color: var(--gris-suave);
-  color: var(--gris-texto);
-  font-family: var(--fuente-cuerpo);
-  min-height: 100vh;
-}
 
 /* =====================================================
    CONTENEDOR PRINCIPAL
@@ -28,7 +15,6 @@ body {
 .container {
   max-width: 1040px;
   margin: 0 auto;
-  margin-top: 110px; /* espacio para la navbar flotante */
   padding: 0 20px 60px;
 }
 
@@ -302,7 +288,6 @@ body {
 /* --- Tablet: 768px --- */
 @media (max-width: 768px) {
   .container {
-    margin-top: 90px;
     padding: 0 16px 40px;
   }
 
@@ -330,7 +315,6 @@ body {
 /* --- Móvil: 375px --- */
 @media (max-width: 480px) {
   .container {
-    margin-top: 80px;
     padding: 0 12px 32px;
   }
 
