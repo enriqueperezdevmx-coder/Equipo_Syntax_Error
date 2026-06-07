@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nombre: document.getElementById('nombre'),
         apellido: document.getElementById('apellido'),
         email: document.getElementById('email'),
+        telefono: document.getElementById('telefono'),
         asunto: document.getElementById('asunto'),
         mensaje: document.getElementById('mensaje')
     };
@@ -35,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
             formularioValido = false;
         }
 
+        // Validar el número de teléfono si está presente
+        if (inputs.telefono.value && !validatePhone(inputs.telefono.value)) {
+            inputs.telefono.classList.add('error');
+            formularioValido = false;
+        }
+
         // 2. Si hay fallas, detenemos el proceso
         if (!formularioValido) {
             alert('Por favor, completa todos los campos marcados en rojo.');
@@ -46,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nombre: inputs.nombre.value.trim(),
             apellido: inputs.apellido.value.trim(),
             email: inputs.email.value.trim(),
+            telefono: inputs.telefono.value.trim(),
             asunto: inputs.asunto.value,
             mensaje: inputs.mensaje.value.trim(),
             fechaRegistro: new Date().toLocaleString()
@@ -55,11 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Guardamos los datos convirtiendo el objeto en una cadena de texto JSON
         localStorage.setItem('contactoEnvioExpress', JSON.stringify(datosFormulario));
 
-        // 5. Mostrar cuadro de éxito
-        alert(`¡Mensaje Enviado con éxito!\n\nLos datos de ${datosFormulario.nombre} han sido guardados en el LocalStorage.`);
-
-        // 6. Limpiar el formulario
-        form.reset();
+        alert(`¡Mensaje enviado correctamente!`);
+        form.submit();
     });
 
     // Opcional: Quitar el borde rojo en tiempo real mientras el usuario escribe
@@ -75,5 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
+    }
+
+    // Función auxiliar para validar formato de teléfono
+    function validatePhone(phone) {
+        const regex = /^\d{10}$/;
+        return regex.test(phone);
     }
 });

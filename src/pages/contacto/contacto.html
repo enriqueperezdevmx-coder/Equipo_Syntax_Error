@@ -70,30 +70,37 @@
 
             </div>
 
-            <div class="form-card">
+             <div class="form-card">
                 <h2>Envíanos un mensaje</h2>
                 
-                <form action="#" method="POST">
+                <form action="https://formspree.io/f/mvznkgno" method="POST">
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" placeholder="Emmanuel">
+                            <input type="text" id="nombre" name="nombre" placeholder="Emmanuel">
                         </div>
                         <div class="form-group">
                             <label for="apellido">Apellido</label>
-                            <input type="text" id="apellido" placeholder="Rivera">
+                            <input type="text" id="apellido" name="apellido" placeholder="Rivera">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" placeholder="correo@ejemplo.com">
+                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono </label>
+                        <div class="phone-input-wrap">
+                            <input type="tel" id="telefono" name="telefono" placeholder="55 1234 5678" maxlength="10">
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="asunto">Asunto</label>
-                        <select id="asunto">
+                        <select id="asunto" name="asunto">
                             <option value="" disabled selected>Selecciona el motivo...</option>
                             <option value="envio">Estado de mi envío</option>
                             <option value="cotizacion">Cotización</option>
@@ -103,7 +110,7 @@
 
                     <div class="form-group">
                         <label for="mensaje">Tu mensaje</label>
-                        <textarea id="mensaje" placeholder="Escribe tu pregunta o mensaje con el mayor detalle posible..."></textarea>
+                        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu pregunta o mensaje con el mayor detalle posible..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-submit">
