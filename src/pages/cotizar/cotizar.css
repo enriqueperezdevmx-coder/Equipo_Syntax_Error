@@ -1,19 +1,17 @@
-/* =======================================================
-   ESTILOS EXACTOS DE FIGMA (CORREGIDO: INPUTS BLANCOS)
-   ======================================================= */
-:root {
-    --verde-boton: #15803d;        /* Verde oscuro para el botón final */
-    --verde-titulo: #166534;       /* Verde oscuro para los textos de sección */
-    --verde-borde-activo: #22c55e; /* Verde brillante de la pestaña activa */
-    --verde-fondo-activo: #f0fdf4; /* Verde ultra pálido (solo para pestaña activa y círculos) */
-    --fondo-inputs: #ffffff;       /* ¡CORREGIDO! Blanco puro para las casillas */
-    --fondo-general: #f8fafb;      /* Gris muy tenue para el fondo de la página */
-    --gris-borde: #e5e7eb;         /* Gris sutil para los bordes inactivos */
-    --gris-texto: #6b7280;         /* Gris para las etiquetas (labels) */
+/* ═══════════════════════════════════════════
+   cotizar.css — usa /src/css/variables.css para colores globales
+   Variables locales solo para lo específico de esta página
+═══════════════════════════════════════════ */
+
+/* Espacio para navbar flotante fija */
+#vista-formulario {
+    padding-bottom: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 body {
-    background-color: var(--fondo-general) !important;
+    background-color: var(--gris-suave) !important;
 }
 
 /* ==========================================
@@ -38,14 +36,14 @@ body {
     top: 12px;
     right: 12px;
     display: none;
-    color: var(--verde-borde-activo);
+    color: var(--verde-medio);
     font-size: 1.2rem;
 }
 
 /* EL ESTADO ACTIVO (La pestaña seleccionada) */
 .nav-pills .nav-link.active.caja-categoria {
-    background-color: var(--verde-fondo-activo) !important;
-    border: 1.5px solid var(--verde-borde-activo) !important;
+    background-color: var(--verde-ultra) !important;
+    border: 1.5px solid var(--verde-medio) !important
 }
 
 .nav-pills .nav-link.active.caja-categoria .icono-check { 
@@ -76,8 +74,8 @@ body {
 }
 
 .circulo-icono {
-    background-color: var(--verde-fondo-activo);
-    color: var(--verde-borde-activo);
+    background-color: var(--verde-ultra); 
+    color: var(--verde-medio);  
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -106,7 +104,7 @@ body {
 }
 
 .form-control {
-    background-color: var(--fondo-inputs) !important; /* Blanco garantizado */
+    background-color: var(--blanco) !important; /* Blanco garantizado */
     border: 1px solid var(--gris-borde) !important;   /* Borde gris definido */
     border-radius: 6px;
     padding: 0.7rem 1rem;
@@ -131,8 +129,8 @@ body {
    5. BOTÓN PRINCIPAL
    ========================================== */
 .btn-solicitar {
-    background-color: var(--verde-boton) !important;
-    color: white !important;
+    background-color: var(--verde-principal) !important;
+    color: var(--blanco) !important;
     border-radius: 8px;
     border: none;
     transition: all 0.2s;
@@ -144,4 +142,54 @@ body {
 /* Alerta amarilla de Compartido */
 .text-warning {
     color: #d97706 !important;
+}
+/* ==========================================================================
+   BREAKPOINT 375px — Móvil pequeño
+   ========================================================================== */
+@media (max-width: 375px) {
+  #vista-formulario {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #categorias-envio {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .caja-categoria {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .caja-seccion {
+    padding: 1rem;
+  }
+
+  .titulo-seccion {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 768px — Tablet
+   ========================================================================== */
+@media (max-width: 768px) {
+  #categorias-envio {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .caja-categoria {
+    flex: 0 0 calc(50% - 5px);
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 1280px+ — Desktop grande
+   ========================================================================== */
+@media (min-width: 1280px) {
+  #vista-formulario {
+    max-width: 1100px !important;
+  }
 }

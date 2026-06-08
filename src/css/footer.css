@@ -104,6 +104,6 @@ body {
   flex-direction: column;
 }
 
-main {
+main, section.servicios-section {
   flex: 1;
 }

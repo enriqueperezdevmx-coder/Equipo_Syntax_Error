@@ -1,0 +1,223 @@
+/* ============================================================
+   catalogo.css — Página individual de servicio
+   Requiere: /src/css/variables.css cargado antes
+============================================================ */
+body {                                          /*se cargan las tipografias*/
+  font-family: var(--fuente-cuerpo);
+}
+
+h1 {
+  font-family: var(--fuente-titulo);
+}
+
+h2, h3, h4, h5 {
+  font-family: var(--fuente-secciones);
+}
+
+input, textarea, select, label {
+  font-family: var(--fuente-formularios);
+}
+/* ── Sección hero ─────────────────────────────────────────── */
+.catalogo-hero {
+  background-color: var(--blanco);
+}
+
+/* ── Título ───────────────────────────────────────────────── */
+.servicio-titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--verde-principal) !important;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Precio ───────────────────────────────────────────────── */
+.servicio-precio {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--verde-medio);
+  margin-bottom: 1rem;
+}
+
+/* ── Descripción ──────────────────────────────────────────── */
+.servicio-descripcion {
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Lista numerada (cómo funciona) ───────────────────────── */
+.servicio-lista {
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.servicio-lista li {
+  font-size: 0.88rem;
+  color: var(--gris-texto);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Horario / Cobertura ──────────────────────────────────── */
+.servicio-detalle {
+  font-size: 0.88rem;
+  color: var(--gris-texto);
+  margin-bottom: 0.25rem;
+}
+
+/* ── Beneficios ───────────────────────────────────────────── */
+.beneficios-titulo {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+  margin-bottom: 0.4rem;
+}
+
+.beneficios-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--gris-texto);
+  margin-bottom: 0.4rem;
+}
+
+.beneficios-lista .bi-check-circle-fill {
+  color: var(--verde-principal);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── Botón CTA con ripple ─────────────────────────────────── */
+.btn-cotizar {
+  position: relative;
+  overflow: hidden;          
+  display: block;
+  width: 100%;
+  background-color: var(--verde-principal);
+  color: var(--blanco) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transicion);
+}
+
+.btn-cotizar:hover {
+  background-color: var(--verde-medio);
+  color: var(--blanco) !important;
+}
+
+/* La "gota" del ripple —  */
+.btn-cotizar .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);;
+  transform: scale(0);
+  animation: ripple-anim 0.4s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ── Imagen con zoom constante ────────────────────────────── */
+.servicio-img-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;          /* recorta el zoom para que no se desborde */
+  aspect-ratio: 4 / 3;      /* proporción fija, ajusta si necesitas */
+  background-color: var(--verde-ultra);
+}
+
+.servicio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: zoom-suave 8s ease-in-out infinite alternate;
+}
+
+/* Zoom que va y regresa suavemente en bucle */
+@keyframes zoom-suave {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.06); }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .servicio-titulo {
+    font-size: 2rem;
+  }
+}
+/*evita que sobre espacio en el footer me paso varias veces xd*/
+body {
+  min-height: unset !important;
+  display: block !important;
+}
+
+.catalogo-hero {
+  padding-bottom: 0;
+}
+/* En catalogo.css */
+.servicio-descripcion,
+.servicio-lista li,
+.servicio-detalle,
+.beneficios-lista li {
+  text-align: justify;
+}
+/* ── Espacio para navbar flotante fija ───────────────────── */
+.catalogo-hero {
+  margin-top: 100px;
+}
+
+/* ── Breakpoint 375px ────────────────────────────────────── */
+@media (max-width: 375px) {
+  .catalogo-hero {
+    margin-top: 80px;
+  }
+
+  .servicio-titulo {
+    font-size: 1.6rem;
+  }
+
+  .servicio-img-wrapper {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* ── Breakpoint 768px ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .catalogo-hero {
+    margin-top: 90px;
+  }
+
+  .servicio-titulo {
+    font-size: 1.8rem;
+  }
+}
+
+/* ── Breakpoint 1280px+ ──────────────────────────────────── */
+@media (min-width: 1280px) {
+  .catalogo-hero {
+    margin-top: 110px;
+  }
+
+  .servicio-titulo {
+    font-size: 3rem;
+  }
+}
+
+/* Evita espacio vacío por el sticky footer flex */
+.catalogo-hero {
+  flex: 0 0 auto !important;
+}
