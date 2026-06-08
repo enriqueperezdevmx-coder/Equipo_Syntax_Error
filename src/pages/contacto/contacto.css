@@ -12,10 +12,8 @@
 /* =====================================================
    CONTENEDOR PRINCIPAL
 ===================================================== */
-.container {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 0 20px 60px;
+.content-grid {
+  padding-bottom: 60px; 
 }
 
 /* =====================================================
@@ -23,6 +21,7 @@
 ===================================================== */
 .header-section {
   margin-bottom: 45px;
+  padding-top: 48px;
 }
 
 .header-section h1 {
@@ -50,6 +49,7 @@
   display: flex;
   gap: 40px;
   align-items: flex-start;
+  padding-bottom: 60px;
 }
 
 .info-column {
@@ -287,10 +287,6 @@
 
 /* --- Tablet: 768px --- */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 16px 40px;
-  }
-
   .content-grid {
     flex-direction: column;
     gap: 28px;
@@ -314,10 +310,6 @@
 
 /* --- Móvil: 375px --- */
 @media (max-width: 480px) {
-  .container {
-    padding: 0 12px 32px;
-  }
-
   .header-section h1 {
     font-size: 1.5rem;
   }
@@ -352,10 +344,6 @@
 
 /* --- Desktop grande: 1280px+ --- */
 @media (min-width: 1280px) {
-  .container {
-    max-width: 1200px;
-  }
-
   .header-section h1 {
     font-size: 2.6rem;
   }

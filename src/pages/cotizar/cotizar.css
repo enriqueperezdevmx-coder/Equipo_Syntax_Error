@@ -5,9 +5,8 @@
 
 /* Espacio para navbar flotante fija */
 #vista-formulario {
+    padding-top: 48px;
     padding-bottom: 60px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 body {
