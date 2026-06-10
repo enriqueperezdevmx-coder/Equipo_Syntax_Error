@@ -1,0 +1,76 @@
+.contenedor-principal-historial {
+  min-height: 70vh;
+  padding-top: 150px !important;
+}
+
+.titulo-historial {
+  font-family: "Poppins", sans-serif;
+  color: #0da74a !important;
+}
+
+/* Línea divisoria  */
+.linea-divisoria-verde {
+  border: none;
+  height: 2px;
+  background-color: #0da74a;
+  opacity: 1;
+  margin: 0;
+}
+
+/* Control del tamaño de los iconos/vectores de transporte */
+.imagen-servicio {
+  max-height: 90px;
+  object-fit: contain;
+}
+
+/* Tipografía de la descripción del paquete */
+.info-pedido {
+  font-size: 0.9rem;
+}
+
+.nombre-servicio {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Evita saltos de línea raros en el botón de reordenar */
+.enlace-volver-pedir {
+  white-space: nowrap;
+}
+
+/* Botón personalizado de acción */
+.boton-ver {
+  background-color: #0da74a !important;
+  min-width: 80px;
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.1s ease;
+}
+
+/* Efecto hover interactivo para el botón */
+.boton-ver:hover {
+  background-color: #0a8a3c !important;
+  color: #ffffff;
+}
+
+.boton-ver:active {
+  transform: scale(0.98);
+}
+
+/* --- Estilos para el estado sin pedidos --- */
+.mensaje-vacio {
+  font-family: "Poppins", sans-serif;
+  color: #4a2e2b;
+  font-weight: 500;
+}
+
+.boton-cotizar-vacio {
+  background-color: #0da74a !important;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.boton-cotizar-vacio:hover {
+  background-color: #0a8a3c !important;
+  color: #ffffff !important;
+}
