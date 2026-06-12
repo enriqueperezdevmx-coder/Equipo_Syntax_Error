@@ -192,3 +192,29 @@ body {
     max-width: 1100px !important;
   }
 }
+/* =====================================================
+   HISTORIAL DE COTIZACIONES
+===================================================== */
+#seccion-historial {
+  max-width: 860px;
+}
+
+.historial-card {
+  border-radius: 12px !important;
+  transition: box-shadow 0.2s ease;
+}
+
+.historial-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10) !important;
+}
+
+.historial-icono {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: var(--bs-light, #f8f9fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
