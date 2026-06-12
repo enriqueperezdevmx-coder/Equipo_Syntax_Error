@@ -237,7 +237,7 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background-color: var(--bs-light, #f8f9fa);
+  background-color: var(--bs-light, var(--blanco)) !important;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,79 +1,162 @@
 /**
- * cotizar.js — Equipo Syntax Error
- * Maneja el formulario de cotización y el HISTORIAL DE COTIZACIONES.
- *
- * Historial: se guarda en localStorage con la clave "historialCotizaciones"
- * como un array de objetos. Cada cotización tiene: id, fecha, tipoServicio
- * y los campos del formulario activo.
+ * Lógica de cotización, validación y almacenamiento
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('form-cotizacion');
 
-  // ── 1. Quitar clase is-invalid al escribir ──────────────────────────────
-  form.addEventListener('input', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-      e.target.classList.remove('is-invalid');
-    }
+  // EXTRA: Limpiar los bordes rojos/verdes si el usuario cambia de pestaña
+  const tabButtons = document.querySelectorAll('button[data-bs-toggle="pill"]');
+  tabButtons.forEach(button => {
+      button.addEventListener('shown.bs.tab', () => {
+          form.classList.remove('was-validated'); 
+      });
   });
 
-  // ── 2. Submit: validar, guardar y mostrar historial ─────────────────────
+  // ==========================================
+  // AUTOCOMPLETADO DE CÓDIGO POSTAL (API Zippopotam)
+  // ==========================================
+  const cpInputs = document.querySelectorAll('.cp-input');
+
+  cpInputs.forEach(input => {
+      input.addEventListener('input', async (e) => {
+          const cp = e.target.value;
+          
+          // Solo disparamos el fetch si el usuario tecleó exactamente 5 números
+          if (cp.length === 5 && /^[0-9]+$/.test(cp)) {
+              
+              // Buscamos el contenedor padre (.bloque-direccion) para no afectar el Destino si editamos el Origen
+              const bloque = e.target.closest('.bloque-direccion');
+              const inputEstado = bloque.querySelector('.estado-input');
+              const selectColonia = bloque.querySelector('.colonia-select');
+
+              // Indicadores visuales de carga
+              inputEstado.value = "Buscando...";
+              selectColonia.innerHTML = '<option value="">Cargando colonias...</option>';
+
+              try {
+                  // Petición a la API pública
+                  const response = await fetch(`https://api.zippopotam.us/mx/${cp}`);
+                  
+                  if (!response.ok) throw new Error('Código Postal no encontrado en la base de datos');
+                  
+                  const data = await response.json();
+                  
+                  // --- INICIO DEL PARCHE PARA EL DISTRITO FEDERAL ---
+                  let nombreEstado = data.places[0].state;
+
+                  // Si la API dice "Distrito Federal", lo cambiamos a la fuerza
+                  if (nombreEstado.includes('Distrito Federal')) {
+                      nombreEstado = 'Ciudad de México';
+                  }
+
+                  // Llenamos el input bloqueado del Estado con el dato ya corregido
+                  inputEstado.value = nombreEstado;
+                  // --- FIN DEL PARCHE ---
+
+                  // Limpiamos el select y lo llenamos con el array de colonias devuelto
+                  selectColonia.innerHTML = '<option value="">Selecciona tu colonia</option>';
+                  data.places.forEach(place => {
+                      const option = document.createElement('option');
+                      option.value = place['place name'];
+                      option.textContent = place['place name'];
+                      selectColonia.appendChild(option);
+                  });
+
+              } catch (error) {
+                  // Reseteamos en caso de error
+                  inputEstado.value = "";
+                  selectColonia.innerHTML = '<option value="">C.P. inválido</option>';
+                  
+                  Swal.fire({
+                      icon: 'warning',
+                      title: 'Código Postal no encontrado',
+                      text: 'Por favor, verifica que los 5 dígitos sean correctos.',
+                      confirmButtonColor: '#0DA74A'
+                  });
+              }
+          }
+      });
+  });
+
+  // ==========================================
+  // LÓGICA DE ENVÍO Y VALIDACIÓN
+  // ==========================================
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // 1. Prevenir el envío inmediato para poder validar con JS
+    e.preventDefault(); 
 
-    let isValid = true;
+    // 2. Obtener el panel activo (el que el usuario está viendo)
+    const activePanel = document.querySelector('.tab-pane.active');
+    if (!activePanel) return;
+
+    // 3. Extraer SOLO los inputs Y SELECTS del panel activo
+    const elementosActivos = activePanel.querySelectorAll('input, select');
+    let formValido = true;
+
+    // Revisar la validación nativa (required, pattern, min, max) SOLO en los visibles
+    elementosActivos.forEach(elemento => {
+        if (!elemento.checkValidity()) {
+            formValido = false;
+        }
+    });
+
+    // Aplicar la clase de Bootstrap para que pinte de rojo/verde los inputs
+    form.classList.add('was-validated');
+
+    // 4. Si hay algún error en el panel actual, mostramos alerta y detenemos
+    if (!formValido) {
+        e.stopPropagation();
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'Faltan datos',
+            text: 'Por favor, completa correctamente los campos marcados en rojo.',
+            confirmButtonColor: '#0DA74A' 
+        });
+        return; 
+    }
+
+    // 5. Si todo es válido, procedemos a recopilar los datos
     const formData = {};
-
-    // Tipo de servicio activo
     const activeTabButton = document.querySelector('.nav-link.active');
+    
     if (activeTabButton) {
       const tipoEnvio = activeTabButton.querySelector('.fw-bold').textContent.trim();
       formData['Tipo de Servicio'] = tipoEnvio;
     }
 
-    // Panel activo
-    const activePanel = document.querySelector('.tab-pane.active');
-    if (!activePanel) return;
-
-    // Validar inputs del panel activo
-    const inputs = activePanel.querySelectorAll('input');
-    inputs.forEach(input => {
-      if (input.value.trim() === '') {
-        input.classList.add('is-invalid');
-        isValid = false;
-      } else {
-        input.classList.remove('is-invalid');
-        const label = input.previousElementSibling;
-        const nombreCampo = label ? label.textContent.trim() : input.placeholder;
-        formData[nombreCampo] = input.value.trim();
-      }
+    // Guardamos los valores ingresados
+    elementosActivos.forEach(elemento => {
+        const label = elemento.previousElementSibling;
+        const nombreCampo = label ? label.textContent.trim() : (elemento.placeholder || 'Colonia');
+        formData[nombreCampo] = elemento.value.trim();
     });
 
-    if (!isValid) {
-      alert('Por favor, completa todos los campos marcados en rojo.');
-      return;
-    }
-
-    // ── GUARDAR EN HISTORIAL ────────────────────────────────────────────
-    const cotizacion = {
-      id: Date.now(),                              // ID único basado en timestamp
-      fecha: new Date().toLocaleString('es-MX'),  // Fecha legible
-      tipoServicio: formData['Tipo de Servicio'] || 'Sin tipo',
-      datos: { ...formData },
-    };
-
-    const historial = obtenerHistorial();
-    historial.unshift(cotizacion);               // Más reciente primero
-    localStorage.setItem('historialCotizaciones', JSON.stringify(historial));
-
-    // También mantener compatibilidad con la clave anterior
+    // 6. Guardar en LocalStorage
     localStorage.setItem('cotizacionEnvio', JSON.stringify(formData));
+    console.log('Datos listos para enviar:', formData);
 
-    alert('¡Cotización guardada exitosamente!');
-    console.log('Cotización guardada:', cotizacion);
-
-    renderizarHistorial();
-    mostrarSeccionHistorial();
+    // 7. Alerta de ÉXITO profesional (SweetAlert2)
+    Swal.fire({
+        icon: 'success',
+        title: '¡Cotización exitosa!',
+        text: 'Tu pedido ha sido generado correctamente y tus datos están protegidos.',
+        confirmButtonColor: '#0DA74A', 
+        confirmButtonText: 'Entendido'
+    }).then((result) => {
+        // Cuando el usuario cierra la alerta, limpiamos el formulario para uno nuevo
+        if (result.isConfirmed) {
+            form.reset();
+            form.classList.remove('was-validated'); 
+            
+            // Limpiar manualmente las opciones de los selects para que no se queden las colonias viejas
+            const selects = document.querySelectorAll('.colonia-select');
+            selects.forEach(select => {
+                select.innerHTML = '<option value="">Ingresa tu CP primero...</option>';
+            });
+        }
+    });
   });
 
   // ── 3. Inicializar historial al cargar ──────────────────────────────────
