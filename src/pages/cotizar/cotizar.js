@@ -1,157 +1,275 @@
 /**
- * origen y destino, bloquear envios que excedan las posbilidades del servicio
- * posibles soluciones usar api o hacer una array de datos con los cp de monterrey y cdmx
- * Remitente y destinatario
- * medidas del paquete permite medidas negativas
- * Datos de los participantes y Remitente y destinatario no son iguales pero son lo mismo pero es fiel al figma
- * compartido no es el mismo precio al figma
- * ponerle alertas de campos faltantes
- * alerta tu pedido a sido generado con éxito
- * ajustar paleta de limon a lima *
+ * Lógica de cotización, validación y almacenamiento
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form-cotizacion");
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('form-cotizacion');
 
-  // 1. Quitar el borde rojo cuando el usuario empiece a escribir
-  form.addEventListener("input", (e) => {
-    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
-      e.target.classList.remove("is-invalid");
-    }
+  // EXTRA: Limpiar los bordes rojos/verdes si el usuario cambia de pestaña
+  const tabButtons = document.querySelectorAll('button[data-bs-toggle="pill"]');
+  tabButtons.forEach(button => {
+      button.addEventListener('shown.bs.tab', () => {
+          form.classList.remove('was-validated'); 
+      });
   });
 
-  // 2. Manejar el evento de envío (Submit)
-  form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Evita que la página se recargue
+  // ==========================================
+  // AUTOCOMPLETADO DE CÓDIGO POSTAL (API Zippopotam)
+  // ==========================================
+  const cpInputs = document.querySelectorAll('.cp-input');
 
-    let isValid = true;
-    const formData = {};
+  cpInputs.forEach(input => {
+      input.addEventListener('input', async (e) => {
+          const cp = e.target.value;
+          
+          // Solo disparamos el fetch si el usuario tecleó exactamente 5 números
+          if (cp.length === 5 && /^[0-9]+$/.test(cp)) {
+              
+              // Buscamos el contenedor padre (.bloque-direccion) para no afectar el Destino si editamos el Origen
+              const bloque = e.target.closest('.bloque-direccion');
+              const inputEstado = bloque.querySelector('.estado-input');
+              const selectColonia = bloque.querySelector('.colonia-select');
 
-    // Obtener la pestaña (tipo de envío) que está activa actualmente
-    const activeTabButton = document.querySelector(".nav-link.active");
-    let tipoEnvio = "";
+              // Indicadores visuales de carga
+              inputEstado.value = "Buscando...";
+              selectColonia.innerHTML = '<option value="">Cargando colonias...</option>';
 
-    if (activeTabButton) {
-      tipoEnvio = activeTabButton.querySelector(".fw-bold").textContent.trim();
-      formData["Tipo de Servicio"] = tipoEnvio;
-    }
+              try {
+                  // Petición a la API pública
+                  const response = await fetch(`https://api.zippopotam.us/mx/${cp}`);
+                  
+                  if (!response.ok) throw new Error('Código Postal no encontrado en la base de datos');
+                  
+                  const data = await response.json();
+                  
+                  // --- INICIO DEL PARCHE PARA EL DISTRITO FEDERAL ---
+                  let nombreEstado = data.places[0].state;
 
-    // Obtener solo el panel de contenido que está visible
-    const activePanel = document.querySelector(".tab-pane.active");
+                  // Si la API dice "Distrito Federal", lo cambiamos a la fuerza
+                  if (nombreEstado.includes('Distrito Federal')) {
+                      nombreEstado = 'Ciudad de México';
+                  }
+
+                  // Llenamos el input bloqueado del Estado con el dato ya corregido
+                  inputEstado.value = nombreEstado;
+                  // --- FIN DEL PARCHE ---
+
+                  // Limpiamos el select y lo llenamos con el array de colonias devuelto
+                  selectColonia.innerHTML = '<option value="">Selecciona tu colonia</option>';
+                  data.places.forEach(place => {
+                      const option = document.createElement('option');
+                      option.value = place['place name'];
+                      option.textContent = place['place name'];
+                      selectColonia.appendChild(option);
+                  });
+
+              } catch (error) {
+                  // Reseteamos en caso de error
+                  inputEstado.value = "";
+                  selectColonia.innerHTML = '<option value="">C.P. inválido</option>';
+                  
+                  Swal.fire({
+                      icon: 'warning',
+                      title: 'Código Postal no encontrado',
+                      text: 'Por favor, verifica que los 5 dígitos sean correctos.',
+                      confirmButtonColor: '#0DA74A'
+                  });
+              }
+          }
+      });
+  });
+
+  // ==========================================
+  // LÓGICA DE ENVÍO Y VALIDACIÓN
+  // ==========================================
+  form.addEventListener('submit', (e) => {
+    // 1. Prevenir el envío inmediato para poder validar con JS
+    e.preventDefault(); 
+
+    // 2. Obtener el panel activo (el que el usuario está viendo)
+    const activePanel = document.querySelector('.tab-pane.active');
     if (!activePanel) return;
 
-    // Buscar todos los inputs dentro de ese panel visible
-    const inputs = activePanel.querySelectorAll("input");
+    // 3. Extraer SOLO los inputs Y SELECTS del panel activo
+    const elementosActivos = activePanel.querySelectorAll('input, select');
+    let formValido = true;
 
-    // 3. Validar que no estén vacíos
-    inputs.forEach((input) => {
-      if (input.value.trim() === "") {
-        input.classList.add("is-invalid");
-        isValid = false;
-      } else {
-        input.classList.remove("is-invalid");
-
-        const label = input.previousElementSibling;
-        const nombreCampo = label
-          ? label.textContent.trim()
-          : input.placeholder;
-
-        formData[nombreCampo] = input.value.trim();
-      }
+    // Revisar la validación nativa (required, pattern, min, max) SOLO en los visibles
+    elementosActivos.forEach(elemento => {
+        if (!elemento.checkValidity()) {
+            formValido = false;
+        }
     });
 
-    // Si falta algún campo, detenemos el proceso
-    if (!isValid) {
-      alert("Por favor, completa todos los campos marcados en rojo.");
-      return;
+    // Aplicar la clase de Bootstrap para que pinte de rojo/verde los inputs
+    form.classList.add('was-validated');
+
+    // 4. Si hay algún error en el panel actual, mostramos alerta y detenemos
+    if (!formValido) {
+        e.stopPropagation();
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'Faltan datos',
+            text: 'Por favor, completa correctamente los campos marcados en rojo.',
+            confirmButtonColor: '#0DA74A' 
+        });
+        return; 
     }
 
-    // ==========================================
-    // 4. PROCESAR DATOS PARA EL HISTORIAL
-    // ==========================================
-
-    let historialExistente =
-      JSON.parse(localStorage.getItem("historialPedidos")) || [];
-
-    // Determinamos qué imagen usar según la pestaña seleccionada
-    let rutaImagen = "assets/img/servicio-compartido.png"; // Por defecto
-    if (tipoEnvio === "Express") {
-      rutaImagen = "assets/img/servicio-express.png";
-    } else if (tipoEnvio === "Exclusivo") {
-      rutaImagen = "assets/img/servicio-exclusivo.png";
-    } else if (tipoEnvio === "Extraordinario") {
-      rutaImagen = "assets/img/servicio-extraordinario.png";
+    // 5. Si todo es válido, procedemos a recopilar los datos
+    const formData = {};
+    const activeTabButton = document.querySelector('.nav-link.active');
+    
+    if (activeTabButton) {
+      const tipoEnvio = activeTabButton.querySelector('.fw-bold').textContent.trim();
+      formData['Tipo de Servicio'] = tipoEnvio;
     }
 
-    // Buscamos de forma inteligente el peso y dimensiones en el objeto formData
-    const campoPeso = Object.keys(formData).find((key) =>
-      key.toLowerCase().includes("peso"),
-    );
-    const campoAlto = Object.keys(formData).find((key) =>
-      key.toLowerCase().includes("alto"),
-    );
-    const campoLargo = Object.keys(formData).find((key) =>
-      key.toLowerCase().includes("largo"),
-    );
-    const campoAncho = Object.keys(formData).find((key) =>
-      key.toLowerCase().includes("ancho"),
-    );
+    // Guardamos los valores ingresados
+    elementosActivos.forEach(elemento => {
+        const label = elemento.previousElementSibling;
+        const nombreCampo = label ? label.textContent.trim() : (elemento.placeholder || 'Colonia');
+        formData[nombreCampo] = elemento.value.trim();
+    });
 
-    const valorPeso = campoPeso ? `${formData[campoPeso]} Kg` : "0 Kg";
-    const valorDimensiones = `${campoLargo ? formData[campoLargo] : 0}×${campoAncho ? formData[campoAncho] : 0}×${campoAlto ? formData[campoAlto] : 0} Cm`;
+    // 6. Guardar en LocalStorage
+    localStorage.setItem('cotizacionEnvio', JSON.stringify(formData));
+    console.log('Datos listos para enviar:', formData);
 
-    // Armamos el objeto estructurado
-    const nuevoPedido = {
-      id: Date.now(),
-      nombreServicio: `Servicio ${tipoEnvio}`,
-      imagen: rutaImagen,
-      peso: valorPeso,
-      dimensions: valorDimensiones, // Nota: el historial.js busca pedido.dimensiones, asegúrate de escribirlo idéntico
-      dimensiones: valorDimensiones, // Lo dejamos duplicado por seguridad para mapear bien
-      fecha: obtenerFechaActual(),
-      estatus: "Paquete Entregado",
-      numGuia: generarNumeroGuia(),
-    };
-
-    // Agregamos al inicio de la lista
-    historialExistente.unshift(nuevoPedido);
-
-    // Guardamos en LocalStorage
-    localStorage.setItem(
-      "historialPedidos",
-      JSON.stringify(historialExistente),
-    );
-
-    alert("¡Tu pedido ha sido generado con éxito!");
-    console.log("Pedido agregado al historial:", nuevoPedido);
-
-    // Si quieres que al dar "Aceptar" en la alerta te mande directo al historial, descomenta la siguiente línea:
-    // window.location.href = "historial.html";
+    // 7. Alerta de ÉXITO profesional (SweetAlert2)
+    Swal.fire({
+        icon: 'success',
+        title: '¡Cotización exitosa!',
+        text: 'Tu pedido ha sido generado correctamente y tus datos están protegidos.',
+        confirmButtonColor: '#0DA74A', 
+        confirmButtonText: 'Entendido'
+    }).then((result) => {
+        // Cuando el usuario cierra la alerta, limpiamos el formulario para uno nuevo
+        if (result.isConfirmed) {
+            form.reset();
+            form.classList.remove('was-validated'); 
+            
+            // Limpiar manualmente las opciones de los selects para que no se queden las colonias viejas
+            const selects = document.querySelectorAll('.colonia-select');
+            selects.forEach(select => {
+                select.innerHTML = '<option value="">Ingresa tu CP primero...</option>';
+            });
+        }
+    });
   });
 
-  // === FUNCIONES AUXILIARES (Fuera del listener del formulario) ===
-
-  function obtenerFechaActual() {
-    const meses = [
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre",
-    ];
-    const fecha = new Date();
-    return `${fecha.getDate()} - ${meses[fecha.getMonth()]} - ${fecha.getFullYear()}`;
-  }
-
-  function generarNumeroGuia() {
-    const numeroAleatorio = Math.floor(100000000 + Math.random() * 900000000);
-    return `MX${numeroAleatorio}`;
+  // ── 3. Inicializar historial al cargar ──────────────────────────────────
+  renderizarHistorial();
+  if (obtenerHistorial().length > 0) {
+    mostrarSeccionHistorial();
   }
 });
+
+// ── FUNCIONES DE HISTORIAL ─────────────────────────────────────────────────
+
+/**
+ * Lee el historial guardado en localStorage.
+ * @returns {Array} Array de cotizaciones
+ */
+function obtenerHistorial() {
+  try {
+    return JSON.parse(localStorage.getItem('historialCotizaciones')) || [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Muestra u oculta la sección de historial.
+ */
+function mostrarSeccionHistorial() {
+  const seccion = document.getElementById('seccion-historial');
+  if (seccion) seccion.classList.remove('d-none');
+}
+
+/**
+ * Elimina una cotización del historial por su id.
+ * @param {number} id
+ */
+function eliminarCotizacion(id) {
+  const historial = obtenerHistorial().filter(c => c.id !== id);
+  localStorage.setItem('historialCotizaciones', JSON.stringify(historial));
+  renderizarHistorial();
+  // Si quedó vacío, ocultar sección
+  if (historial.length === 0) {
+    const seccion = document.getElementById('seccion-historial');
+    if (seccion) seccion.classList.add('d-none');
+  }
+}
+
+/**
+ * Limpia todo el historial.
+ */
+function limpiarHistorial() {
+  if (!confirm('¿Seguro que deseas borrar todo el historial de cotizaciones?')) return;
+  localStorage.removeItem('historialCotizaciones');
+  renderizarHistorial();
+  const seccion = document.getElementById('seccion-historial');
+  if (seccion) seccion.classList.add('d-none');
+}
+
+/**
+ * Renderiza las tarjetas del historial en el contenedor #lista-historial.
+ */
+function renderizarHistorial() {
+  const contenedor = document.getElementById('lista-historial');
+  if (!contenedor) return;
+
+  const historial = obtenerHistorial();
+
+  if (historial.length === 0) {
+    contenedor.innerHTML = `
+      <p class="text-muted text-center py-3">
+        <i class="bi bi-inbox me-2"></i>Aún no tienes cotizaciones guardadas.
+      </p>`;
+    return;
+  }
+
+  const iconos = {
+    'Express':        'bi-lightning-charge-fill text-warning',
+    'Compartido':     'bi-people-fill text-primary',
+    'Exclusivo':      'bi-shield-check-fill text-success',
+    'Extraordinario': 'bi-box-seam-fill text-danger',
+  };
+
+  contenedor.innerHTML = historial.map(cot => {
+    const icono = iconos[cot.tipoServicio] || 'bi-box text-secondary';
+    // Campos relevantes a mostrar (excluir "Tipo de Servicio" ya que está en el header)
+    const campos = Object.entries(cot.datos)
+      .filter(([k]) => k !== 'Tipo de Servicio')
+      .slice(0, 4) // Máximo 4 campos en el resumen
+      .map(([k, v]) => `<span class="badge bg-light text-dark border me-1 mb-1">${k}: <strong>${v}</strong></span>`)
+      .join('');
+
+    return `
+      <div class="card mb-3 border-0 shadow-sm historial-card" data-id="${cot.id}">
+        <div class="card-body py-3 px-4">
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-3">
+              <div class="historial-icono">
+                <i class="bi ${icono} fs-4"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold">${cot.tipoServicio}</h6>
+                <small class="text-muted"><i class="bi bi-clock me-1"></i>${cot.fecha}</small>
+              </div>
+            </div>
+            <button class="btn btn-sm btn-outline-danger" onclick="eliminarCotizacion(${cot.id})" title="Eliminar cotización">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+          ${campos ? `<div class="mt-2">${campos}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// Exponer funciones al scope global para los onclick inline
+window.eliminarCotizacion = eliminarCotizacion;
+window.limpiarHistorial   = limpiarHistorial;

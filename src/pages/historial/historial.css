@@ -4,15 +4,15 @@
 }
 
 .titulo-historial {
-  font-family: "Poppins", sans-serif;
-  color: #0da74a !important;
+  font-family: var(--fuente-secciones);
+  color: var(--verde-principal) !important;
 }
 
 /* Línea divisoria  */
 .linea-divisoria-verde {
   border: none;
   height: 2px;
-  background-color: #0da74a;
+  background-color: var(--verde-principal);
   opacity: 1;
   margin: 0;
 }
@@ -29,7 +29,7 @@
 }
 
 .nombre-servicio {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--fuente-secciones);
 }
 
 /* Evita saltos de línea raros en el botón de reordenar */
@@ -39,17 +39,17 @@
 
 /* Botón personalizado de acción */
 .boton-ver {
-  background-color: #0da74a !important;
+  background-color: var(--verde-principal) !important;
   min-width: 80px;
   transition:
-    background-color 0.2s ease-in-out,
+    background-color var(--transicion),
     transform 0.1s ease;
 }
 
 /* Efecto hover interactivo para el botón */
 .boton-ver:hover {
-  background-color: #0a8a3c !important;
-  color: #ffffff;
+  background-color: var(--verde-medio) !important;
+  color: var(--blanco);
 }
 
 .boton-ver:active {
@@ -58,19 +58,34 @@
 
 /* --- Estilos para el estado sin pedidos --- */
 .mensaje-vacio {
-  font-family: "Poppins", sans-serif;
-  color: #4a2e2b;
+  font-family: var(--fuente-secciones);
+  color: var(--gris-texto);
   font-weight: 500;
 }
 
 .boton-cotizar-vacio {
-  background-color: #0da74a !important;
-  font-family: "Poppins", sans-serif;
+  background-color: var(--verde-principal) !important;
+  font-family: var(--fuente-secciones);
   border: none;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color var(--transicion);
 }
 
 .boton-cotizar-vacio:hover {
-  background-color: #0a8a3c !important;
-  color: #ffffff !important;
+  background-color: var(--verde-medio) !important;
+  color: var(--blanco) !important;
+}
+
+/* Estado "esperando CP" para Estado/Colonia: gris e itálica mientras
+   el usuario no ha llenado un código postal válido todavía */
+#estadoOrigen:placeholder-shown,
+#coloniaOrigen:placeholder-shown,
+#estadoDestino:placeholder-shown,
+#coloniaDestino:placeholder-shown {
+  font-style: italic;
+  color: var(--gris-texto-local);
+  background-color: var(--gris-suave);
+}
+
+.modal-header {
+  border-bottom: 2px solid var(--verde-principal);
 }

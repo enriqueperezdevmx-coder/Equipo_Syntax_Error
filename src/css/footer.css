@@ -96,7 +96,7 @@ footer .text-muted {
    STICKY FOOTER FIX
 ===================================================== */
 html, body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -105,5 +105,5 @@ body {
 }
 
 main, section.servicios-section {
-  flex: 1;
+  flex: 1 0 auto;
 }

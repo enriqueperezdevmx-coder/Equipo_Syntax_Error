@@ -17,11 +17,11 @@ body {
    1. TABS DE CATEGORÍA
    ========================================== */
 .nav-pills .nav-link {
-    color: #1f2937 !important; /* Texto gris muy oscuro/negro siempre */
+    color: var(--gris-texto) !important; /* Sustituido #1f2937 */
 }
 
 .caja-categoria {
-    background-color: #ffffff !important;
+    background-color: var(--blanco) !important; /* Sustituido #ffffff */
     border: 1px solid var(--gris-borde) !important;
     border-radius: 8px;
     padding: 1rem 1.2rem;
@@ -42,7 +42,7 @@ body {
 /* EL ESTADO ACTIVO (La pestaña seleccionada) */
 .nav-pills .nav-link.active.caja-categoria {
     background-color: var(--verde-ultra) !important;
-    border: 1.5px solid var(--verde-medio) !important
+    border: 1.5px solid var(--verde-medio) !important;
 }
 
 .nav-pills .nav-link.active.caja-categoria .icono-check { 
@@ -56,7 +56,7 @@ body {
     border: 1px solid var(--gris-borde);
     border-radius: 10px;
     padding: 1.5rem;
-    background-color: #ffffff;
+    background-color: var(--blanco); /* Sustituido #ffffff */
     margin-bottom: 1.5rem;
 }
 
@@ -103,25 +103,25 @@ body {
 }
 
 .form-control {
-    background-color: var(--blanco) !important; /* Blanco garantizado */
-    border: 1px solid var(--gris-borde) !important;   /* Borde gris definido */
+    background-color: var(--blanco) !important; 
+    border: 1px solid var(--gris-borde) !important;   
     border-radius: 6px;
     padding: 0.7rem 1rem;
     font-size: 0.95rem;
-    color: #1f2937;
+    color: var(--gris-texto); /* Sustituido #1f2937 */
     transition: all 0.2s ease;
 }
 
 /* Cuando das clic para escribir */
 .form-control:focus {
-    background-color: #ffffff !important;
-    border-color: var(--verde-borde-activo) !important;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15) !important; 
+    background-color: var(--blanco) !important; /* Sustituido #ffffff */
+    border-color: var(--verde-principal) !important; /* Corregido variable inexistente */
+    box-shadow: 0 0 0 3px var(--hover-verde) !important; /* Sustituido rgba duro */
     outline: none;
 }
 
 .form-control::placeholder {
-    color: #9ca3af;
+    color: var(--gris-texto-local); /* Sustituido #9ca3af */
 }
 
 /* ==========================================
@@ -135,13 +135,38 @@ body {
     transition: all 0.2s;
 }
 
-.btn-solicitar:hover { background-color: #14532d !important; }
+.btn-solicitar:hover { background-color: var(--verde-titulo) !important; } /* Sustituido #14532d */
 .btn-solicitar:active { transform: scale(0.98); }
 
 /* Alerta amarilla de Compartido */
 .text-warning {
-    color: #d97706 !important;
+    color: var(--naranja-badge) !important; /* Sustituido #d97706 */
 }
+
+/* ==========================================
+   6. VALIDACIONES DE ERRORES (BORDES ROJOS)
+   ========================================== */
+/* Borde rojo para campos vacíos o incorrectos al enviar */
+.was-validated .form-control:invalid {
+    border-color: #dc3545 !important;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+
+/* Sombra roja cuando el usuario da clic en un campo con error */
+.was-validated .form-control:invalid:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
+}
+
+/* Borde verde opcional para los campos que sí están correctos */
+.was-validated .form-control:valid {
+    border-color: var(--verde-principal) !important;
+}
+
 /* ==========================================================================
    BREAKPOINT 375px — Móvil pequeño
    ========================================================================== */
@@ -191,4 +216,30 @@ body {
   #vista-formulario {
     max-width: 1100px !important;
   }
+}
+/* =====================================================
+   HISTORIAL DE COTIZACIONES
+===================================================== */
+#seccion-historial {
+  max-width: 860px;
+}
+
+.historial-card {
+  border-radius: 12px !important;
+  transition: box-shadow 0.2s ease;
+}
+
+.historial-card:hover {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10) !important;
+}
+
+.historial-icono {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: var(--bs-light, var(--blanco)) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
