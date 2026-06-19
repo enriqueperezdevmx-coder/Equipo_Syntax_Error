@@ -82,16 +82,16 @@
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="cpOrigen" class="form-label">Código Postal</label>
-                <input type="text" class="form-control" id="cpOrigen" maxlength="5" pattern="\d{5}" required placeholder="Ej. 64000">
+                <input type="text" class="form-control" id="cpOrigen" disabled maxlength="5" pattern="\d{5}" required placeholder="Ej. 64000">
                 <div class="invalid-feedback">El código postal debe tener 5 dígitos.</div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="estadoOrigen" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="estadoOrigen" placeholder="Se llenará solo" readonly>
+                <input type="text" class="form-control" id="estadoOrigen" disabled placeholder="Se llenará solo" readonly>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="coloniaOrigen" class="form-label">Colonia</label>
-                <input type="text" class="form-control" id="coloniaOrigen" placeholder="Ingresa tu CP primero..." readonly>
+                <input type="text" class="form-control" id="coloniaOrigen" disabled placeholder="Ingresa tu CP primero..." readonly>
               </div>
             </div>
             <div class="mb-3">
@@ -107,21 +107,21 @@
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="cpDestino" class="form-label">Código Postal</label>
-                <input type="text" class="form-control" id="cpDestino" maxlength="5" pattern="\d{5}" required placeholder="Ej. 64710">
+                <input type="text" class="form-control" id="cpDestino" disabled maxlength="5" pattern="\d{5}" required placeholder="Ej. 64710">
                 <div class="invalid-feedback">El código postal debe tener 5 dígitos.</div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="estadoDestino" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="estadoDestino" placeholder="Se llenará solo" readonly>
+                <input type="text" class="form-control" id="estadoDestino" disabled placeholder="Se llenará solo" readonly>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="coloniaDestino" class="form-label">Colonia</label>
-                <input type="text" class="form-control" id="coloniaDestino" placeholder="Ingresa tu CP primero..." readonly>
+                <input type="text" class="form-control" id="coloniaDestino" disabled  placeholder="Ingresa tu CP primero..." readonly>
               </div>
             </div>
             <div class="mb-3">
               <label for="calleDestino" class="form-label">Calle y Número</label>
-              <input type="text" class="form-control" id="calleDestino" minlength="5" required placeholder="Ej. Calle Reforma 456">
+              <input type="text" class="form-control" id="calleDestino" disabled minlength="5" required placeholder="Ej. Calle Reforma 456">
               <div class="invalid-feedback">Ingresa la calle y número de destino.</div>
             </div>
 
@@ -132,30 +132,30 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="nombreRemitente" class="form-label">Nombre del remitente</label>
-                <input type="text" class="form-control" id="nombreRemitente" minlength="3" required>
+                <input type="text" class="form-control" id="nombreRemitente" disabled minlength="3" required>
                 <div class="invalid-feedback">Debe tener al menos 3 caracteres.</div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="nombreDestinatario" class="form-label">Nombre del destinatario</label>
-                <input type="text" class="form-control" id="nombreDestinatario" minlength="3" required>
+                <input type="text" class="form-control" id="nombreDestinatario" disabled minlength="3" required>
                 <div class="invalid-feedback">Debe tener al menos 3 caracteres.</div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="telefonoRemitente" class="form-label">Teléfono del remitente</label>
-                <input type="tel" class="form-control" id="telefonoRemitente" maxlength="10" pattern="\d{10}" required placeholder="Ej. 8100000000">
+                <input type="tel" class="form-control" id="telefonoRemitente" disabled maxlength="10" pattern="\d{10}" required placeholder="Ej. 8100000000">
                 <div class="invalid-feedback">Ingresa un teléfono válido de 10 dígitos.</div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="telefonoDestinatario" class="form-label">Teléfono del destinatario</label>
-                <input type="tel" class="form-control" id="telefonoDestinatario" maxlength="10" pattern="\d{10}" required placeholder="Ej. 5500000000">
+                <input type="tel" class="form-control" id="telefonoDestinatario" disabled maxlength="10" pattern="\d{10}" required placeholder="Ej. 5500000000">
                 <div class="invalid-feedback">Ingresa un teléfono válido de 10 dígitos.</div>
               </div>
             </div>
             <div class="mb-3">
               <label for="correoRemitente" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="correoRemitente" required placeholder="correo@ejemplo.com">
+              <input type="email" class="form-control" id="correoRemitente" disabled required placeholder="correo@ejemplo.com">
               <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
             </div>
 
@@ -164,30 +164,30 @@
             <!-- PAQUETE -->
             <h6 class="fw-bold text-secondary mb-3">Medidas del Paquete</h6>
             <div class="mb-3">
-              <label for="peso" class="form-label">Peso del paquete (kg)</label>
-              <input type="number" class="form-control" id="peso" min="0.1" step="0.1" required placeholder="Ej. 2.5">
-              <div class="invalid-feedback">Ingresa un peso válido mayor a 0.</div>
-            </div>
+            <label for="peso" class="form-label">Peso del paquete (kg)</label>
+            <input type="number" class="form-control" id="peso" disabled min="0.1" step="0.1" required placeholder="Ej. 2.5">
+            <div class="invalid-feedback" id="feedbackPeso">Ingresa un peso válido mayor a 0.</div>
+          </div>
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="largo" class="form-label">Largo (cm)</label>
-                <input type="number" class="form-control" id="largo" min="0.1" required>
-                <div class="invalid-feedback">Ingresa un largo válido mayor a 0.</div>
+                <input type="number" class="form-control" id="largo" disabled min="0.1" required>
+                <div class="invalid-feedback" id="feedbackLargo">Ingresa un largo válido mayor a 0.</div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="ancho" class="form-label">Ancho (cm)</label>
-                <input type="number" class="form-control" id="ancho" min="0.1" required>
-                <div class="invalid-feedback">Ingresa un ancho válido mayor a 0.</div>
+                <input type="number" class="form-control" id="ancho" disabled min="0.1" required>
+                <div class="invalid-feedback" id="feedbackAncho">Ingresa un ancho válido mayor a 0.</div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="alto" class="form-label">Alto (cm)</label>
-                <input type="number" class="form-control" id="alto" min="0.1" required>
-                <div class="invalid-feedback">Ingresa un alto válido mayor a 0.</div>
+                <input type="number" class="form-control" id="alto" disabled min="0.1" required>
+                <div class="invalid-feedback" id="feedbackAlto">Ingresa un alto válido mayor a 0.</div>
               </div>
             </div>
             <div class="mb-3">
               <label for="descripcionContenido" class="form-label">Descripción del contenido</label>
-              <textarea class="form-control" id="descripcionContenido" rows="3" minlength="10" required></textarea>
+              <textarea class="form-control" id="descripcionContenido" disabled rows="3" minlength="10" required></textarea>
               <div class="invalid-feedback">Describe el contenido con al menos 10 caracteres.</div>
             </div>
 

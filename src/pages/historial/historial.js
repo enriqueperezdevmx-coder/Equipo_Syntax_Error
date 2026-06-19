@@ -1,6 +1,30 @@
+// ---------------------------------------------------------------
+// CONSTANTES GLOBALES
+// ---------------------------------------------------------------
+
+// Límite máximo de peso (kg) permitido por cada tipo de servicio
+const limitesPesoPorServicio = {
+  Express: 5,
+  Exclusivo: 10,
+  Extraordinario: 10,
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   renderHistorial();
   document.getElementById("form-cotizar").addEventListener("submit", manejarEnvioCotizacion);
+  document.getElementById("tipoEnvio").addEventListener("change", actualizarLimitePeso);
+
+  // Valide mientras el usuario escribe, para dar feedback visual inmediato de qué campos están correctos o incorrectos
+document.getElementById("largo").addEventListener("input", () =>
+  marcarCampo("largo", validarDimension("largo", "feedbackLargo"))
+);
+document.getElementById("ancho").addEventListener("input", () =>
+  marcarCampo("ancho", validarDimension("ancho", "feedbackAncho"))
+);
+document.getElementById("alto").addEventListener("input", () =>
+  marcarCampo("alto", validarDimension("alto", "feedbackAlto"))
+);
+  document.getElementById("peso").addEventListener("input", () => marcarCampo("peso", validarPeso(document.getElementById("tipoEnvio").value, document.getElementById("peso").value)));
 
   // Autocompletado de Estado/Colonia al escribir el CP de origen y destino
   document.getElementById("cpOrigen").addEventListener("blur", () => {
@@ -132,6 +156,51 @@ async function autocompletarPorCP(idCP, idEstado, idColonia) {
   }
 }
 
+/**
+ * Cuando el usuario elige un tipo de envío, actualiza el límite
+ * máximo permitido en el campo de peso y su mensaje de ayuda.
+ */
+function actualizarLimitePeso() {
+  const tipoEnvio = document.getElementById("tipoEnvio").value;
+  const inputPeso = document.getElementById("peso");
+  const feedbackPeso = document.getElementById("feedbackPeso");
+
+  const limite = limitesPesoPorServicio[tipoEnvio];
+
+  if (limite) {
+    inputPeso.max = limite;
+    feedbackPeso.textContent = `El peso máximo para ${tipoEnvio} es de ${limite} kg.`;
+  } else {
+    inputPeso.removeAttribute("max");
+    feedbackPeso.textContent = "Ingresa un peso válido mayor a 0.";
+  }
+
+  if (inputPeso.value && limite && Number(inputPeso.value) > limite) {
+    marcarCampo("peso", false);
+  }
+
+  // ✅ Este bloque debe estar DENTRO de la función, antes del cierre }
+  const hayTipo = tipoEnvio !== "";
+  document.querySelectorAll("#form-cotizar input, #form-cotizar textarea").forEach((campo) => {
+    campo.disabled = !hayTipo;
+  });
+  document.querySelector("#form-cotizar button[type='submit']").disabled = !hayTipo;
+} 
+
+
+/**
+ * Valida que el peso sea mayor a 0 y que no exceda el límite
+ * permitido para el tipo de envío seleccionado.
+ */
+function validarPeso(tipoEnvio, peso) {
+  if (peso === "" || Number(peso) <= 0) return false;
+
+  const limite = limitesPesoPorServicio[tipoEnvio];
+  if (limite && Number(peso) > limite) return false;
+
+  return true;
+}
+
 // ---------------------------------------------------------------
 // VALIDACIÓN POR CAMPO
 // ---------------------------------------------------------------
@@ -165,6 +234,39 @@ function limpiarValidacionVisual() {
   const campos = document.querySelectorAll("#form-cotizar .is-valid, #form-cotizar .is-invalid");
   campos.forEach((campo) => campo.classList.remove("is-valid", "is-invalid"));
   document.getElementById("form-cotizar").classList.remove("was-validated");
+}
+
+/**
+ * Valida que el campo:
+ * 1. No esté vacío.
+ * 2. Sea un número mayor a 0.
+ * 3. Sea menor o igual a 40.
+ */
+function validarDimension(id, idFeedback) {
+  const input = document.getElementById(id);
+  const feedback = document.getElementById(idFeedback);
+  const valor = parseFloat(input.value);
+
+  // 1. Si está vacío
+  if (input.value.trim() === "") {
+    feedback.textContent = "Este campo es requerido.";
+    return false;
+  }
+  
+  // 2. Si no es número o es menor o igual a 0
+  if (isNaN(valor) || valor <= 0) {
+    feedback.textContent = "Debe ser un número mayor a 0.";
+    return false;
+  }
+  
+  // 3. Si es mayor a 40
+  if (valor > 40) {
+    feedback.textContent = "La medida debe ser menor a 40 cm.";
+    return false;
+  }
+
+  // Si todo está bien
+  return true;
 }
 
 // Valida el formulario del modal, construye el JSON y lo guarda como cotización pendiente
@@ -210,10 +312,10 @@ function manejarEnvioCotizacion(evento) {
     marcarCampo("telefonoRemitente", regexTelefono.test(telefonoRemitente)) &&
     marcarCampo("telefonoDestinatario", regexTelefono.test(telefonoDestinatario)) &&
     marcarCampo("correoRemitente", regexCorreo.test(correoRemitente)) &&
-    marcarCampo("peso", peso !== "" && Number(peso) > 0) &&
-    marcarCampo("largo", largo !== "" && Number(largo) > 0) &&
-    marcarCampo("ancho", ancho !== "" && Number(ancho) > 0) &&
-    marcarCampo("alto", alto !== "" && Number(alto) > 0) &&
+    marcarCampo("peso", validarPeso(tipoEnvio, peso)) &&
+    marcarCampo("largo", validarDimension("largo", "feedbackLargo")) &&
+    marcarCampo("ancho", validarDimension("ancho", "feedbackAncho")) &&
+    marcarCampo("alto", validarDimension("alto", "feedbackAlto")) &&
     marcarCampo("descripcionContenido", descripcionContenido.length >= 10);
 
   const contenedorAlertas = document.getElementById("contenedor-alertas");
@@ -374,12 +476,14 @@ window.volverAPedir = function (event, index) {
   document.getElementById("ancho").value = ancho;
   document.getElementById("alto").value = alto;
 
+  // Sincroniza el límite de peso visible con el servicio que se está re-pidiendo
+  actualizarLimitePeso();
+
   document.getElementById("descripcionContenido").value = pedido.descripcionContenido;
 
   const modalCotizar = new bootstrap.Modal(document.getElementById("modalCotizar"));
   modalCotizar.show();
 };
-
 
 window.copiarFolio = function (event, folio) {
   event.preventDefault();
@@ -393,3 +497,11 @@ window.copiarFolio = function (event, folio) {
     });
 };
 
+// Atajo solo para desarrollo: presiona Ctrl + Shift + L para vaciar el historial de prueba
+document.addEventListener("keydown", (evento) => {
+  if (evento.ctrlKey && evento.shiftKey && evento.key === "L") {
+    localStorage.removeItem("historialPedidos");
+    alert("Historial de prueba borrado.");
+    renderHistorial();
+  }
+});
