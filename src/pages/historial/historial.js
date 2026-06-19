@@ -233,7 +233,6 @@ function manejarEnvioCotizacion(evento) {
 
   const iconosPorServicio = {
     Express: "/src/assets/repart1.jpg",
-    Compartido: "/src/assets/repartidor2.jpg",
     Exclusivo: "/src/assets/repar3.jpg",
     Extraordinario: "/src/assets/repar4.jpg",
   };
@@ -382,21 +381,15 @@ window.volverAPedir = function (event, index) {
 };
 
 
+window.copiarFolio = function (event, folio) {
   event.preventDefault();
   navigator.clipboard
     .writeText(folio)
     .then(() => {
-      alert(`Folio de cotización ${folio} copiado al portapapeles.`);
+      alert(`Folio de nuevo envío ${folio} copiado al portapapeles.`);
     })
     .catch((err) => {
       console.error("No se pudo copiar el texto automáticamente: ", err);
     });
+};
 
-// Atajo solo para desarrollo: presiona Ctrl + Shift + L para vaciar el historial de prueba
-document.addEventListener("keydown", (evento) => {
-  if (evento.ctrlKey && evento.shiftKey && evento.key === "L") {
-    localStorage.removeItem("historialPedidos");
-    alert("Historial de prueba borrado.");
-    renderHistorial();
-  }
-});
