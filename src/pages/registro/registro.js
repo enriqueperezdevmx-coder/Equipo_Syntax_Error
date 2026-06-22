@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // NUEVO CAMPO DE FUERZA: Solo letras, acentos, ñ y espacios para los nombres (Adiós hijos de Elon Musk)
     function purificarNombre(e) {
-        // Reemplaza globalmente todo lo que NO (^) sea a-z, A-Z, áéíóú, ÁÉÍÓÚ, ñ, Ñ, o espacio (\s)
         this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
     }
 
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
         const confirmarPassword = document.getElementById('confirmar-password').value;
 
-        // no pasasaran de aqui!! dijo el mago blanco
+        // no pasaran de aqui!! dijo el mago blanco
 
         // primera revision Revisión específica de campos vacíos
         if (!nombres) errores.push("Falta ingresar tu <strong>nombre</strong>.");
@@ -133,17 +132,45 @@ document.addEventListener('DOMContentLoaded', () => {
             // aqui ya no es necesario seguir cuidando desde antes ya quedo encerrao en su cuarto de panico
             mostrarAlerta(`<strong>¡Alto ahí! Corrige lo siguiente:</strong>${listaErrores}`, 'danger');
         } else {
-            // vive
-            mostrarAlerta('✅ ¡Registro validado exitosamente!', 'success');
+            // VIVE - Todo está correcto (AJUSTADO PARA LA TAREA 10)
             
-            // Listo para enviarse a Java/Spring Boot para que Json les de cuello
-            console.log("JSON listo:", {
+            // 1. Preparamos el objeto del nuevo usuario
+            const nuevoUsuario = {
                 nombre: nombres,
                 apellido: apellidos,
-                correo: correo,
+                correo: correo.toLowerCase(), // Normalizamos el correo
                 telefono: celular,
-                password: password
-            });
+                password: password // (Simulando la base de datos en LocalStorage)
+            };
+
+            // 2. Traemos la "base de datos" falsa (los usuarios que ya existen)
+            let usuariosGuardados = [];
+            const dataExtraida = localStorage.getItem('usuariosMensajeria');
+            
+            if (dataExtraida) {
+                usuariosGuardados = JSON.parse(dataExtraida);
+            }
+
+            // 3. Verificamos si el correo ya está registrado
+            const usuarioExiste = usuariosGuardados.some(user => user.correo === nuevoUsuario.correo);
+
+            if (usuarioExiste) {
+                mostrarAlerta('❌ Este correo electrónico ya está registrado.', 'danger');
+                return; // Detenemos la ejecución aquí si ya existe
+            }
+
+            // 4. Guardamos al nuevo usuario en la lista y actualizamos el LocalStorage
+            usuariosGuardados.push(nuevoUsuario);
+            localStorage.setItem('usuariosMensajeria', JSON.stringify(usuariosGuardados));
+
+            // 5. Mensaje de éxito y redirección
+            mostrarAlerta('✅ ¡Registro exitoso! Cuenta creada...', 'success');
+            
+            // Simular un pequeño tiempo de carga antes de mandarlo al login
+            setTimeout(() => {
+                // ASEGÚRATE DE QUE ESTA RUTA COINCIDA CON LA UBICACIÓN REAL DE TU ARCHIVO DE LOGIN
+                window.location.href = '/src/pages/registro/registro.html'; // Usualmente sería /src/pages/login/login.html o el index
+            }, 2000);
         }
     });
 
