@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const formRegistro = document.getElementById('form-registro');
     const alertasContenedor = document.getElementById('alertas-contenedor');
     const inputCelular = document.getElementById('celular');
+    const inputNombres = document.getElementById('nombres');
+    const inputApellidos = document.getElementById('apellidos');
 
     // ESCUDO ANTI-INYECCIÓN XSS, me protejo, me protejo (Por si algún graciosillo intenta inyectar código)
     // Convierte caracteres peligrosos en texto inofensivo
@@ -16,14 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
         this.value = this.value.replace(/\D/g, ''); 
     });
 
+    // NUEVO CAMPO DE FUERZA: Solo letras, acentos, ñ y espacios para los nombres (Adiós hijos de Elon Musk)
+    function purificarNombre(e) {
+        // Reemplaza globalmente todo lo que NO (^) sea a-z, A-Z, áéíóú, ÁÉÍÓÚ, ñ, Ñ, o espacio (\s)
+        this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    }
+
+    inputNombres.addEventListener('input', purificarNombre);
+    inputApellidos.addEventListener('input', purificarNombre);
+
     formRegistro.addEventListener('submit', (e) => {
         e.preventDefault(); 
         alertasContenedor.innerHTML = ''; 
         let errores = [];
 
         // guardamos los valores
-        const nombres = document.getElementById('nombres').value.trim();
-        const apellidos = document.getElementById('apellidos').value.trim();
+        const nombres = inputNombres.value.trim();
+        const apellidos = inputApellidos.value.trim();
         const correo = document.getElementById('correo').value.trim();
         const celular = inputCelular.value.trim();
         const password = document.getElementById('password').value;
@@ -31,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // no pasasaran de aqui!! dijo el mago blanco
 
-        //p primera revision Revisión específica de campos vacíos
+        // primera revision Revisión específica de campos vacíos
         if (!nombres) errores.push("Falta ingresar tu <strong>nombre</strong>.");
         if (!apellidos) errores.push("Falta ingresar tus <strong>apellidos</strong>.");
         if (!correo) errores.push("Falta ingresar tu <strong>correo electrónico</strong>.");
