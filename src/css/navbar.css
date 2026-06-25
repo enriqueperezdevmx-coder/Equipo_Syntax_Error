@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════
    navbar.css
    Estilos para la navbar
-   Importante: /src/css/variables.css cargado primero <- aqui estan la paleta de colores globales
+    /src/css/variables.css 
 ═══════════════════════════════════════════ */
 
     /* =====================================================
@@ -20,22 +20,38 @@
 }
 
     /* =====================================================
+       FRANJA BLANCA FIJA detrás de la navbar
+       Cubre todo el ancho para que nada se vea arriba al hacer scroll
+    ===================================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 96px;
+      background: #ffffff;
+      z-index: 1040;
+      pointer-events: none; 
+    }
+
+    /* =====================================================
        NAVBAR PRINCIPAL
-       Flotante: position fixed + margin lateral para efecto "isla"
+       Flotante: position fixed, centrada con left/right + margin auto
+       (sin transform, para que el backdrop-filter funcione correctamente)
     ===================================================== */
     .navbar-mt {
       position: fixed;          /* Siempre visible al hacer scroll */
       top: 16px;                /* Espacio superior para efecto "flotante" */
-      left: 50%;                /* Centrado horizontal con transformación */
-      transform: translateX(-50%);
-      width: calc(100% - 40px); /* Márgenes laterales de 20px c/u */
+      left: 20px;
+      right: 20px;
+      margin: 0 auto;
+      width: auto;
       max-width: 1200px;        /* No se expande demasiado en pantallas grandes */
       z-index: 1050;            /* Por encima de todo el contenido */
 
-      /* Glassmorphism: fondo blanco semi-transparente con desenfoque */
-      background: rgba(255, 255, 255, 0.97); 
-      backdrop-filter: blur(16px);             /* Desenfoque del contenido detrás */
-      -webkit-backdrop-filter: blur(16px);     /* Soporte Safari */
+      /* Fondo blanco sólido — sin depender de backdrop-filter */
+      background: #ffffff;
 
       border-radius: 20px;                     /* Bordes muy redondeados = aspecto moderno */
       border: 1.5px solid rgba(102, 187, 106, 0.3); /* Borde verde sutil */
@@ -50,11 +66,11 @@
     @keyframes slideDown {
       from {
         opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
+        transform: translateY(-20px);
       }
       to {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
       }
     }
 
@@ -64,11 +80,11 @@
     .navbar-mt .navbar-brand img {
       height: 80px;           /* Tamaño cómodo y proporcional */
       width: auto;
-      transition: transform var(--transicion); /* Micro-interacción al hover */
+      transition: transform var(--transicion); 
     }
 
     .navbar-mt .navbar-brand:hover img {
-      transform: scale(1.05); /* Ligero zoom para feedback visual */
+      transform: scale(1.05); 
     }
 
     /* =====================================================
@@ -81,7 +97,7 @@
       color: var(--gris-texto);
       padding: 10px 16px !important;     /* Área de clic generosa */
       border-radius: 10px;
-      position: relative;               /* Necesario para el pseudo-elemento de línea */
+      position: relative;               
       transition: color var(--transicion), background var(--transicion);
       letter-spacing: 0.01em;
       margin: 0 8px;                  /* separación responsiva */
@@ -112,7 +128,7 @@
     /* Cambio de color del texto en hover */
     .navbar-mt .nav-link:hover {
       color: var(--verde-principal);
-      background: rgba(102, 187, 106, 0.08); /* Fondo muy sutil */
+      background: rgba(102, 187, 106, 0.08); 
     }
 
     /* Estado activo: color verde permanente */
@@ -199,9 +215,7 @@
         top: calc(100% + 8px);
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.97);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        background: #ffffff;
         border-radius: 16px;
         border: 1.5px solid rgba(102, 187, 106, 0.25);
         box-shadow: 0 8px 32px rgba(46, 125, 50, 0.12);
@@ -225,9 +239,14 @@
        AJUSTE DE NAVBAR EN PANTALLAS MEDIANAS (tablets)
     ===================================================== */
     @media (max-width: 575.98px) {
+      .navbar-fondo-fijo {
+        height: 70px;
+      }
+
       .navbar-mt {
         top: 10px;
-        width: calc(100% - 20px);
+        left: 10px;
+        right: 10px;
         padding: 8px 14px;
         border-radius: 16px;
       }
@@ -261,7 +280,7 @@
     }
 
     .navbar-mt.scrolled {
-  background: rgba(255, 255, 255, 0.98) !important;
+  background: #ffffff !important;
   box-shadow: 0 8px 40px rgba(46, 125, 50, 0.22),
               0 2px 8px  rgba(0, 0, 0, 0.10);
 }
