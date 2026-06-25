@@ -266,3 +266,52 @@
               0 2px 8px  rgba(0, 0, 0, 0.10);
 }
     
+/* =====================================================
+   DROPDOWN NOSOTROS
+   Estilos para el menú desplegable Quiénes Somos /
+   Misión / Visión en la navbar
+===================================================== */
+.dropdown-menu-nosotros {
+  border: 1.5px solid rgba(102, 187, 106, 0.25);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+  padding: 8px;
+  min-width: 240px;
+  animation: fadeDropdown 0.18s ease;
+}
+
+@keyframes fadeDropdown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu-nosotros .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background-color 0.15s ease;
+  color: var(--gris-texto);
+}
+
+.dropdown-menu-nosotros .dropdown-item:hover,
+.dropdown-menu-nosotros .dropdown-item:focus {
+  background-color: var(--verde-ultra, #e8f5e9);
+  color: var(--verde-principal);
+}
+
+.dropdown-menu-nosotros .dropdown-item i {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.dropdown-menu-nosotros .dropdown-divider {
+  margin: 4px 8px;
+  border-color: rgba(102, 187, 106, 0.2);
+}
+
+/* Flecha del toggle: heredar color del nav-link */
+.navbar-mt .nav-link.dropdown-toggle::after {
+  vertical-align: middle;
+}
