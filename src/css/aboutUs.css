@@ -1,0 +1,330 @@
+/* ================================
+   ICONOS DE VALORES
+   ================================ */
+.value-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain; /* asegura que el ícono se ajuste sin deformarse */
+}
+
+.icon-container {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* círculo perfecto */
+  background-color: #e9f7ec; /* verde claro de fondo */
+}
+
+/* ================================
+   CONTENEDOR PRINCIPAL
+   ================================ */
+.about-us-container {
+  padding: 40px 40px;
+  margin-top: 100px; /* espacio para navbar flotante fija */
+  font-family: var(--fuente-cuerpo);
+  color: var(--gris-texto);
+}
+
+/* ================================
+   HERO SECTION (Imagen + Cuadro Verde)
+   ================================ */
+.about-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch; /* ambos bloques se estiran a la misma altura */
+  justify-content: center;
+  margin-bottom: 60px;
+  position: relative;
+  gap: 0;   /* ← quita cualquier gap entre flex-items */
+}
+
+/* Caja verde con corte diagonal y texto centrado */
+.hero-green-box {
+  flex: 1 1 50%;
+  background-color: #0DA74A; /* Verde principal */
+  color: #fff;
+  padding: 50px;
+  display: flex;              /* activa flexbox interno */
+  flex-direction: column;     /* organiza en columna */
+  justify-content: center;    /* centra verticalmente el contenido */
+  border-radius: 8px 0 0 8px; /* esquinas redondeadas en el lado izquierdo */
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); /* corte diagonal */
+  /*clip-path: polygon(0 0, 92% 0, 78% 100%, 0% 100%);*/
+  z-index: 2; /* encima de la imagen */
+}
+
+.hero-green-box h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-green-box p {
+  margin-bottom: 10px;
+  padding-right: 40px;
+}
+
+/* Imagen con corte complementario */
+.hero-image-box {
+  flex: 1 1 50%;
+  overflow: hidden;
+  border-radius: 0 8px 8px 0; /* esquinas redondeadas en el lado derecho */
+  /*clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); /* corte diagonal inverso */
+  /*z-index: 1;*/
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  margin-left: -9%;   /* ← solapa la imagen sobre el corte diagonal */
+  z-index: 1;
+}
+
+.hero-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* asegura que la imagen se adapte sin deformarse */
+}
+
+/* ================================
+   FEATURES SECTION (Características)
+   ================================ */
+.about-features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 60px 0;
+  position: relative;
+}
+
+.feature-item {
+  text-align: center;
+  flex: 1 1 200px;
+  margin: 20px;
+  position: relative;
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+}
+/* Línea horizontal que une los puntos */
+.about-features::after {
+  content: '';
+  position: absolute;
+  top: calc(60px + 10px + 25px); /* altura icono + margen dot + mitad del dot */
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background-color: #198754;
+  z-index: 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #198754;
+  border-radius: 50%;
+  margin: 10px auto;
+  position: relative;
+  z-index: 1; /* ← encima de la línea */
+
+}
+
+/* ================================
+   CTA SECTION (Llamado a la acción)
+   ================================ */
+.about-cta {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.about-cta h2 {
+  font-weight: 700;
+  color: #0DA74A;
+}
+
+.about-cta h3 {
+  font-weight: 500;
+  color: #555;
+}
+
+/* ================================
+   MISIÓN / VISIÓN
+   ================================ */
+.mision-vision-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 60px 0;
+}
+
+.info-block {
+  flex: 1 1 45%;
+  background-color: #0DA74A;
+  color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.pill-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pill-header h2 {
+  font-weight: 700;
+}
+
+/* ================================
+   VALORES SECTION
+   ================================ */
+.valores-container {
+  margin: 60px 0;
+}
+
+.center-pill {
+  justify-content: center;
+}
+
+.value-card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border-radius: 12px;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.icon-container i {
+  transition: color 0.3s ease;
+}
+
+.value-card:hover .icon-container i {
+  color: #198754;
+}
+
+.card-body h4 {
+  color: #198754;
+}
+
+.collapse p {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+/* Wrapper que agrupa valores + imagen */
+.valores-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 60px;
+}
+
+/* La imagen de fondo translúcida */
+.valores-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;   /* ← ajusta entre 0.12 – 0.25 al gusto */
+  z-index: 0;
+}
+
+/* Las cards de valores encima */
+.valores-container {
+  position: relative;
+  z-index: 1;
+  padding: 40px 20px 60px;
+  margin-top: 0;   /* el margin ahora va en el wrapper */
+}
+
+/* ================================
+   RESPONSIVE (Pantallas pequeñas)
+   ================================ */
+@media (max-width: 768px) {
+  .about-hero {
+    flex-direction: column;
+  }
+
+  .hero-green-box, .hero-image-box {
+    clip-path: none; /* se elimina el corte diagonal en móviles */
+    border-radius: 8px;
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+
+  .mision-vision-container {
+    flex-direction: column;
+  }
+}
+.value-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    /* overflow: hidden;  <-- COMENTA O QUITA ESTA LÍNEA si necesitas que la descripción se extienda */
+}
+
+/* Efecto de sombra y aumento al pasar el mouse */
+.value-card:hover {
+    transform: translateY(-10px); /* Se levanta un poco */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra más fuerte, ES IMPORTANTE */
+}
+
+/* La descripción está oculta por defecto */
+.card-desc {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+    margin-top: 0;
+    font-size: 0.95rem; /*más pequeño*/
+}
+
+/* Cuando se activa el hover, mostramos la descripción */
+.value-card.hover-active .card-desc {
+    opacity: 1;
+    max-height: 150px; /* Ajusta este valor si la descripción se corta */
+    margin-top: 10px;
+}
+
+/* Animaciones del icono al hacer hover */
+.value-card:hover .icon-container i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/*cards con altura mínima para que se vean bien */
+.value-card{
+  min-width: 250px;
+}
+/* ==========================================================================
+   BREAKPOINT 375px — Móvil pequeño
+   ========================================================================== */
+@media (max-width: 375px) {
+  .about-us-container {
+    padding: 16px 12px;
+    margin-top: 85px;
+  }
+
+  .about-hero {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 1280px+ — Desktop grande
+   ========================================================================== */
+@media (min-width: 1280px) {
+  .about-us-container {
+    padding: 60px 80px;
+    margin-top: 110px;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

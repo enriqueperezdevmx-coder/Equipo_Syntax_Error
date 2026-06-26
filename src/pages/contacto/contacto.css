@@ -1,0 +1,354 @@
+/* ═══════════════════════════════════════════
+   contacto.css
+   Página de Contacto — Equipo Syntax Error
+   Usa variables globales de /src/css/variables.css
+═══════════════════════════════════════════ */
+
+/* =====================================================
+   RESET Y BASE
+===================================================== */
+
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
+.content-grid {
+  padding-bottom: 60px; 
+}
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+.header-section {
+  margin-bottom: 45px;
+  padding-top: 48px;
+}
+
+.header-section h1 {
+  color: var(--verde-principal);
+  font-family: var(--fuente-titulo);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.header-section p {
+  color: var(--gris-texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 1.05rem;
+  max-width: 680px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+/* =====================================================
+   GRID PRINCIPAL — dos columnas con flexbox
+===================================================== */
+.content-grid {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding-bottom: 60px;
+}
+
+.info-column {
+  flex: 0 0 38%;
+  max-width: 38%;
+}
+
+.form-card {
+  flex: 1;
+  background: var(--blanco);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--sombra-navbar);
+  border: 1px solid rgba(13, 167, 74, 0.12);
+}
+
+/* =====================================================
+   TARJETAS DE INFORMACIÓN
+===================================================== */
+.info-card {
+  background: var(--blanco);
+  border: 1px solid rgba(13, 167, 74, 0.15);
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+
+.info-card:hover {
+  box-shadow: 0 6px 20px rgba(13, 167, 74, 0.1);
+  transform: translateY(-2px);
+}
+
+.info-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.icon-tel  { background-color: var(--verde-ultra); color: var(--verde-principal); }
+.icon-mail { background-color: #e8f0fe; color: #1a73e8; }
+.icon-office { background-color: #fef7e0; color: #b78103; }
+
+.info-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-details span {
+  display: block;
+  font-family: var(--fuente-formularios);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--verde-medio);
+  margin-bottom: 4px;
+}
+
+.info-details h3 {
+  font-family: var(--fuente-secciones);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gris-texto);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-details p {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.88rem;
+  color: var(--gris-texto);
+  opacity: 0.65;
+}
+
+/* =====================================================
+   BADGE DE ESTADO / HORARIO
+===================================================== */
+.status-badge {
+  background: var(--verde-ultra);
+  border: 1px solid rgba(13, 167, 74, 0.3);
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-family: var(--fuente-formularios);
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--verde-principal);
+}
+
+.status-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--verde-principal);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+.form-card h2 {
+  font-family: var(--fuente-secciones);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: var(--gris-texto);
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--fuente-formularios);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gris-texto);
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid rgba(13, 167, 74, 0.2);
+  border-radius: 8px;
+  background-color: var(--gris-suave);
+  font-family: var(--fuente-formularios);
+  font-size: 0.95rem;
+  color: var(--gris-texto);
+  outline: none;
+  transition: border-color var(--transicion), background-color var(--transicion);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--verde-principal);
+  background-color: var(--blanco);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* =====================================================
+   BOTÓN ENVIAR
+===================================================== */
+.btn-submit {
+  background-color: var(--verde-principal);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: var(--fuente-secciones);
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color var(--transicion), transform var(--transicion);
+  margin-top: 10px;
+}
+
+.btn-submit i {
+  margin-right: 8px;
+}
+
+.btn-submit:hover {
+  background-color: var(--verde-medio);
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   FOOTER DEL FORMULARIO
+===================================================== */
+.form-footer {
+  text-align: center;
+  margin-top: 22px;
+  font-family: var(--fuente-formularios);
+  font-size: 0.8rem;
+  color: var(--gris-texto);
+  opacity: 0.6;
+}
+
+.form-footer i {
+  margin-right: 4px;
+}
+
+/* =====================================================
+   ESTADO DE ERROR EN CAMPOS
+===================================================== */
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: #dc3545 !important;
+  background-color: #fff8f8;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+
+/* --- Tablet: 768px --- */
+@media (max-width: 768px) {
+  .content-grid {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .info-column,
+  .form-card {
+    flex: unset;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .form-card {
+    padding: 28px 24px;
+  }
+
+  .header-section h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* --- Móvil: 375px --- */
+@media (max-width: 480px) {
+  .header-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .header-section p {
+    font-size: 0.95rem;
+  }
+
+  .form-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .info-card {
+    padding: 16px;
+  }
+
+  .info-details h3 {
+    font-size: 0.92rem;
+  }
+
+  .status-badge {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+  }
+}
+
+/* --- Desktop grande: 1280px+ --- */
+@media (min-width: 1280px) {
+  .header-section h1 {
+    font-size: 2.6rem;
+  }
+
+  .form-card {
+    padding: 48px;
+  }
+}
