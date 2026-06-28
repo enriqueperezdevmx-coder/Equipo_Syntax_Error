@@ -40,6 +40,8 @@ document.getElementById("alto").addEventListener("input", () =>
     limpiarValidacionVisual();
     renderHistorial();
   });
+
+  inicializarLoginNavbar(); //Enganche el login del navbar al flujo de pago
 });
 
 // Lee el array de cotizaciones guardadas en localStorage
@@ -179,7 +181,7 @@ function actualizarLimitePeso() {
     marcarCampo("peso", false);
   }
 
-  // ✅ Este bloque debe estar DENTRO de la función, antes del cierre }
+  // Este bloque debe estar DENTRO de la función, antes del cierre }
   const hayTipo = tipoEnvio !== "";
   document.querySelectorAll("#form-cotizar input, #form-cotizar textarea").forEach((campo) => {
     campo.disabled = !hayTipo;
@@ -376,37 +378,174 @@ function manejarEnvioCotizacion(evento) {
   guardarHistorial(historial);
 
   // Mismo número de WhatsApp que aparece en el footer del sitio
-  const numeroWhatsapp = "525610724669";
+  const numeroWhatsapp = "#";
   const mensajeWhatsapp = encodeURIComponent(
     `Hola, quiero confirmar mi cotización ${numeroCotizacion}: envío ${tipoEnvio}, ${peso}kg, de CP ${cpOrigen} a CP ${cpDestino}.`
   );
   const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensajeWhatsapp}`;
 
-  contenedorAlertas.innerHTML = `
-    <div class="alert alert-success" role="alert">
-      <p class="mb-2">¡Cotización registrada! Folio: <strong>${numeroCotizacion}</strong></p>
-      <p class="mb-3">Para confirmar tu envío, contáctanos por WhatsApp o visita una sucursal.</p>
-      <a href="${linkWhatsapp}" target="_blank" class="btn btn-success btn-sm me-2">
-        <i class="bi bi-whatsapp"></i> Confirmar por WhatsApp
-      </a>
-      <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-cerrar-cotizacion">
-        Listo, ver mi historial
-      </button>
-    </div>
-  `;
-
   evento.target.reset();
   limpiarValidacionVisual();
+
+  //Este cosito de codigo. Guarda la cotizacion para que pago.html la muestre en el resumen
+  sessionStorage.setItem("cotizacion_pendiente", JSON.stringify(nuevaCotizacion));
+
+  contenedorAlertas.innerHTML = `
+    <div class="alert alert-success" role="alert">
+  <p class="mb-2">
+    ¡Cotización registrada! Folio:
+    <strong>${numeroCotizacion}</strong>
+  </p>
+
+  <p class="mb-3">
+    Continúa al método de pago o contáctanos por WhatsApp.
+  </p>
+
+  <div class="d-flex gap-2 flex-wrap">
+
+    <a href="${linkWhatsapp}" target="_blank"
+      class="btn btn-success btn-sm">
+      <i class="bi bi-whatsapp"></i> WhatsApp
+    </a>
+
+    <button
+      type="button"
+      class="btn btn-primary btn-sm"
+      id="btn-ir-pago">
+
+      <i class="bi bi-credit-card me-1"></i>
+      Método de pago
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-outline-secondary btn-sm"
+      id="btn-cerrar-cotizacion">
+
+      Ver historial
+    </button>
+
+  </div>
+</div>
+  `;
+
+  //Este cocito de codigo manda al "Metodo de pago" sin loguear
+  document.getElementById("btn-ir-pago").addEventListener("click", () => {
+    window.location.href = "/src/pages/pago/pago.html";
+  });
 
   // El cierre del modal ahora depende de un clic del usuario, no de un temporizador,
   // para no quitarle la oportunidad de presionar el botón de WhatsApp primero.
   document.getElementById("btn-cerrar-cotizacion").addEventListener("click", () => {
-    const modalElemento = document.getElementById("modalCotizar");
-    bootstrap.Modal.getInstance(modalElemento).hide();
+    bootstrap.Modal.getInstance(document.getElementById("modalCotizar")).hide();
   });
 }
 
-/**
+
+function abrirLoginNavbar() {
+  // Busca el botón del ícono de usuario en el navbar que abre el dropdown
+  const btnDropdown = document.querySelector(".dropdown-toggle");
+ 
+  if (!btnDropdown) {
+    console.warn("[Pago] No se encontró el botón del dropdown de login en el navbar.");
+    return;
+  }
+ 
+  btnDropdown.click(); // Bootstrap abre el dropdown
+ 
+  // Enfoca el campo de correo para que el usuario empiece a escribir de inmediato
+  setTimeout(() => {
+    const emailInput = document.getElementById("loginEmailMob");
+    if (emailInput) emailInput.focus();
+  }, 250);
+}
+ 
+// ---------------------------------------------------------------
+// CAMBIO 3: submit del login del navbar → redirige a pago.html
+// ---------------------------------------------------------------
+ 
+function inicializarLoginNavbar() {
+  const formLogin = document.getElementById("form-login-movil");
+  if (!formLogin) return; // Si el navbar no cargó aún, salir sin error
+ 
+  formLogin.addEventListener("submit", async (e) => {
+    e.preventDefault();
+ 
+    const emailInput  = document.getElementById("loginEmailMob");
+    const passInput   = document.getElementById("loginPasswordMob");
+    const btnSubmit   = formLogin.querySelector("button[type='submit']");
+ 
+    // — Sanitización: elimina caracteres pegrilosos muy pegrilosos —
+    const correo     = String(emailInput.value).replace(/[<>"'`]/g, "").trim();
+    const contrasena = String(passInput.value).replace(/[<>"'`]/g, "").trim();
+ 
+    // — Validación —
+    const regexEmail = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+ 
+    if (!regexEmail.test(correo)) {
+      emailInput.classList.add("is-invalid");
+      emailInput.focus();
+      return;
+    }
+    emailInput.classList.remove("is-invalid");
+ 
+    if (contrasena.length < 6) {
+      passInput.classList.add("is-invalid");
+      passInput.focus();
+      return;
+    }
+    passInput.classList.remove("is-invalid");
+ 
+    // — Estado de carga —
+    const textoOriginal   = btnSubmit.textContent;
+    btnSubmit.disabled    = true;
+    btnSubmit.innerHTML   = `<span class="spinner-border spinner-border-sm me-1" role="status"></span>Verificando...`;
+ 
+    try {
+      //Cuando tengamos el backend, aqui viene lo chido, este men...se reemplaza la simulación por esto:
+      // const res = await fetch("/api/auth/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ correo, contrasena }),
+      // });
+      // if (!res.ok) throw new Error("Credenciales inválidas");
+ 
+      //Simulación temporal (elimina cuando conectemos el backend)
+      await new Promise((r) => setTimeout(r, 1000));
+ 
+      //Login exitoso: guarda solo el email, NUNCA la contraseña
+      sessionStorage.setItem("usuario_email", correo);
+ 
+      //Redirige a la página de pago
+      //Ajusta la ruta si la estructura de carpetas es diferente
+      window.location.href = "/src/pages/pago/pago.html";
+ 
+    } catch {
+      btnSubmit.disabled     = false;
+      btnSubmit.textContent  = textoOriginal;
+ 
+      // Muestra el error dentro del mismo dropdown
+      let errorDiv = formLogin.querySelector(".error-login-navbar");
+      if (!errorDiv) {
+        errorDiv           = document.createElement("div");
+        errorDiv.className = "alert alert-danger py-1 small mt-2 error-login-navbar";
+        formLogin.prepend(errorDiv);
+      }
+      errorDiv.textContent = "Correo o contraseña incorrectos.";
+    }
+  });
+ 
+  // Limpia errores visuales mientras el usuario corrige
+  document.getElementById("loginEmailMob")?.addEventListener("input", (e) => {
+    e.target.classList.remove("is-invalid");
+    formLogin.querySelector(".error-login-navbar")?.remove();
+  });
+  document.getElementById("loginPasswordMob")?.addEventListener("input", (e) => {
+    e.target.classList.remove("is-invalid");
+  });
+}
+
+/**VOLVER A PEDIR
  * Muestra los datos completos de una cotización guardada dentro
  * del modal #modalVerCotizacion (definido en el HTML).
  * @param {number} index - posición del pedido en el array del historial

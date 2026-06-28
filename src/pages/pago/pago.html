@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Método de Pago</title>
+      <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/navbar.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/footer.css" />
+    <link rel="stylesheet" href="pago.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+
+    <!-- ===== BARRA DE PROGRESO ===== -->
+    <div class="barra-progreso">
+      <div class="paso completado">
+        <div class="paso-circulo"><i class="bi bi-check-lg"></i></div>
+        <span class="paso-label">Envío</span>
+      </div>
+      <div class="linea-paso completada"></div>
+      <div class="paso completado">
+        <div class="paso-circulo"><i class="bi bi-check-lg"></i></div>
+        <span class="paso-label">Sesión</span>
+      </div>
+      <div class="linea-paso activa"></div>
+      <div class="paso activo">
+        <div class="paso-circulo">3</div>
+        <span class="paso-label">Pago</span>
+      </div>
+    </div>
+
+    <div class="pago-wrapper">
+      <div class="pago-container">
+
+        <!-- Encabezado -->
+        <div class="pago-encabezado mb-4">
+          <h5 class="fw-bold mb-0">Método de Pago</h5>
+          <p class="text-muted small mb-0">Elige cómo deseas pagar tu envío</p>
+        </div>
+
+        <!-- Resumen del envío (se llena con JS) -->
+        <div class="resumen-envio mb-4" id="resumenEnvio" style="display:none">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <p class="mb-0 small text-muted">Folio</p>
+              <p class="mb-0 fw-semibold" id="resumenFolio">—</p>
+            </div>
+            <div class="text-end">
+              <p class="mb-0 small text-muted">Servicio</p>
+              <p class="mb-0 fw-semibold" id="resumenServicio">—</p>
+            </div>
+            <div class="text-end">
+              <p class="mb-0 small text-muted">Total estimado</p>
+              <p class="mb-0 fw-bold text-verde" id="resumenMonto">$99.00 MXN</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SELECTOR DE MÉTODO ===== -->
+        <div class="metodos-grid mb-4">
+
+          <button class="metodo-btn activo" data-metodo="tarjeta" aria-pressed="true">
+            <i class="bi bi-credit-card-fill metodo-icono"></i>
+            <span class="metodo-nombre">Tarjeta</span>
+          </button>
+
+          <button class="metodo-btn" data-metodo="spei" aria-pressed="false">
+            <i class="bi bi-bank2 metodo-icono"></i>
+            <span class="metodo-nombre">SPEI</span>
+          </button>
+
+          <button class="metodo-btn" data-metodo="mercadopago" aria-pressed="false">
+            <svg class="metodo-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="18" fill="#009EE3"/>
+              <path d="M6 18C6 11.37 11.37 6 18 6s12 5.37 12 12c0 2.1-.57 4.07-1.56 5.76L18 18 7.56 23.76A11.96 11.96 0 0 1 6 18z" fill="#fff"/>
+            </svg>
+            <span class="metodo-nombre">Mercado Pago</span>
+          </button>
+
+          <button class="metodo-btn" data-metodo="oxxo" aria-pressed="false">
+            <svg class="metodo-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="6" fill="#EE3124"/>
+              <text x="50%" y="57%" dominant-baseline="middle" text-anchor="middle"
+                fill="#fff" font-size="10" font-weight="bold" font-family="Arial,sans-serif">OXXO</text>
+            </svg>
+            <span class="metodo-nombre">Oxxo Pay</span>
+          </button>
+
+        </div>
+
+        <!-- =============================================
+             PANEL 1: TARJETA
+             ============================================= -->
+        <div id="panel-tarjeta" class="panel-pago activo">
+          <form id="form-tarjeta" novalidate autocomplete="off">
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Número de tarjeta</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="bi bi-credit-card text-muted" id="icono-tarjeta"></i>
+                </span>
+                <input type="text" class="form-control border-start-0" id="num-tarjeta"
+                  placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric"
+                  autocomplete="cc-number" required />
+              </div>
+              <div class="brand-tag mt-1" id="brand-tag"></div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Nombre en la tarjeta</label>
+              <input type="text" class="form-control" id="nombre-tarjeta"
+                placeholder="Igual que aparece en tu tarjeta" maxlength="60"
+                autocomplete="cc-name" required />
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Vencimiento</label>
+                <input type="text" class="form-control" id="fecha-venc"
+                  placeholder="MM / AA" maxlength="7" inputmode="numeric"
+                  autocomplete="cc-exp" required />
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">CVV</label>
+                <div class="input-group">
+                  <input type="password" class="form-control border-end-0" id="cvv"
+                    placeholder="•••" maxlength="4" inputmode="numeric"
+                    autocomplete="cc-csc" required />
+                  <button class="btn btn-outline-secondary border-start-0"
+                    type="button" id="toggle-cvv" aria-label="Mostrar CVV" tabindex="-1">
+                    <i class="bi bi-eye" id="icono-cvv"></i>
+                  </button>
+                </div>
+                <div class="form-text" style="font-size:.72rem">3 dígitos al reverso (Amex: 4)</div>
+              </div>
+            </div>
+
+            <div id="alerta-tarjeta" class="alert alert-danger d-none small py-2 mb-3" role="alert"></div>
+
+            <button type="submit" class="btn btn-pagar w-100 fw-semibold">
+              <i class="bi bi-lock-fill me-1"></i> Pagar ahora
+            </button>
+            <p class="text-center text-muted mt-2 mb-0" style="font-size:.75rem">
+              <i class="bi bi-shield-check-fill text-success me-1"></i>Transacción cifrada con SSL
+            </p>
+          </form>
+        </div>
+
+        <!-- =============================================
+             PANEL 2: SPEI
+             ============================================= -->
+        <div id="panel-spei" class="panel-pago">
+          <div class="aviso-info mb-3">
+            <i class="bi bi-info-circle-fill text-primary me-2"></i>
+            <span class="small">Se generará una CLABE única. Transfiere desde tu banco antes de que expire.</span>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Correo para instrucciones</label>
+            <input type="email" class="form-control" id="spei-correo"
+              placeholder="correo@ejemplo.com" maxlength="100" />
+          </div>
+
+          <!-- Resultado SPEI (oculto hasta generar) -->
+          <div id="spei-resultado" class="d-none">
+            <div class="dato-spei mb-3">
+              <p class="small text-muted mb-1">CLABE interbancaria</p>
+              <div class="d-flex align-items-center gap-2">
+                <code id="clabe-num" class="fs-6 fw-bold flex-grow-1"></code>
+                <button class="btn btn-sm btn-outline-secondary" id="btn-copiar-clabe" type="button">
+                  <i class="bi bi-copy"></i>
+                </button>
+              </div>
+            </div>
+            <div class="dato-spei mb-4">
+              <p class="small text-muted mb-1">Expira en</p>
+              <span id="spei-timer" class="fw-bold text-danger fs-6">24:00:00</span>
+            </div>
+          </div>
+
+          <div id="alerta-spei" class="alert alert-danger d-none small py-2 mb-3" role="alert"></div>
+
+          <button class="btn btn-pagar w-100 fw-semibold" id="btn-generar-spei" type="button">
+            <i class="bi bi-bank2 me-1"></i> Generar CLABE SPEI
+          </button>
+        </div>
+
+        <!-- =============================================
+             PANEL 3: MERCADO PAGO
+             ============================================= -->
+        <div id="panel-mercadopago" class="panel-pago">
+          <div class="mp-card p-4 text-center rounded mb-4">
+            <p class="fw-semibold mb-1">Mercado Pago</p>
+            <p class="text-muted small mb-3">
+              Serás redirigido de forma segura para completar tu pago con cualquier método disponible.
+            </p>
+            <ul class="list-unstyled text-start small text-muted mb-0">
+              <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Tarjetas de débito y crédito</li>
+              <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>Meses sin intereses</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Protección al comprador</li>
+            </ul>
+          </div>
+          <button class="btn btn-mp w-100 fw-semibold" id="btn-mp" type="button">
+            <i class="bi bi-box-arrow-up-right me-1"></i> Continuar con Mercado Pago
+          </button>
+          <p class="text-center text-muted mt-2 mb-0" style="font-size:.75rem">
+            <i class="bi bi-shield-check-fill text-success me-1"></i>Redirección segura
+          </p>
+        </div>
+
+        <!-- =============================================
+             PANEL 4: OXXO
+             ============================================= -->
+        <div id="panel-oxxo" class="panel-pago">
+          <div class="aviso-warning mb-3">
+            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+            <span class="small">Tu envío se confirma ~24 h después de pagar en caja.</span>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Nombre del pagador</label>
+            <input type="text" class="form-control" id="oxxo-nombre"
+              placeholder="Nombre completo" maxlength="80" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Correo electrónico</label>
+            <input type="email" class="form-control" id="oxxo-correo"
+              placeholder="correo@ejemplo.com" maxlength="100" />
+          </div>
+
+          <!-- Voucher OXXO (oculto hasta generar) -->
+          <div id="oxxo-voucher" class="d-none">
+            <div class="voucher-box text-center mb-3 p-3">
+              <p class="small text-muted mb-2">Referencia de pago</p>
+              <div class="barras mb-2"></div>
+              <code id="oxxo-ref" class="fs-5 fw-bold d-block"></code>
+              <p class="small text-muted mt-2 mb-0" id="oxxo-vence"></p>
+            </div>
+            <button class="btn btn-outline-secondary btn-sm w-100 mb-3"
+              id="btn-descargar-oxxo" type="button">
+              <i class="bi bi-download me-1"></i> Descargar voucher (PDF)
+            </button>
+          </div>
+
+          <div id="alerta-oxxo" class="alert alert-danger d-none small py-2 mb-3" role="alert"></div>
+
+          <button class="btn btn-pagar w-100 fw-semibold" id="btn-generar-oxxo" type="button">
+            <i class="bi bi-shop me-1"></i> Generar referencia Oxxo
+          </button>
+        </div>
+
+      </div><!-- /pago-container -->
+    </div><!-- /pago-wrapper -->
+
+    <!-- ===== MODAL ÉXITO ===== -->
+    <div class="modal fade" id="modal-exito" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center p-4">
+          <i class="bi bi-check-circle-fill text-success mb-3" style="font-size:3rem"></i>
+          <h5 class="fw-bold mb-1">¡Pago procesado!</h5>
+          <p class="text-muted small mb-0" id="modal-msg">Tu envío ha sido confirmado.</p>
+          <a href="/src/pages/historial/historial.html"
+            class="btn btn-pagar mt-4">Ver mi historial</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="footer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="pago.js"></script>
+    <script src="/src/js/navbar.js"></script>
+    <script src="/src/js/footer.js"></script>
+  </body>
+</html>
