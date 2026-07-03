@@ -14,7 +14,7 @@
     }
 
   body {
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--fuente-cuerpo);
   background-color: var(--gris-suave);
   min-height: 100vh;
 }
@@ -91,7 +91,7 @@
        LINKS DE NAVEGACIÓN
     ===================================================== */
     .navbar-mt .nav-link {
-      font-family: 'Syne', sans-serif;  /* Fuente display para los links */
+      font-family: var(--fuente-secciones);  /* Fuente display para los links */
       font-weight: 600;
       font-size: 0.96rem;
       color: var(--gris-texto);
