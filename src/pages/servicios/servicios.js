@@ -32,4 +32,14 @@ document.querySelectorAll('.faq-card').forEach(card => {
     console.log(card.classList);
   });
 });
+
+  // Si se llega desde el link "Preguntas frecuentes" del footer (#faq-section),
+  // resalta brevemente la sección para que sea evidente a dónde se llegó.
+  if (window.location.hash === '#faq-section') {
+    const faqSection = document.getElementById('faq-section');
+    if (faqSection) {
+      faqSection.classList.add('faq-highlight');
+      setTimeout(() => faqSection.classList.remove('faq-highlight'), 1200);
+    }
+  }
 });

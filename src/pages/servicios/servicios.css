@@ -234,6 +234,12 @@
 .faq-section {
   padding: 48px 0 64px;
   background: var(--blanco);
+  scroll-margin-top: 130px; /* espacio para la navbar fija al saltar con #faq-section */
+  transition: background-color 0.6s ease;
+}
+
+.faq-section.faq-highlight {
+  background-color: var(--hover-verde, #eaf7ee);
 }
 
 .faq-card {
