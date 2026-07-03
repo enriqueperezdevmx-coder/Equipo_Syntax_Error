@@ -95,11 +95,12 @@ footer .text-muted {
 /* =====================================================
    STICKY FOOTER FIX
 ===================================================== */
-html, body {
-  min-height: 100%;
+html {
+  min-height: 100vh;
 }
 
 body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
