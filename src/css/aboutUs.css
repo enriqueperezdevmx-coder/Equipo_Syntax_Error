@@ -100,6 +100,7 @@
   flex: 1 1 200px;
   margin: 20px;
   position: relative;
+  border: nome !important;
 }
 
 .feature-icon {
@@ -189,7 +190,8 @@
 
 .value-card {
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  /*↓ Cambia 0.2s por 0.8s ↓*/
+  transition: transform 0.30s ease-in-out, box-shadow 0.30s ease-in-out;
   border-radius: 12px;
 }
 
@@ -262,7 +264,7 @@
   }
 }
 .value-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.30s ease, box-shadow 0.30s ease;
     cursor: pointer;
     position: relative;
     /* overflow: hidden;  <-- COMENTA O QUITA ESTA LÍNEA si necesitas que la descripción se extienda */
