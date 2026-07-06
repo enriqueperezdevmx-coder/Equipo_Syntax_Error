@@ -285,6 +285,26 @@
 }
 
 /* =====================================================
+   Preguntas frecuentes (mostrar/ocultar respuesta)
+===================================================== */
+
+.faq-card {
+  cursor: pointer;
+}
+
+.faq-respuesta {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.faq-card.active .faq-respuesta {
+  max-height: 500px; /* importante */
+  opacity: 1;
+}
+
+/* =====================================================
    RESPONSIVE
 ===================================================== */
 @media (max-width: 768px) {

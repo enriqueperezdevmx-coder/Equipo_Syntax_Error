@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cotizar envío</title>
 
-    <!-- Fuentes del proyecto -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/css/variables.css" />
@@ -15,7 +14,7 @@
     <link rel="stylesheet" href="cotizar.css" />
   </head>
 
-    <body>
+  <body>
 
     <div id="navbar"></div>
     <main class="page-container">
@@ -58,40 +57,79 @@
             </li>
         </ul>
 
-        <form id="form-cotizacion">
+        <form id="form-cotizacion" novalidate>
             <div class="tab-content" id="contenido-categorias">
                 
                 <div class="tab-pane fade show active" id="panel-express" role="tabpanel">
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-geo-alt"></i></div> Origen y destino</h5>
                         <p class="subtitulo-seccion">Códigos postales de recolección y entrega</p>
-                        <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label">Código Postal de Origen</label><input type="text" id="cp-origen" class="form-control" placeholder="64000"></div>
-                            <div class="col-md-6"><label class="form-label">Código Postal de Destino</label><input type="text" class="form-control" placeholder="06600"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Origen</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Destino</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
+                        
+                        <h6 class="text-secondary mb-3 mt-2"><i class="bi bi-box-arrow-up"></i> Datos de Origen</h6>
+                        <div class="row g-3 mb-4 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Origen</label>
+                                <input type="text" class="form-control cp-input" placeholder="64000" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Origen)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Av. Insurgentes Sur 123" required>
+                            </div>
+                        </div>
+
+                        <h6 class="text-secondary mb-3 border-top pt-3"><i class="bi bi-box-arrow-down"></i> Datos de Destino</h6>
+                        <div class="row g-3 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Destino</label>
+                                <input type="text" class="form-control cp-input" placeholder="06600" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Destino)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Calle Reforma 456" required>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-person"></i></div> Remitente y destinatario</h5>
                         <p class="subtitulo-seccion">Datos de contacto de ambas partes</p>
                         <div class="row g-3">
                             <div class="col-md-4"><label class="form-label">Nombre del Remitente</label><input type="text" id="nombre-remitente" class="form-control" placeholder="Juan García" required></div>
-                            <div class="col-md-4"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="María López"></div>
-                            <div class="col-md-4"><label class="form-label">Teléfono del Remitente</label><input type="text" class="form-control" placeholder="+52 81 0000 0000"></div>
-                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com"></div>
-                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="text" class="form-control" placeholder="+52 55 0000 0000"></div>
+                            <div class="col-md-4"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="María López" required></div>
+                            <div class="col-md-4"><label class="form-label">Teléfono del Remitente</label><input type="tel" class="form-control" placeholder="8100000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
+                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com" required></div>
+                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="tel" class="form-control" placeholder="5500000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
                         </div>
                     </div>
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-box"></i></div> Medidas del paquete</h5>
                         <p class="subtitulo-seccion">Peso y dimensiones para calcular el costo</p>
                         <div class="row g-3">
-                            <div class="col-md-3"><label class="form-label">Peso del Paquete (kg)</label><input type="number" id="peso-paquete" class="form-control" placeholder="0.5"></div>
-                            <div class="col-md-3"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="20"></div>
-                            <div class="col-md-3"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="30"></div>
-                            <div class="col-md-3"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="15"></div>
-                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="Ej. Ropa, electrónica, documentos..."></div>
+                            <div class="col-md-3"><label class="form-label">Peso del Paquete (kg)</label><input type="number" id="peso-paquete" class="form-control" placeholder="0.5" min="0.1" step="0.1" required></div>
+                            <div class="col-md-3"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="20" min="1" required></div>
+                            <div class="col-md-3"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="30" min="1" required></div>
+                            <div class="col-md-3"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="15" min="1" required></div>
+                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="Ej. Ropa, electrónica, documentos..." required></div>
                         </div>
                     </div>
                 </div>
@@ -100,33 +138,72 @@
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-geo-alt"></i></div> Origen y destino</h5>
                         <p class="subtitulo-seccion">Ruta del envío compartido</p>
-                        <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label">Código Postal de Origen</label><input type="text" class="form-control" placeholder="64000"></div>
-                            <div class="col-md-6"><label class="form-label">Código Postal de Destino</label><input type="text" class="form-control" placeholder="06600"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Origen</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Destino</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
+                        
+                        <h6 class="text-secondary mb-3 mt-2"><i class="bi bi-box-arrow-up"></i> Datos de Origen</h6>
+                        <div class="row g-3 mb-4 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Origen</label>
+                                <input type="text" class="form-control cp-input" placeholder="64000" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Origen)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Av. Insurgentes Sur 123" required>
+                            </div>
+                        </div>
+
+                        <h6 class="text-secondary mb-3 border-top pt-3"><i class="bi bi-box-arrow-down"></i> Datos de Destino</h6>
+                        <div class="row g-3 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Destino</label>
+                                <input type="text" class="form-control cp-input" placeholder="06600" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Destino)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Calle Reforma 456" required>
+                            </div>
                         </div>
                     </div>
+
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-people"></i></div> Datos de los participantes</h5>
                         <p class="subtitulo-seccion">Hasta 3 remitentes pueden compartir el viaje</p>
                         <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label">Nombre del Remitente</label><input type="text" class="form-control" placeholder="Juan García"></div>
-                            <div class="col-md-6"><label class="form-label">Teléfono del Remitente</label><input type="text" class="form-control" placeholder="+52 81 0000 0000"></div>
-                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com"></div>
-                            <div class="col-md-6"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="María López"></div>
-                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="text" class="form-control" placeholder="+52 55 0000 0000"></div>
+                            <div class="col-md-6"><label class="form-label">Nombre del Remitente</label><input type="text" class="form-control" placeholder="Juan García" required></div>
+                            <div class="col-md-6"><label class="form-label">Teléfono del Remitente</label><input type="tel" class="form-control" placeholder="8100000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
+                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com" required></div>
+                            <div class="col-md-6"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="María López" required></div>
+                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="tel" class="form-control" placeholder="5500000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
                         </div>
                     </div>
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-box"></i></div> Paquete</h5>
                         <p class="subtitulo-seccion">Medidas máximas para servicio compartido</p>
                         <div class="row g-3">
-                            <div class="col-md-4"><label class="form-label">Peso del Paquete (kg)</label><input type="number" class="form-control" placeholder="5"></div>
-                            <div class="col-md-4"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="40"></div>
-                            <div class="col-md-4"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="50"></div>
-                            <div class="col-md-4"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="30"></div>
-                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="¿Qué vas a enviar?"></div>
+                            <div class="col-md-4"><label class="form-label">Peso del Paquete (kg)</label><input type="number" class="form-control" placeholder="5" max="30" min="0.1" step="0.1" title="El peso máximo para servicio compartido es de 30 kg" required></div>
+                            <div class="col-md-4"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="40" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="50" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="30" min="1" required></div>
+                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="¿Qué vas a enviar?" required></div>
                         </div>
                         <p class="text-warning fw-bold small mt-3 mb-0"><i class="bi bi-exclamation-triangle-fill me-1"></i> Peso máximo 30 kg por paquete en servicio compartido.</p>
                     </div>
@@ -136,32 +213,71 @@
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-shield-check"></i></div> Servicio exclusivo - unidad dedicada</h5>
                         <p class="subtitulo-seccion">Toda la unidad es tuya. Mayor seguridad y control.</p>
-                        <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label">Código Postal de Origen</label><input type="text" class="form-control" placeholder="64000"></div>
-                            <div class="col-md-6"><label class="form-label">Código Postal de Destino</label><input type="text" class="form-control" placeholder="06600"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Origen</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Destino</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
+                        
+                        <h6 class="text-secondary mb-3 mt-2"><i class="bi bi-box-arrow-up"></i> Datos de Origen</h6>
+                        <div class="row g-3 mb-4 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Origen</label>
+                                <input type="text" class="form-control cp-input" placeholder="64000" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Origen)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Av. Insurgentes Sur 123" required>
+                            </div>
+                        </div>
+
+                        <h6 class="text-secondary mb-3 border-top pt-3"><i class="bi bi-box-arrow-down"></i> Datos de Destino</h6>
+                        <div class="row g-3 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Destino</label>
+                                <input type="text" class="form-control cp-input" placeholder="06600" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Destino)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Calle Reforma 456" required>
+                            </div>
                         </div>
                     </div>
+
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-person"></i></div> Contacto</h5>
                         <div class="row g-3">
-                            <div class="col-md-4"><label class="form-label">Nombre del Remitente</label><input type="text" class="form-control" placeholder="Juan García"></div>
-                            <div class="col-md-4"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="María López"></div>
-                            <div class="col-md-4"><label class="form-label">Teléfono del Remitente</label><input type="text" class="form-control" placeholder="+52 81 0000 0000"></div>
-                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com"></div>
-                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="text" class="form-control" placeholder="+52 55 0000 0000"></div>
+                            <div class="col-md-4"><label class="form-label">Nombre del Remitente</label><input type="text" class="form-control" placeholder="Juan García" required></div>
+                            <div class="col-md-4"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="María López" required></div>
+                            <div class="col-md-4"><label class="form-label">Teléfono del Remitente</label><input type="tel" class="form-control" placeholder="8100000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
+                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com" required></div>
+                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="tel" class="form-control" placeholder="5500000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
                         </div>
                     </div>
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-box-seam"></i></div> Carga</h5>
                         <p class="subtitulo-seccion">Sin límite de peso - toda la unidad disponible</p>
                         <div class="row g-3">
-                            <div class="col-md-4"><label class="form-label">Peso Total Estimado (kg)</label><input type="number" class="form-control" placeholder="100"></div>
-                            <div class="col-md-4"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="80"></div>
-                            <div class="col-md-4"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="120"></div>
-                            <div class="col-md-4"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="80"></div>
-                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="Detalla el tipo de mercancía o carga"></div>
+                            <div class="col-md-4"><label class="form-label">Peso Total Estimado (kg)</label><input type="number" class="form-control" placeholder="100" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="80" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="120" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="80" min="1" required></div>
+                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="Detalla el tipo de mercancía o carga" required></div>
                             <div class="col-12"><label class="form-label">Requerimientos especiales (temperatura, frágil, seguridad...)</label><input type="text" class="form-control" placeholder="Ej. Mercancía frágil, requiere temperatura controlada entre 4-8°C..."></div>
                         </div>
                     </div>
@@ -170,32 +286,71 @@
                 <div class="tab-pane fade" id="panel-extra" role="tabpanel">
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-cone-striped"></i></div> Envío extraordinario - carga pesada</h5>
-                        <div class="row g-3 mt-1">
-                            <div class="col-md-6"><label class="form-label">Código Postal de Origen</label><input type="text" class="form-control" placeholder="64000"></div>
-                            <div class="col-md-6"><label class="form-label">Código Postal de Destino</label><input type="text" class="form-control" placeholder="06600"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Origen</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
-                            <div class="col-md-6"><label class="form-label">Dirección de Destino</label><input type="text" class="form-control" placeholder="Calle, número, colonia"></div>
+                        
+                        <h6 class="text-secondary mb-3 mt-2"><i class="bi bi-box-arrow-up"></i> Datos de Origen</h6>
+                        <div class="row g-3 mb-4 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Origen</label>
+                                <input type="text" class="form-control cp-input" placeholder="64000" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Origen)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Av. Insurgentes Sur 123" required>
+                            </div>
+                        </div>
+
+                        <h6 class="text-secondary mb-3 border-top pt-3"><i class="bi bi-box-arrow-down"></i> Datos de Destino</h6>
+                        <div class="row g-3 bloque-direccion">
+                            <div class="col-md-3">
+                                <label class="form-label">C.P. Destino</label>
+                                <input type="text" class="form-control cp-input" placeholder="06600" pattern="[0-9]{5}" maxlength="5" minlength="5" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Estado</label>
+                                <input type="text" class="form-control estado-input" readonly required placeholder="Se llenará solo">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Colonia</label>
+                                <select class="form-control colonia-select" required>
+                                    <option value="">Ingresa tu CP primero...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Calle y Número (Destino)</label>
+                                <input type="text" class="form-control" placeholder="Ej. Calle Reforma 456" required>
+                            </div>
                         </div>
                     </div>
+
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-person"></i></div> Datos de contacto</h5>
                         <div class="row g-3 mt-1">
-                            <div class="col-md-6"><label class="form-label">Nombre del Remitente</label><input type="text" class="form-control" placeholder="Juan García"></div>
-                            <div class="col-md-6"><label class="form-label">Teléfono del Remitente</label><input type="text" class="form-control" placeholder="+52 81 0000 0000"></div>
-                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com"></div>
-                            <div class="col-md-6"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="Empresa / Persona"></div>
-                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="text" class="form-control" placeholder="+52 55 0000 0000"></div>
+                            <div class="col-md-6"><label class="form-label">Nombre del Remitente</label><input type="text" class="form-control" placeholder="Juan García" required></div>
+                            <div class="col-md-6"><label class="form-label">Teléfono del Remitente</label><input type="tel" class="form-control" placeholder="8100000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
+                            <div class="col-md-6"><label class="form-label">Correo Electrónico</label><input type="email" class="form-control" placeholder="correo@ejemplo.com" required></div>
+                            <div class="col-md-6"><label class="form-label">Nombre del Destinatario</label><input type="text" class="form-control" placeholder="Empresa / Persona" required></div>
+                            <div class="col-md-6"><label class="form-label">Teléfono del Destinatario</label><input type="tel" class="form-control" placeholder="5500000000" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Ingresa exactamente 10 números" required></div>
                         </div>
                     </div>
                     <div class="caja-seccion mb-4">
                         <h5 class="titulo-seccion"><div class="circulo-icono"><i class="bi bi-layers"></i></div> Detalles de la carga</h5>
                         <div class="row g-3 mt-1">
-                            <div class="col-md-4"><label class="form-label">Peso Total (kg)</label><input type="number" class="form-control" placeholder="500"></div>
-                            <div class="col-md-4"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="150"></div>
-                            <div class="col-md-4"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="200"></div>
-                            <div class="col-md-6"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="100"></div>
-                            <div class="col-md-6"><label class="form-label">Número de bultos / piezas</label><input type="number" class="form-control" placeholder="10"></div>
-                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="Describe detalladamente el tipo de carga: maquinaria, materiales de construcción..."></div>
+                            <div class="col-md-4"><label class="form-label">Peso Total (kg)</label><input type="number" class="form-control" placeholder="500" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Alto (cm)</label><input type="number" class="form-control" placeholder="150" min="1" required></div>
+                            <div class="col-md-4"><label class="form-label">Largo (cm)</label><input type="number" class="form-control" placeholder="200" min="1" required></div>
+                            <div class="col-md-6"><label class="form-label">Ancho (cm)</label><input type="number" class="form-control" placeholder="100" min="1" required></div>
+                            <div class="col-md-6"><label class="form-label">Número de bultos / piezas</label><input type="number" class="form-control" placeholder="10" min="1" required></div>
+                            <div class="col-12"><label class="form-label">Descripción del Contenido</label><input type="text" class="form-control" placeholder="Describe detalladamente el tipo de carga: maquinaria, materiales de construcción..." required></div>
                             <div class="col-12"><label class="form-label">¿Requiere grúa, rampa o equipo especial?</label><input type="text" class="form-control" placeholder="Indica si necesitas equipo adicional para carga o descarga..."></div>
                         </div>
                     </div>
@@ -214,11 +369,33 @@
     </div>
 </main>                          
 
+
+    <!-- ══════════════════════════════════════════════════════
+         HISTORIAL DE COTIZACIONES
+         Se muestra automáticamente cuando hay cotizaciones
+         guardadas en localStorage.
+    ══════════════════════════════════════════════════════ -->
+    <div id="seccion-historial" class="container mt-5 mb-5 d-none">
+      <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+        <h5 class="fw-bold mb-0">
+          <i class="bi bi-clock-history me-2 text-success"></i>Historial de cotizaciones
+        </h5>
+        <button class="btn btn-sm btn-outline-secondary" onclick="limpiarHistorial()">
+          <i class="bi bi-trash3 me-1"></i>Borrar todo
+        </button>
+      </div>
+      <p class="text-muted small mb-3">
+        Aquí puedes consultar las cotizaciones que has realizado anteriormente en este dispositivo.
+      </p>
+      <div id="lista-historial"></div>
+    </div>
+
     <div id="footer"></div>          
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/src/js/navbar.js"></script>
     <script src="/src/js/footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="cotizar.js"></script>
   </body>
 </html>

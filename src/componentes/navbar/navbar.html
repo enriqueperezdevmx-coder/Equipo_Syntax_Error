@@ -1,18 +1,43 @@
 <nav class="navbar navbar-expand-lg navbar-mt">
   <div class="container-fluid">
 
-    <!-- Logo -->
     <a class="navbar-brand" href="/index.html">
       <img src="/src/assets/mensajeria.png" alt="Logo">
     </a>
 
-    <!-- Íconos en móvil -->
-    <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
-      <a href="/src/pages/cotizar/cotizar.html" class="icono-accion"><i class="bi bi-clipboard"></i></a>
-      <a href="#" class="icono-accion"><i class="bi bi-person-circle"></i></a>
+    <div class="d-flex align-items-center gap-3 ms-auto me-3 d-lg-none">
+      <a href="/src/pages/cotizar/cotizar.html" class="icono-accion fs-5 text-dark">
+        <i class="bi bi-clipboard"></i>
+      </a>
+
+      <div class="dropdown">
+        <a href="javascript:void(0)" id="icono-login-movil" class="icono-accion fs-5 text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <i class="bi bi-person-circle"></i>
+        </a>
+        
+        <div class="dropdown-menu dropdown-menu-end p-4 shadow" style="min-width: 260px;">
+          <form id="form-login-movil">
+            <div class="mb-3">
+              <label for="loginEmailMob" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="loginEmailMob" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="loginPasswordMob" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="loginPasswordMob" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Iniciar sesión</button>
+          </form>
+          
+          <div class="dropdown-divider my-3"></div>
+          
+          <div class="text-center">
+            <span class="text-muted small">¿No tienes cuenta?</span><br>
+            <a href="/src/pages/registro/registro.html" class="btn btn-sm btn-primary mt-2 w-100">Regístrate aquí</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Botón hamburguesa -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
@@ -20,24 +45,51 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Menú colapsable -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <!-- Links -->
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="/src/pages/servicios/servicios.html">Servicios</a></li>
         <li class="nav-item"><a class="nav-link" href="/src/pages/cotizar/cotizar.html">Cotizar envío</a></li>
         <li class="nav-item"><a class="nav-link" href="###">Rastreo</a></li>
+        <li class="nav-item"><a class="nav-link" href="/src/pages/aboutUs.html">Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="/src/pages/contacto/contacto.html">Contacto</a></li>
       </ul>
 
-      <!-- Íconos en escritorio -->
-      <div class="d-none d-lg-flex align-items-center gap-2 iconos-desktop">
-        <a href="/src/pages/cotizar/cotizar.html" class="icono-accion"><i class="bi bi-clipboard"></i></a>
-        <a href="#" class="icono-accion"><i class="bi bi-person-circle"></i></a>
-      </div>
+      <div class="d-none d-lg-flex align-items-center gap-3 iconos-desktop">
+        
+        <a href="/src/pages/historial/historial.html" class="icono-accion fs-5 text-dark">
+          <i class="bi bi-clipboard"></i>
+        </a>
 
+        <div class="dropdown">
+          <button class="btn btn-outline-success dropdown-toggle rounded-pill px-3" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <i class="bi bi-person-circle me-1"></i> Entrar
+          </button>
+          
+          <div class="dropdown-menu dropdown-menu-end p-4 shadow" style="min-width: 280px;">
+            <form id="form-login-escritorio">
+              <div class="mb-3">
+                <label for="loginEmailDesk" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="loginEmailDesk" placeholder="correo@ejemplo.com" required>
+              </div>
+              <div class="mb-3">
+                <label for="loginPasswordDesk" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="loginPasswordDesk" placeholder="Contraseña" required>
+              </div>
+              <button type="submit" class="btn btn-success w-100">Iniciar sesión</button>
+            </form>
+            
+            <div class="dropdown-divider my-3"></div>
+            
+            <div class="text-center">
+              <span class="text-muted small">¿No tienes cuenta?</span><br>
+              <a href="/src/pages/registro/registro.html" class="btn btn-sm btn-primary mt-2 w-100">Regístrate aquí</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
   </div>
 </nav>
