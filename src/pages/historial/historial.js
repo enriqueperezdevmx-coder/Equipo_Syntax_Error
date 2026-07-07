@@ -1,3 +1,5 @@
+import { iniciarSesion } from '../../api/servicioUsuario.js';
+
 // ---------------------------------------------------------------
 // CONSTANTES GLOBALES
 // ---------------------------------------------------------------
@@ -377,68 +379,23 @@ function manejarEnvioCotizacion(evento) {
   historial.push(nuevaCotizacion);
   guardarHistorial(historial);
 
-  // Mismo número de WhatsApp que aparece en el footer del sitio
-  const numeroWhatsapp = "#";
-  const mensajeWhatsapp = encodeURIComponent(
-    `Hola, quiero confirmar mi cotización ${numeroCotizacion}: envío ${tipoEnvio}, ${peso}kg, de CP ${cpOrigen} a CP ${cpDestino}.`
-  );
-  const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensajeWhatsapp}`;
-
   evento.target.reset();
   limpiarValidacionVisual();
 
   //Este cosito de codigo. Guarda la cotizacion para que pago.html la muestre en el resumen
   sessionStorage.setItem("cotizacion_pendiente", JSON.stringify(nuevaCotizacion));
 
-  contenedorAlertas.innerHTML = `
-    <div class="alert alert-success" role="alert">
-  <p class="mb-2">
-    ¡Cotización registrada! Folio:
-    <strong>${numeroCotizacion}</strong>
-  </p>
+  //Cierrro el modal antes de cambiar de página
+  const modalCotizar = bootstrap.Modal.getInstance(
+    document.getElementById("modalCotizar")
+  );
 
-  <p class="mb-3">
-    Continúa al método de pago o contáctanos por WhatsApp.
-  </p>
+  if (modalCotizar){
+    modalCotizar.hide();
+  }
 
-  <div class="d-flex gap-2 flex-wrap">
-
-    <a href="${linkWhatsapp}" target="_blank"
-      class="btn btn-success btn-sm">
-      <i class="bi bi-whatsapp"></i> WhatsApp
-    </a>
-
-    <button
-      type="button"
-      class="btn btn-primary btn-sm"
-      id="btn-ir-pago">
-
-      <i class="bi bi-credit-card me-1"></i>
-      Método de pago
-    </button>
-
-    <button
-      type="button"
-      class="btn btn-outline-secondary btn-sm"
-      id="btn-cerrar-cotizacion">
-
-      Ver historial
-    </button>
-
-  </div>
-</div>
-  `;
-
-  //Este cocito de codigo manda al "Metodo de pago" sin loguear
-  document.getElementById("btn-ir-pago").addEventListener("click", () => {
-    window.location.href = "/src/pages/pago/pago.html";
-  });
-
-  // El cierre del modal ahora depende de un clic del usuario, no de un temporizador,
-  // para no quitarle la oportunidad de presionar el botón de WhatsApp primero.
-  document.getElementById("btn-cerrar-cotizacion").addEventListener("click", () => {
-    bootstrap.Modal.getInstance(document.getElementById("modalCotizar")).hide();
-  });
+  //Redigir directamente al método de pago
+  window.location.href = "/src/pages/pago/pago.html";
 }
 
 
@@ -502,25 +459,18 @@ function inicializarLoginNavbar() {
     btnSubmit.innerHTML   = `<span class="spinner-border spinner-border-sm me-1" role="status"></span>Verificando...`;
  
     try {
-      //Cuando tengamos el backend, aqui viene lo chido, este men...se reemplaza la simulación por esto:
-      // const res = await fetch("/api/auth/login", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ correo, contrasena }),
-      // });
-      // if (!res.ok) throw new Error("Credenciales inválidas");
- 
-      //Simulación temporal (elimina cuando conectemos el backend)
-      await new Promise((r) => setTimeout(r, 1000));
+      //Ya tenemos el backend, aqui viene lo chido, este men... login real:
+      await iniciarSesion({ correo, password: contrasena });
  
       //Login exitoso: guarda solo el email, NUNCA la contraseña
+      //(iniciarSesion ya guardó el JWT en sessionStorage bajo "jwt_token")
       sessionStorage.setItem("usuario_email", correo);
  
       //Redirige a la página de pago
       //Ajusta la ruta si la estructura de carpetas es diferente
       window.location.href = "/src/pages/pago/pago.html";
  
-    } catch {
+    } catch (error) {
       btnSubmit.disabled     = false;
       btnSubmit.textContent  = textoOriginal;
  
@@ -531,7 +481,8 @@ function inicializarLoginNavbar() {
         errorDiv.className = "alert alert-danger py-1 small mt-2 error-login-navbar";
         formLogin.prepend(errorDiv);
       }
-      errorDiv.textContent = "Correo o contraseña incorrectos.";
+      // Mostramos el mensaje real que regresó el backend cuando lo tenemos
+      errorDiv.textContent = error.message || "Correo o contraseña incorrectos.";
     }
   });
  

@@ -1,3 +1,5 @@
+import { registrarUsuario } from '../../api/servicioUsuario.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     const formRegistro = document.getElementById('form-registro');
     const alertasContenedor = document.getElementById('alertas-contenedor');
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inputNombres.addEventListener('input', purificarNombre);
     inputApellidos.addEventListener('input', purificarNombre);
 
-    formRegistro.addEventListener('submit', (e) => {
+    formRegistro.addEventListener('submit', async (e) => {
         e.preventDefault(); 
         alertasContenedor.innerHTML = ''; 
         let errores = [];
@@ -132,45 +134,39 @@ document.addEventListener('DOMContentLoaded', () => {
             // aqui ya no es necesario seguir cuidando desde antes ya quedo encerrao en su cuarto de panico
             mostrarAlerta(`<strong>¡Alto ahí! Corrige lo siguiente:</strong>${listaErrores}`, 'danger');
         } else {
-            // VIVE - Todo está correcto (AJUSTADO PARA LA TAREA 10)
-            
-            // 1. Preparamos el objeto del nuevo usuario
-            const nuevoUsuario = {
-                nombre: nombres,
-                apellido: apellidos,
-                correo: correo.toLowerCase(), // Normalizamos el correo
-                telefono: celular,
-                password: password // (Simulando la base de datos en LocalStorage)
-            };
+            // VIVE - Todo está correcto, ahora sí registramos contra el backend real
 
-            // 2. Traemos la "base de datos" falsa (los usuarios que ya existen)
-            let usuariosGuardados = [];
-            const dataExtraida = localStorage.getItem('usuariosMensajeria');
-            
-            if (dataExtraida) {
-                usuariosGuardados = JSON.parse(dataExtraida);
+            const btnSubmit = formRegistro.querySelector('button[type="submit"]');
+            const textoOriginalBtn = btnSubmit.textContent;
+            btnSubmit.disabled = true;
+            btnSubmit.textContent = 'Registrando...';
+
+            try {
+                // 1. Mandamos el registro real al backend (POST /api/users/register)
+                await registrarUsuario({
+                    nombres,
+                    apellidos,
+                    correo: correo.toLowerCase(), // Normalizamos el correo
+                    celular,
+                    password,
+                });
+
+                // 2. Mensaje de éxito y redirección
+                mostrarAlerta('✅ ¡Registro exitoso! Cuenta creada...', 'success');
+
+                // Dejamos un instante para que el usuario lea el mensaje antes de redirigir
+                setTimeout(() => {
+                    // Lo mandamos al historial, que es donde vive el login del navbar
+                    window.location.href = '/src/pages/historial/historial.html';
+                }, 2000);
+            } catch (error) {
+                // El backend responde con 400/409 y mensaje si el correo ya existe
+                // o si algún campo no pasó las validaciones del lado del servidor
+                mostrarAlerta(`❌ ${error.message}`, 'danger');
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = textoOriginalBtn;
             }
-
-            // 3. Verificamos si el correo ya está registrado
-            const usuarioExiste = usuariosGuardados.some(user => user.correo === nuevoUsuario.correo);
-
-            if (usuarioExiste) {
-                mostrarAlerta('❌ Este correo electrónico ya está registrado.', 'danger');
-                return; // Detenemos la ejecución aquí si ya existe
-            }
-
-            // 4. Guardamos al nuevo usuario en la lista y actualizamos el LocalStorage
-            usuariosGuardados.push(nuevoUsuario);
-            localStorage.setItem('usuariosMensajeria', JSON.stringify(usuariosGuardados));
-
-            // 5. Mensaje de éxito y redirección
-            mostrarAlerta('✅ ¡Registro exitoso! Cuenta creada...', 'success');
-            
-            // Simular un pequeño tiempo de carga antes de mandarlo al login
-            setTimeout(() => {
-                // ASEGÚRATE DE QUE ESTA RUTA COINCIDA CON LA UBICACIÓN REAL DE TU ARCHIVO DE LOGIN
-                window.location.href = '/src/pages/registro/registro.html'; // Usualmente sería /src/pages/login/login.html o el index
-            }, 2000);
         }
     });
 
