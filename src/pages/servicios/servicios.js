@@ -42,4 +42,30 @@ document.querySelectorAll('.faq-card').forEach(card => {
       setTimeout(() => faqSection.classList.remove('faq-highlight'), 1200);
     }
   }
+
+  //AGREGO CARRITO
+
+ const botones = document.querySelectorAll(".btn-agregar-carrito");
+  botones.forEach((boton) => {
+    boton.addEventListener("click", () => {
+      const servicio = {
+        id: boton.dataset.id,
+        nombre: boton.dataset.servicio,
+        precio: Number(boton.dataset.precio),
+        cantidad: 1
+      };
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const existe = carrito.find(item => item.id === servicio.id);
+      if (existe) {
+        existe.cantidad++;
+      } else {
+        carrito.push(servicio);
+      }
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert(`${servicio.nombre} agregado al carrito`);
+
+    });
+
+  });
+
 });
