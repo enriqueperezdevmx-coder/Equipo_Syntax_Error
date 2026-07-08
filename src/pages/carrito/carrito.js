@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
 function obtenerCarrito(){
 
     return JSON.parse(localStorage.getItem(STORAGE)) || [];
@@ -151,7 +150,6 @@ function agregarServicio(servicio){
 
     }else{
 
-
         carrito.push({
 
             ...servicio,
@@ -161,7 +159,6 @@ function agregarServicio(servicio){
         });
 
     }
-
 
     guardarCarrito(carrito);
 
