@@ -1,0 +1,62 @@
+[1mdiff --git a/src/componentes/navbar/footer.html b/src/componentes/navbar/footer.html[m
+[1mindex 99932bf..bf98e23 100644[m
+[1m--- a/src/componentes/navbar/footer.html[m
+[1m+++ b/src/componentes/navbar/footer.html[m
+[36m@@ -15,6 +15,7 @@[m
+         <p>Nosotros</p>[m
+         <ul>[m
+           <li><a href="/src/pages/aboutUs.html">Nosotros</a></li>[m
+[32m+[m[32m          <li><a href="/src/pages/servicios/servicios.html#faq-section">Preguntas frecuentes</a></li>[m
+         </ul>[m
+       </div>[m
+ [m
+[1mdiff --git a/src/pages/servicios/servicios.css b/src/pages/servicios/servicios.css[m
+[1mindex 2e3a49b..668fa5b 100644[m
+[1m--- a/src/pages/servicios/servicios.css[m
+[1m+++ b/src/pages/servicios/servicios.css[m
+[36m@@ -234,6 +234,12 @@[m
+ .faq-section {[m
+   padding: 48px 0 64px;[m
+   background: var(--blanco);[m
+[32m+[m[32m  scroll-margin-top: 130px; /* espacio para la navbar fija al saltar con #faq-section */[m
+[32m+[m[32m  transition: background-color 0.6s ease;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.faq-section.faq-highlight {[m
+[32m+[m[32m  background-color: var(--hover-verde, #eaf7ee);[m
+ }[m
+ [m
+ .faq-card {[m
+[1mdiff --git a/src/pages/servicios/servicios.html b/src/pages/servicios/servicios.html[m
+[1mindex b4a9032..99788e8 100644[m
+[1m--- a/src/pages/servicios/servicios.html[m
+[1m+++ b/src/pages/servicios/servicios.html[m
+[36m@@ -234,7 +234,7 @@[m
+   <!-- ═══════════════════════════════════════════[m
+        FAQ[m
+   ═══════════════════════════════════════════ -->[m
+[31m-  <section class="faq-section">[m
+[32m+[m[32m  <section class="faq-section" id="faq-section">[m
+     <div class="container">[m
+       <p class="comparativa-label">DUDAS FRECUENTES</p>[m
+       <h2 class="section-title mb-4">Preguntas frecuentes</h2>[m
+[1mdiff --git a/src/pages/servicios/servicios.js b/src/pages/servicios/servicios.js[m
+[1mindex b4d7112..605ba09 100644[m
+[1m--- a/src/pages/servicios/servicios.js[m
+[1m+++ b/src/pages/servicios/servicios.js[m
+[36m@@ -32,4 +32,14 @@[m [mdocument.querySelectorAll('.faq-card').forEach(card => {[m
+     console.log(card.classList);[m
+   });[m
+ });[m
+[32m+[m
+[32m+[m[32m  // Si se llega desde el link "Preguntas frecuentes" del footer (#faq-section),[m
+[32m+[m[32m  // resalta brevemente la sección para que sea evidente a dónde se llegó.[m
+[32m+[m[32m  if (window.location.hash === '#faq-section') {[m
+[32m+[m[32m    const faqSection = document.getElementById('faq-section');[m
+[32m+[m[32m    if (faqSection) {[m
+[32m+[m[32m      faqSection.classList.add('faq-highlight');[m
+[32m+[m[32m      setTimeout(() => faqSection.classList.remove('faq-highlight'), 1200);[m
+[32m+[m[32m    }[m
+[32m+[m[32m  }[m
+ });[m
+\ No newline at end of file[m

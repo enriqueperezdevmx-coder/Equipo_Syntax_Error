@@ -11,7 +11,7 @@
 /* ===== BASE ===== */
 body {
   background: var(--gris-fondo);
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: var(--fuente-cuerpo);
   min-height: 100vh;
 }
 

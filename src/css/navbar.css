@@ -15,8 +15,13 @@
   padding: 0;
 }
 
+<<<<<<< HEAD
 body {
   font-family: "Nunito", sans-serif;
+=======
+  body {
+  font-family: var(--fuente-cuerpo);
+>>>>>>> dev
   background-color: var(--gris-suave);
   min-height: 100vh;
 }
@@ -76,6 +81,7 @@ body {
 /* =====================================================
        LINKS DE NAVEGACIÓN
     ===================================================== */
+<<<<<<< HEAD
 .navbar-mt .nav-link {
   font-family: "Syne", sans-serif; /* Fuente display para los links */
   font-weight: 600;
@@ -91,6 +97,21 @@ body {
   margin: 0 8px; /* separación responsiva */
   white-space: nowrap; /* evita que el texto se parta en dos líneas */
 }
+=======
+    .navbar-mt .nav-link {
+      font-family: var(--fuente-secciones);  /* Fuente display para los links */
+      font-weight: 600;
+      font-size: 0.96rem;
+      color: var(--gris-texto);
+      padding: 10px 16px !important;     /* Área de clic generosa */
+      border-radius: 10px;
+      position: relative;               
+      transition: color var(--transicion), background var(--transicion);
+      letter-spacing: 0.01em;
+      margin: 0 8px;                  /* separación responsiva */
+      white-space: nowrap;            /* evita que el texto se parta en dos líneas */
+    }
+>>>>>>> dev
 
 /* Línea animada debajo del link al hacer hover */
 .navbar-mt .nav-link::after {

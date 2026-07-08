@@ -94,12 +94,18 @@ footer .text-muted {
 /* =====================================================
    STICKY FOOTER FIX
 ===================================================== */
+<<<<<<< HEAD
 html,
 body {
   min-height: 100%;
+=======
+html {
+  min-height: 100vh;
+>>>>>>> dev
 }
 
 body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }

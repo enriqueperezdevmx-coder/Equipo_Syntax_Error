@@ -1,0 +1,70 @@
+.carrito-item{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+}
+
+.carrito-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.carrito-controles{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:15px;
+
+}
+
+.btn-cantidad{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--verde-principal);
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+.btn-eliminar{
+
+    margin-left:auto;
+}
+
+.carrito-resumen{
+
+    text-align:right;
+
+}
+
+#btn-pagar{
+
+    width:220px;
+
+}

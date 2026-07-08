@@ -165,6 +165,31 @@
   color: var(--blanco) !important;
 }
 
+
+.btn-agregar-carrito {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border: 2 px solid var(--verde-principal) !important;
+  color: var(--blanco) !important;
+  background: var(--verde-principal) !important;
+  border-radius: 8px;
+  font-family: var(--fuente-secciones);
+  font-size: .8rem;
+  font-weight: 600;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none !important;
+  transition: background var(--transicion), border-color var(--transicion);
+  white-space: nowrap;
+}
+
+.btn-agregar-carrito:hover {
+  background: var(--verde-medio) !important;
+  border-color: var(--verde-medio) !important;
+  color: var(--blanco) !important;
+}
+
 /* =====================================================
    TABLA COMPARATIVA
 ===================================================== */
@@ -234,6 +259,12 @@
 .faq-section {
   padding: 48px 0 64px;
   background: var(--blanco);
+  scroll-margin-top: 130px; /* espacio para la navbar fija al saltar con #faq-section */
+  transition: background-color 0.6s ease;
+}
+
+.faq-section.faq-highlight {
+  background-color: var(--hover-verde, #eaf7ee);
 }
 
 .faq-card {
