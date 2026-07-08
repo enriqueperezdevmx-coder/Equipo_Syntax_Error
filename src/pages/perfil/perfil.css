@@ -1,5 +1,9 @@
 /* perfil.css — usa variables.css, importar variables.css antes que este archivo */
 
+.main-perfil {
+  margin-top: 120px; /* separa el contenido del navbar flotante; ajusta a tu gusto */
+}
+
 .linea-titulo {
   width: 70px;
   height: 3px;
@@ -24,7 +28,11 @@
   width: 88px;
   height: 88px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--verde-principal), var(--verde-medio));
+  background: linear-gradient(
+    135deg,
+    var(--verde-principal),
+    var(--verde-medio)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
