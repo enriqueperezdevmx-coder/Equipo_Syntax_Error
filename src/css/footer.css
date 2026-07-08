@@ -4,15 +4,15 @@
 footer {
   background-color: var(--gris-suave); /* fondo claro y discreto */
   color: var(--gris-texto);
-  padding: 20px 0;
+  padding: 15px 0;
   width: 100%;
   margin-top: auto;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 0.9rem;
 }
 
 footer .container {
-  max-width: 1100px;
+  max-width: 900px;
 }
 
 footer .row {
@@ -21,7 +21,6 @@ footer .row {
   justify-content: space-between;
   align-items: flex-start;
 }
-
 /* Logo más discreto */
 footer img {
   max-width: 200px;
@@ -68,7 +67,7 @@ footer i {
 
 /* Copyright */
 footer .text-muted {
-  color: rgba(0,0,0,0.5) !important;
+  color: rgba(0, 0, 0, 0.5) !important;
   font-size: 0.8rem;
   margin-top: 15px;
 }
@@ -95,15 +94,18 @@ footer .text-muted {
 /* =====================================================
    STICKY FOOTER FIX
 ===================================================== */
-html, body {
-  height: 100%;
+
+html {
+  min-height: 100vh;
 }
 
 body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-main, section.servicios-section {
-  flex: 1;
+main,
+section.servicios-section {
+  flex: 1 0 auto;
 }

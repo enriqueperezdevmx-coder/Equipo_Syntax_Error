@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
   "homepage": "https://github.com/enriqueperezdevmx-coder/Equipo_Syntax_Error#readme",
   "devDependencies": {
     "sass": "^1.100.0",
-    "vite": "^8.0.14"
+    "vite": "^8.0.14",
+    "vite-plugin-static-copy": "^4.1.1"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
