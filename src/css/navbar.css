@@ -129,14 +129,6 @@ body {
   font-weight: 700;
 }
 
-.navbar-mt .icono-accion.active {
-  background-color: var(--verde-principal);
-  color: white !important;
-}
-/* Ajuste para que los iconos dentro de los botones funcionen igual */
-.navbar-mt .icono-accion.active i {
-  color: white !important;
-}
 /* =====================================================
        ICONOS DE ACCIÓN (Cotización y Perfil)
     ===================================================== */
