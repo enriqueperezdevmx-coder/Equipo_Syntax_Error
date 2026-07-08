@@ -1,7 +1,7 @@
-[1mdiff --git a/src/componentes/navbar/footer.html b/src/componentes/navbar/footer.html[m
+[1mdiff --git a/../../public/componentes/...navbar/footer.html b/../../public/componentes/...navbar/footer.html[m
 [1mindex 99932bf..bf98e23 100644[m
-[1m--- a/src/componentes/navbar/footer.html[m
-[1m+++ b/src/componentes/navbar/footer.html[m
+[1m--- a/../../public/componentes/...navbar/footer.html[m
+[1m+++ b/../../public/componentes/...navbar/footer.html[m
 [36m@@ -15,6 +15,7 @@[m
          <p>Nosotros</p>[m
          <ul>[m

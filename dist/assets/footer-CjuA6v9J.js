@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-mt">
+var e=(e,t)=>()=>(e&&(t=e(e=0)),t),t=(e,t)=>()=>(t||(e((t={exports:{}}).exports,t),e=null),t.exports);(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var n,r=e((()=>{n=`<nav class="navbar navbar-expand-lg navbar-mt">
   <div class="container-fluid">
 
     <a class="navbar-brand" href="/index.html">
-      <img src="/src/assets/mensajeria.png" alt="Logo">
+      <img src="/assets/mensajeria.png" alt="Logo">
     </a>
 
     <div class="d-flex align-items-center gap-3 ms-auto me-3 d-lg-none">
@@ -102,4 +102,58 @@
       </div>
     </div>
   </div>
-</nav>
+</nav>`})),i=t((()=>{r();function e(){let e=document.getElementById(`navbar`);if(!e)return;e.innerHTML=n;let t=document.querySelector(`.navbar-mt`),r=document.querySelectorAll(`.navbar-mt .nav-link`),i=window.location.pathname.replace(/\/$/,``)||`/`;r.length>0&&r.forEach(e=>{let t=(e.getAttribute(`href`)||``).replace(/\/$/,``);t&&t!==`###`&&(i===t||i.endsWith(t))&&e.classList.add(`active`)}),t&&window.addEventListener(`scroll`,()=>{t.classList.toggle(`scrolled`,window.scrollY>20)},{passive:!0})}e()})),a,o=e((()=>{a=`<footer>
+  <div class="container">
+    <div class="row">
+      <!-- Logo -->
+      <div class="col-md-3 text-center">
+        <img
+          src="/assets/logofooter.png"
+          alt="Mensajería Total"
+          class="footer-logo"
+        />
+      </div>
+
+      <!-- Nosotros: solo el enlace principal, sin sub-secciones -->
+      <div class="col-md-2">
+        <p>Nosotros</p>
+        <ul>
+          <li><a href="/src/pages/aboutUs.html">Nosotros</a></li>
+          <li><a href="/src/pages/servicios/servicios.html#faq-section">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <!-- Cotización -->
+      <div class="col-md-3">
+        <p>Cotización</p>
+        <p>Horario de Atención:</p>
+        <p>Lunes a Viernes</p>
+        <p>9:00 - 18:00</p>
+      </div>
+
+      <!-- Contacto -->
+      <div class="col-md-3">
+        <p>Contacto</p>
+        <ul>
+          <li>
+            <i class="bi bi-envelope"></i>
+            <a href="mailto:mtmensajeriat@gmail.com">mtmensajeriat@gmail.com</a>
+          </li>
+          <li>
+            <i class="bi bi-whatsapp"></i>
+            <a href="tel:5610724669">5610724669</a>
+          </li>
+          <li>
+            <i class="bi bi-geo-alt"></i>
+            <span>CDMX y Área Metropolitana</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-4 pt-3 text-center text-muted small">
+      2026 &copy; MENSAJERÍA TOTAL S.A. DE C.V.
+    </div>
+  </div>
+</footer>`})),s=t((()=>{o();function e(){let e=document.getElementById(`footer`);e&&(e.innerHTML=a)}e()}));export{e as i,i as n,t as r,s as t};

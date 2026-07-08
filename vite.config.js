@@ -1,11 +1,9 @@
 const { resolve } = require('path');
 const { defineConfig } = require('vite');
-const { viteStaticCopy } = require('vite-plugin-static-copy');
 
-// Esta es una app multipágina real (sin framework): cada página HTML se navega
-// con <a href>, no con un router de JS. Por default Vite solo empaqueta el
-// index.html de la raíz, así que aquí declaramos las 14 páginas reales como
-// entradas de rollupOptions.input para que `npm run build` las incluya todas.
+// Configuración Multipágina (MPA) limpia para Syntax Logistics.
+// Ya no se requiere 'vite-plugin-static-copy' porque las imágenes viven en /public 
+// y los scripts usan type="module", permitiendo que Vite los empaquete de forma nativa.
 export default defineConfig({
   build: {
     rollupOptions: {
@@ -16,6 +14,7 @@ export default defineConfig({
         contacto: resolve(__dirname, 'src/pages/contacto/contacto.html'),
         cotizar: resolve(__dirname, 'src/pages/cotizar/cotizar.html'),
         historial: resolve(__dirname, 'src/pages/historial/historial.html'),
+        inicio: resolve(__dirname, 'src/pages/inicio/inicio.html'),
         pago: resolve(__dirname, 'src/pages/pago/pago.html'),
         rastreo: resolve(__dirname, 'src/pages/rastreo/rastreo.html'),
         registro: resolve(__dirname, 'src/pages/registro/registro.html'),
@@ -27,32 +26,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    viteStaticCopy({
-      targets: [
-        // Fragmentos HTML que se cargan en runtime con fetch() (navbar, footer,
-        // inicio) — no son entradas de Vite, así que hay que copiarlos a mano
-        // a la misma ruta exacta desde la que se hace el fetch en producción.
-        // dest: '.' porque el plugin ya preserva la ruta relativa de "src" tal
-        // cual dentro de dist/ (si le ponemos una carpeta la duplica).
-        { src: 'src/assets/*', dest: '.' },
-        { src: 'src/componentes/navbar/navbar.html', dest: '.' },
-        { src: 'src/componentes/navbar/footer.html', dest: '.' },
-        { src: 'src/pages/inicio/inicio.html', dest: '.' },
-
-        // Scripts clásicos (sin type="module") que varias páginas cargan con
-        // <script src="..."> normal. Vite no los detecta ni los empaqueta
-        // automáticamente porque no son ni entradas ni imports de ES modules.
-        { src: 'src/js/navbar.js', dest: '.' },
-        { src: 'src/js/footer.js', dest: '.' },
-        { src: 'src/pages/contacto/contacto.js', dest: '.' },
-        { src: 'src/pages/servicios/servicios.js', dest: '.' },
-        { src: 'src/pages/servicios/catalogo/catalogo.js', dest: '.' },
-        { src: 'src/pages/carrito/carrito.js', dest: '.' },
-        { src: 'src/pages/cotizar/cotizar.js', dest: '.' },
-        { src: 'src/pages/rastreo/rastreo.js', dest: '.' },
-        { src: 'src/pages/pago/pago.js', dest: '.' },
-      ],
-    }),
-  ],
 });

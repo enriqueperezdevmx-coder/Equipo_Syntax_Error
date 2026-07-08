@@ -1,4 +1,4 @@
-
+import{i as e,r as t}from"./footer-CjuA6v9J.js";var n,r=e((()=>{n=`
 <!doctype html>
 <html lang="es">
   <head>
@@ -11,12 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Variables globales primero -->
-    <script type="module" crossorigin src="/assets/inicio-Blquu-qs.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/footer-CjuA6v9J.js">
-    <link rel="modulepreload" crossorigin href="/assets/inicio-1DlEjOer.js">
-    <link rel="stylesheet" crossorigin href="/assets/footer-D1ovcNbg.css">
-    <link rel="stylesheet" crossorigin href="/assets/inicio-CEPl_vf2.css">
-    <link rel="stylesheet" crossorigin href="/assets/layout-xtgOoJI6.css">
+    <link rel="stylesheet" href="/src/css/variables.css">
+    <link rel="stylesheet" href="/src/css/navbar.css">
+    <link rel="stylesheet" href="/src/css/layout.css">
+    <link rel="stylesheet" href="/src/css/footer.css">
+    <link rel="stylesheet" href="./inicio.css" />
   </head>
   <body>
     <div id="navbar"></div>
@@ -220,6 +219,9 @@
     <div id="footer"></div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"><\/script>
+    <script type="module" src="./inicio.js"><\/script>
+    <script type="module" src="/src/js/navbar.js"><\/script>
+    <script type="module" src="/src/js/footer.js"><\/script>
   </body>
-</html>
+</html>`})),i=t((()=>{r();var e=document.getElementById(`inicio-container`);e&&(e.innerHTML=n)})),a=t((()=>{i(),document.addEventListener(`DOMContentLoaded`,()=>{document.querySelectorAll(`.effect-ripple`).forEach(e=>{e.addEventListener(`click`,function(e){e.preventDefault();let t=this.getAttribute(`href`),n=this.getBoundingClientRect(),r=e.clientX-n.left,i=e.clientY-n.top,a=document.createElement(`span`);a.classList.add(`ripple-wave`),a.style.left=`${r}px`,a.style.top=`${i}px`,this.appendChild(a),setTimeout(()=>{a.remove(),t&&t!==`#`&&(window.location.href=t)},300)})})})}));export{a as t};

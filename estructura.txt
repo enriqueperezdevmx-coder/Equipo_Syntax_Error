@@ -1,0 +1,117 @@
+.
+├── README.md
+├── dist
+│   ├── favicon.svg
+│   ├── icons.svg
+│   ├── index.html
+│   └── src
+│       └── pages
+│           ├── aboutUs.html
+│           ├── carrito
+│           │   └── carrito.html
+│           ├── contacto
+│           │   └── contacto.html
+│           ├── cotizar
+│           │   └── cotizar.html
+│           ├── historial
+│           │   └── historial.html
+│           ├── inicio
+│           │   └── inicio.html
+│           ├── pago
+│           │   └── pago.html
+│           ├── rastreo
+│           │   └── rastreo.html
+│           ├── registro
+│           │   └── registro.html
+│           └── servicios
+│               ├── catalogo
+│               │   ├── compartido.html
+│               │   ├── exclusivo.html
+│               │   ├── express.html
+│               │   └── extraordinario.html
+│               └── servicios.html
+├── estructura.txt
+├── h origin dev
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.svg
+│   └── icons.svg
+├── src
+│   ├── api
+│   │   └── servicioUsuario.js
+│   ├── componentes
+│   │   └── navbar
+│   │       ├── footer.html
+│   │       └── navbar.html
+│   ├── css
+│   │   ├── aboutUs.css
+│   │   ├── footer.css
+│   │   ├── home.css
+│   │   ├── layout.css
+│   │   ├── main.css
+│   │   ├── navbar.css
+│   │   ├── reset.css
+│   │   └── variables.css
+│   ├── js
+│   │   ├── aboutUs.js
+│   │   ├── api.js
+│   │   ├── cormain.js
+│   │   ├── footer.js
+│   │   ├── modal.js
+│   │   ├── navbar.js
+│   │   └── utils.js
+│   ├── json
+│   │   ├── producto.json
+│   │   └── usuario.json
+│   ├── main.js
+│   ├── pages
+│   │   ├── aboutUs.html
+│   │   ├── carrito
+│   │   │   ├── carrito.css
+│   │   │   ├── carrito.html
+│   │   │   └── carrito.js
+│   │   ├── contacto
+│   │   │   ├── contacto.css
+│   │   │   ├── contacto.html
+│   │   │   └── contacto.js
+│   │   ├── cotizar
+│   │   │   ├── cotizar.css
+│   │   │   ├── cotizar.html
+│   │   │   └── cotizar.js
+│   │   ├── historial
+│   │   │   ├── historial.css
+│   │   │   ├── historial.html
+│   │   │   └── historial.js
+│   │   ├── inicio
+│   │   │   ├── inicio.css
+│   │   │   ├── inicio.html
+│   │   │   └── inicio.js
+│   │   ├── pago
+│   │   │   ├── pago.css
+│   │   │   ├── pago.html
+│   │   │   └── pago.js
+│   │   ├── rastreo
+│   │   │   ├── rastreo.css
+│   │   │   ├── rastreo.html
+│   │   │   └── rastreo.js
+│   │   ├── registro
+│   │   │   ├── registro.css
+│   │   │   ├── registro.html
+│   │   │   └── registro.js
+│   │   └── servicios
+│   │       ├── catalogo
+│   │       │   ├── catalogo.css
+│   │       │   ├── catalogo.js
+│   │       │   ├── compartido.html
+│   │       │   ├── exclusivo.html
+│   │       │   ├── express.html
+│   │       │   └── extraordinario.html
+│   │       ├── servicios.css
+│   │       ├── servicios.html
+│   │       └── servicios.js
+│   └── style.css
+└── vite.config.js
+
+33 directories, 82 files

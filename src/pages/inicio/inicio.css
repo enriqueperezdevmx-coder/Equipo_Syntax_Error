@@ -23,10 +23,11 @@
 
 /* — IZQUIERDA — */
 .hero-left {
-  flex: 1 1 460px;
+  flex: 1 1 50%; /* Toma la mitad del contenedor */
   display: flex;
   flex-direction: column;
   gap: 22px;
+  max-width: 550px; /* Evita que las líneas de texto sean muy largas */
 }
 
 .hero-tag {
@@ -155,7 +156,7 @@
    Un solo contenedor visual, sin padding doble
    ========================================================================== */
 .hero-right {
-  flex: 0 0 400px;
+  flex: 1 1 50%; /* Toma la otra mitad del contenedor */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,12 +177,12 @@
 
 .hero-image {
   width: 100%;
-  max-width: 100%;
+  max-width: 650px; /* Tope de crecimiento para pantallas ultra anchas */
   height: auto;
   display: block;
-  border-radius: 16px;
+  /* Como el SVG ya tiene fondo/escenario, lo dejamos limpio */
   background-color: transparent;
-  padding: 0;
+  border-radius: 0;
   box-shadow: none;
 }
 
