@@ -3,8 +3,8 @@
 // Traduce los nombres de campo en español que usa el front a los que espera el
 // backend (name, lastName, email, phone, password) y guarda el JWT del login.
 
-const BASE_URL = "http://localhost:8080/api";
-
+//const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 /**
  * Registra un nuevo usuario.
  * Pega a POST /api/users/register (UserController ya existente en el backend).
