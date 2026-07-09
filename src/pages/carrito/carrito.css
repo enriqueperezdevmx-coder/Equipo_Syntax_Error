@@ -1,3 +1,7 @@
+body {
+    background-color: var(--blanco) !important;
+}
+
 .carrito-item{
 
     background:white;

@@ -1,6 +1,11 @@
 /* ================================
    ICONOS DE VALORES
    ================================ */
+
+body {
+    background-color: var(--blanco) !important;
+}
+
 .value-icon {
   width: 40px;
   height: 40px;
