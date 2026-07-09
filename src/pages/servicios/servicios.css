@@ -22,7 +22,9 @@
   padding: 20px;
   background: var(--blanco);
   height: 100%;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .servicio-card:hover {
@@ -45,11 +47,22 @@
   letter-spacing: 0.5px;
 }
 
-.badge-popular  { background: var(--verde-principal); color: var(--blanco); }
-.badge-economico { background: var(--azul-badge);    color: var(--blanco); }
-.badge-control   { background: var(--morado-badge);  color: var(--blanco); }
-.badge-volumen   { background: var(--naranja-badge); color: var(--blanco); }
-
+.badge-popular {
+  background: var(--verde-principal);
+  color: var(--blanco);
+}
+.badge-economico {
+  background: var(--azul-badge);
+  color: var(--blanco);
+}
+.badge-control {
+  background: var(--morado-badge);
+  color: var(--blanco);
+}
+.badge-volumen {
+  background: var(--naranja-badge);
+  color: var(--blanco);
+}
 
 /* =====================================================
    IMAGEN
@@ -155,7 +168,9 @@
   padding: 8px 18px;
   text-align: center;
   text-decoration: none !important;
-  transition: background var(--transicion), border-color var(--transicion);
+  transition:
+    background var(--transicion),
+    border-color var(--transicion);
   white-space: nowrap;
 }
 
@@ -164,7 +179,6 @@
   border-color: var(--verde-medio) !important;
   color: var(--blanco) !important;
 }
-
 
 .btn-agregar-carrito {
   position: relative;
@@ -175,12 +189,14 @@
   background: var(--verde-principal) !important;
   border-radius: 8px;
   font-family: var(--fuente-secciones);
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 600;
   padding: 8px 15px;
   text-align: center;
   text-decoration: none !important;
-  transition: background var(--transicion), border-color var(--transicion);
+  transition:
+    background var(--transicion),
+    border-color var(--transicion);
   white-space: nowrap;
 }
 
@@ -250,8 +266,12 @@
   font-weight: 700;
 }
 
-.bi-check2-circle { font-size: 1rem; }
-.bi-dash { font-size: 1rem; }
+.bi-check2-circle {
+  font-size: 1rem;
+}
+.bi-dash {
+  font-size: 1rem;
+}
 
 /* =====================================================
    FAQ
@@ -327,7 +347,9 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .faq-card.active .faq-respuesta {
@@ -341,16 +363,32 @@
 @media (max-width: 768px) {
   .servicios-section,
   .comparativa-section,
-  .faq-section { padding: 36px 0; }
+  .faq-section {
+    padding: 36px 0;
+  }
 
-  .servicio-card { padding: 16px; }
-  .card-img-placeholder { aspect-ratio: 4/3; }
+  .servicio-card {
+    padding: 16px;
+  }
+  .card-img-placeholder {
+    aspect-ratio: 4/3;
+  }
 }
 
 @media (max-width: 480px) {
-  .servicio-card .row { flex-direction: column; }
+  .servicio-card .row {
+    flex-direction: column;
+  }
   .servicio-card .col-4,
-  .servicio-card .col-8 { width: 100%; padding: 0; }
-  .servicio-card .col-8 { margin-top: 12px; }
-  .badge-servicio { top: 8px; left: 8px; }
+  .servicio-card .col-8 {
+    width: 100%;
+    padding: 0;
+  }
+  .servicio-card .col-8 {
+    margin-top: 12px;
+  }
+  .badge-servicio {
+    top: 8px;
+    left: 8px;
+  }
 }
