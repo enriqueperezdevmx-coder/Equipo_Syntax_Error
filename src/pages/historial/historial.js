@@ -338,9 +338,9 @@ function manejarEnvioCotizacion(evento) {
   }
 
   const iconosPorServicio = {
-    Express: "/src/assets/repart1.jpg",
-    Exclusivo: "/src/assets/repar3.jpg",
-    Extraordinario: "/src/assets/repar4.jpg",
+    Express: "/src/assets/repart1.svg",
+    Exclusivo: "/src/assets/repar3.svg",
+    Extraordinario: "/src/assets/repar4.svg",
   };
 
   const numeroCotizacion = "COT-" + Math.floor(100000 + Math.random() * 900000);

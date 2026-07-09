@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Compartido</title>
+
+      <!-- Fuentes del proyecto -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Variables globales primero, luego estilos de componentes y página -->
+    <link rel="stylesheet" href="/src/css/variables.css">
+    <link rel="stylesheet" href="/src/css/navbar.css">
+    <link rel="stylesheet" href="/src/css/layout.css"> 
+    <link rel="stylesheet" href="/src/css/footer.css">
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+<div id="navbar"></div>
+
+<div class="page-container"> 
+  <section class="catalogo-hero">
+    <div class="container">
+
+    <div class="row align-items-center g-4">
+
+        <!-- COLUMNA IZQUIERDA: Info del servicio -->
+        <div class="col-12 col-lg-5">
+
+        <a href="/src/pages/servicios/servicios.html" class="btn-back">
+          <i class="bi bi-arrow-left"></i> Volver
+        </a>
+
+          <h1 class="servicio-titulo">Compartido</h1>
+
+          <!-- Precio -->
+          <p class="servicio-precio">Desde $80 mxn</p>
+
+          <!-- Descripción principal -->
+          <p class="servicio-descripcion">
+            Es la opción más económica para tus envíos diarios. En lugar de contratar un mensajero exclusivo, compartes la ruta de la zona con otros comercios. Nosotros organizamos la logística en dos bloques horarios para recolectar y entregar todo de forma eficiente.
+          </p>
+
+          <!-- Lista de cómo funciona -->
+          <ol class="servicio-lista mb-3">
+            <li>Eliges tu horario: Programas tu recolección en el bloque de la Mañana o de la Tarde.</li>
+            <li>Recolectamos en ruta: Nuestro mensajero pasa a tu negocio dentro del horario establecido junto con los paquetes de otros clientes de la misma zona.</li>
+            <li>Entrega y evidencias: Se realizan todas las entregas de la ruta de manera consecutiva. Al finalizar el recorrido, el repartidor te entrega los comprobantes y evidencias digitales de recibido.</li>
+          </ol>
+
+          <!-- Horario y cobertura -->
+          <p class="servicio-detalle">
+            <strong>Horario de atención:</strong> Lunes a Viernes de 9:00 a 18:00 hrs.
+          </p>
+          <p class="servicio-detalle mb-4">
+            <strong>Cobertura:</strong> Toda la Ciudad de México y Zona Metropolitana.
+          </p>
+
+          <!-- Beneficios -->
+          <div class="servicio-beneficios mb-4">
+            <p class="beneficios-titulo">Beneficios:</p>
+            <ul class="beneficios-lista list-unstyled">
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                El precio más bajo del mercado
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                Logística planificada y sin complicaciones
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                Ideal para negocios con envíos diarios
+              </li>
+            </ul>
+          </div>
+
+          <!-- Botón CTA con efecto ripple -->
+          <a href="/src/pages/cotizar/cotizar.html?servicio=compartido" class="btn-cotizar w-100">
+
+            Cotizar Ahora
+          </a>
+
+        </div>
+
+        <!-- COLUMNA DERECHA: Imagen con zoom -->
+        <div class="col-12 col-lg-7">
+          <div class="servicio-img-wrapper">
+            <!--! Reemplaza src con la imagen real del servicio Express -->
+            <img
+              src="/src/assets/repartidor2.svg"
+              alt="Servicio Express"
+              class="servicio-img"
+            >
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/src/js/navbar.js"></script>
+  <script src="/src/js/footer.js"></script>
+  <script src="catalogo.js"></script>
+
+</body>
+</html>
