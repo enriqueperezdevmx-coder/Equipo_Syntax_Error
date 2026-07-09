@@ -44,6 +44,8 @@ function renderizarCarrito(){
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div>
                     <h5>${servicio.nombre}</h5>
+                    ${servicio.descripcion ? `<p class="text-muted small mb-2">
+                        <i class="bi bi-info-circle me=1"</i>${servicio.descripcion}</p>` : ''}
                     <p>
                         Precio: $${servicio.precio}
                     </p>

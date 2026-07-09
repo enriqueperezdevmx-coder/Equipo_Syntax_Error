@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('cotizacionEnvio', JSON.stringify(formData));
     console.log('Datos listos para enviar:', formData);
 
+<<<<<<< HEAD
     Swal.fire({
       icon: 'success',
       title: '¡Cotización exitosa!',
@@ -154,30 +155,124 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
-  });
+=======
+    //Guardamos la cotizacion "pendiente" para recuperarla despues de login
+    const cotizacionPendiente = {
+      tipoServicio: tipoEnvio,
+      datos: formData,
+      precio: precio,
+      fecha: new Date().toISOString()
+    };
 
-  // ── Inicializar historial ──
-  renderizarHistorial();
-  if (obtenerHistorial().length > 0) {
-    mostrarSeccionHistorial();
-  }
+    localStorage.setItem('cotizacionEnvio', JSON.stringify(cotizacionPendiente));
+    // console.log('Datos listos para enviar:', formData);
+
+   mostrarModalPrecio(cotizacionPendiente);
+>>>>>>> d40f986 (quitamos buttons de servicios y cambio flujo de agregarcarr a cotizar)
+  });
 });
 
+<<<<<<< HEAD
 // ── FUNCIONES DE HISTORIAL ──────────────────────────────────────────────────
+=======
+// ── CÁLCULO DE PRECIO ───────────────────────────────────────────────────────
 
-function obtenerHistorial() {
-  try {
-    return JSON.parse(localStorage.getItem('historialCotizaciones')) || [];
-  } catch {
-    return [];
+const BASE_POR_SERVICIO = {
+  'Express': 120,
+  'Compartido': 80,
+  'Exclusivo': 340,
+  'Extraordinario': 800,
+};
+
+const COSTO_POR_KG_FACTURABLE = {
+  'Express': 8,
+  'Compartido': 5,
+  'Exclusivo': 15,
+  'Extraordinario': 25,
+};
+
+function calcularPrecio(tipoEnvio, formData) {
+  const base = BASE_POR_SERVICIO[tipoEnvio] ?? 100;
+  const costoPorKg = COSTO_POR_KG_FACTURABLE[tipoEnvio] ?? 10;
+
+  const claveKgPeso = Object.keys(formData).find(k => k.toLowerCase().includes('peso'));
+  const peso = claveKgPeso ? parseFloat(formData[claveKgPeso]) || 0 : 0;
+
+  const alto = parseFloat(formData['Alto (cm)']) || 0;
+  const largo = parseFloat(formData['Largo (cm)']) || 0;
+  const ancho = parseFloat(formData['Ancho (cm)']) || 0;
+
+  const pesoVolumetrico = (alto * largo * ancho) / 5000;
+  const pesoFacturable = Math.max(peso, pesoVolumetrico);
+
+  const precio = base + pesoFacturable * costoPorKg;
+  return Math.round(precio);
+}
+
+// ── MODAL DE PRECIO + AGREGAR AL CARRITO ────────────────────────────────────
+
+function mostrarModalPrecio(cotizacion) {
+  const { tipoServicio, precio } = cotizacion;
+  Swal.fire({
+    icon: 'info',
+    title: 'Cotización lista',
+    html: `
+      <p class="mb-1">Tu envío <strong>${tipoServicio}</strong> tiene un costo estimado de:</p>
+      <h2 class="fw-bold text-success my-3">$${precio} MXN</h2>
+        `,
+    showCancelButton: true,
+    confirmButtonText: '<i class="bi bi-cart-plus-fill me-1"></i> Agregar al carrito',
+    cancelButtonText: 'Seguir cotizando',
+    confirmButtonColor: '#0DA74A',
+    cancelButtonColor: '#6c757d',
+    reverseButtons: true,
+  }).then((result) => {
+    if (!result.isConfirmed) return;
+      agregarCotizacionAlCarrito(cotizacion);
+      localStorage.removeItem('cotizacionEnvio');
+      window.location.href = '/src/pages/carrito/carrito.html';
+  });
+}
+
+function agregarCotizacionAlCarrito(cotizacion) {
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const descripcion = generarDescripcion(cotizacion.datos);
+
+  const existe = carrito.find(item => item.nombre === cotizacion.tipoServicio);
+  if (existe) {
+    if(existe.cantidad < 3) existe.cantidad++;
+    existe.descripcion = descripcion;
   }
+  else {
+    carrito.push({
+    nombre: cotizacion.tipoServicio,
+    precio: cotizacion.precio,
+    cantidad: 1,
+    descripcion: descripcion
+  });
+}
+  
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-function mostrarSeccionHistorial() {
-  const seccion = document.getElementById('seccion-historial');
-  if (seccion) seccion.classList.remove('d-none');
-}
+//Genero una descripcion de la cotizacion guardada en Carrito
+function generarDescripcion(datos) {
+  const cpOrigen = datos['C.P. Origen'] || '';
+  const cpDestino = datos['C.P. Destino'] || '';
 
+  const clavePeso = Object.keys(datos).find(k => k.toLowerCase().includes('peso'));
+  const peso = clavePeso ? datos[clavePeso] : '';
+>>>>>>> d40f986 (quitamos buttons de servicios y cambio flujo de agregarcarr a cotizar)
+
+  const claveContenido = Object.keys(datos).find(k => k.toLowerCase().includes('contenido'));
+  const contenido = claveContenido ? datos[claveContenido] : '';
+
+  const partes = [];
+  if (cpOrigen && cpDestino) partes.push(`CP ${cpOrigen} → CP ${cpDestino}`);
+  if (peso) partes.push(`${peso} kg`);
+  if (contenido) partes.push(contenido);
+
+<<<<<<< HEAD
 function eliminarCotizacion(id) {
   const historial = obtenerHistorial().filter(c => c.id !== id);
   localStorage.setItem('historialCotizaciones', JSON.stringify(historial));
@@ -250,3 +345,7 @@ function renderizarHistorial() {
 
 window.eliminarCotizacion = eliminarCotizacion;
 window.limpiarHistorial   = limpiarHistorial;
+=======
+  return partes.join(' · ') || 'Sin detalles adicionales';
+};
+>>>>>>> d40f986 (quitamos buttons de servicios y cambio flujo de agregarcarr a cotizar)
