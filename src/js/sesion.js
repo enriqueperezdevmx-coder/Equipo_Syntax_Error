@@ -29,6 +29,7 @@ function guardarSesion(usuario) {
   localStorage.setItem(
     "sesionActiva",
     JSON.stringify({
+      id: usuario.id,    
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       correo: usuario.correo,
@@ -124,10 +125,11 @@ async function manejarLogin(e, idCorreo, idPassword) {
     // AQUÍ ESTÁ LA MAGIA: Le decimos que mande "email" con el valor de "correo"
   const datos = await iniciarSesion({ correo, password });
     // 1. Accedemos al objeto 'user' de tu LoginResponse
-    const usuarioBackend = datos.user;
+    const usuarioBackend = datos.user; 
 
     // 2. Mapeamos las variables en inglés de tu UserResponse a lo que tu localStorage espera
     guardarSesion({
+      id: usuarioBackend.id,
       nombre: usuarioBackend.name,
       apellido: usuarioBackend.lastName,
       correo: usuarioBackend.email,

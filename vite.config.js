@@ -35,6 +35,7 @@ export default defineConfig({
         catalogoExclusivo: resolve(__dirname, 'src/pages/servicios/catalogo/exclusivo.html'),
         catalogoExpress: resolve(__dirname, 'src/pages/servicios/catalogo/express.html'),
         catalogoExtraordinario: resolve(__dirname, 'src/pages/servicios/catalogo/extraordinario.html'),
+        perfil: resolve(__dirname, 'src/pages/perfil/perfil.html'),  
       },
     },
   },
@@ -57,6 +58,7 @@ export default defineConfig({
         { src: 'src/css/layout.css', dest: '.' },
         { src: 'src/pages/inicio/inicio.css', dest: '.' },
         { src: 'src/js/sesion.js', dest: '.' },
+        { src: 'src/pages/perfil/perfil.js', dest: '.' },
 
 
 
