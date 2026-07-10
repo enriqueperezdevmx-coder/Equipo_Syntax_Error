@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // LÓGICA DE ENVÍO Y VALIDACIÓN
   // ==========================================
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const activePanel = document.querySelector('.tab-pane.active');
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
       formData[nombreCampo] = elemento.value.trim();
     });
 
-    // Cálculo del precio
+    // Calculo del precio
     const precio = calcularPrecio(tipoEnvio, formData);
 
     // Guardamos la cotización "pendiente"
@@ -146,7 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
       fecha: new Date().toISOString()
     };
 
-    localStorage.setItem('cotizacionEnvio', JSON.stringify(cotizacionPend));
+     try {
+    const response = await fetch('http://localhost:8080/api/quotes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cotizacionPend)
+    });
+    if (!response.ok) throw new Error('Error al guardar la cotización');
+    const data = await response.json();
+    // usa data.id o lo que tu API regrese
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'No se pudo enviar la cotización',
+      text: 'Intenta de nuevo más tarde.',
+    });
+    return;
+  }
 
     mostrarModalPrecio(cotizacionPend);
   });
