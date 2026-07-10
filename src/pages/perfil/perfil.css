@@ -1,0 +1,126 @@
+/* perfil.css — usa variables.css, importar variables.css antes que este archivo */
+
+.main-perfil {
+  margin-top: 120px; /* separa el contenido del navbar flotante; ajusta a tu gusto */
+}
+
+.linea-titulo {
+  width: 70px;
+  height: 3px;
+  background-color: var(--verde-principal);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.card-perfil {
+  background-color: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: box-shadow var(--transicion);
+}
+
+.card-perfil:hover {
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.08);
+}
+
+.avatar-circulo {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--verde-principal),
+    var(--verde-medio)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blanco);
+  font-family: var(--fuente-secciones);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.badge-cliente {
+  background-color: var(--verde-ultra);
+  color: var(--verde-titulo);
+  font-family: var(--fuente-formularios);
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+#form-perfil label,
+#form-password label {
+  font-family: var(--fuente-formularios);
+}
+
+#form-perfil input,
+#form-password input {
+  font-family: var(--fuente-cuerpo);
+}
+
+#form-perfil input:focus,
+#form-password input:focus {
+  border-color: var(--verde-principal);
+  box-shadow: 0 0 0 0.2rem var(--hover-verde);
+}
+
+#form-perfil input:disabled {
+  background-color: var(--gris-suave);
+}
+
+.item-guardado {
+  border: 1px solid var(--gris-borde);
+  border-radius: 12px;
+  padding: 14px 16px;
+  height: 100%;
+  position: relative;
+  background-color: var(--gris-suave);
+}
+
+.item-guardado .etiqueta-item {
+  font-family: var(--fuente-secciones);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--verde-titulo);
+  margin-bottom: 4px;
+}
+
+.item-guardado .detalle-item {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.8rem;
+  color: var(--gris-texto-local);
+  margin-bottom: 0;
+}
+
+.item-guardado .acciones-item {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.item-guardado .acciones-item button {
+  border: none;
+  background: transparent;
+  color: var(--gris-texto-local);
+  font-size: 0.95rem;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.item-guardado .acciones-item button:hover {
+  color: var(--verde-principal);
+}
+
+.item-guardado .acciones-item button.btn-eliminar-item:hover {
+  color: #dc3545;
+}
+
+.icono-marca-tarjeta {
+  font-size: 1.4rem;
+  color: var(--verde-principal);
+}

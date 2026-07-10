@@ -11,23 +11,46 @@ document.addEventListener("DOMContentLoaded", () => {
     mensaje: document.getElementById("mensaje"),
   };
 
-  // Bloqueo de letras, símbolos y espacios en tiempo real para el teléfono
-  inputs.telefono.addEventListener("input", (e) => {
-    // Reemplaza instantáneamente cualquier carácter que NO sea un número del 0 al 9
-    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+  // ── VALIDACIÓN DEL CAMPO TELÉFONO ────────────────────────────────────────
+  // 1. Bloquear teclas no numéricas en tiempo real (keydown)
+  //    Permite: dígitos 0-9, Backspace, Delete, Tab, Enter, flechas, Home, End
+  inputs.telefono.addEventListener("keydown", (e) => {
+    const teclaPermitida =
+      /^[0-9]$/.test(e.key) ||           // dígitos
+      ["Backspace", "Delete", "Tab", "Enter", "ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key) ||
+      (e.ctrlKey && ["a", "c", "v", "x"].includes(e.key.toLowerCase())); // Ctrl+A/C/V/X
+
+    if (!teclaPermitida) {
+      e.preventDefault(); // Cancela la tecla antes de que escriba
+    }
   });
 
+  // 2. Sanitizar al pegar (paste): eliminar cualquier carácter no numérico
+  inputs.telefono.addEventListener("paste", (e) => {
+    e.preventDefault();
+    const textoPegado = (e.clipboardData || window.clipboardData).getData("text");
+    const soloNumeros = textoPegado.replace(/[^0-9]/g, "");
+    // Insertar solo los dígitos respetando el maxlength
+    const max = parseInt(inputs.telefono.getAttribute("maxlength") || "10");
+    const valorActual = inputs.telefono.value;
+    const disponibles = max - valorActual.length;
+    inputs.telefono.value = valorActual + soloNumeros.slice(0, disponibles);
+  });
+
+  // 3. Limpiar cualquier carácter extraño en el evento input (defensa extra)
+  inputs.telefono.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+  });
+  // ─────────────────────────────────────────────────────────────────────────
+
   form.addEventListener("submit", (e) => {
-    // Evitamos que la página se recargue por defecto
     e.preventDefault();
 
     let formularioValido = true;
 
-    // 1. Validar cada campo
+    // Validar cada campo
     for (const clave in inputs) {
       const campo = inputs[clave];
-
-      // Eliminar espacios en blanco al inicio y final para evitar trampas con la barra espaciadora
       if (campo.value.trim() === "") {
         campo.classList.add("error");
         formularioValido = false;
@@ -36,25 +59,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Validar estructura básica del correo electrónico de forma adicional
+    // Validar estructura básica del correo electrónico
     if (inputs.email.value && !validateEmail(inputs.email.value)) {
       inputs.email.classList.add("error");
       formularioValido = false;
     }
 
-    // Validar el número de teléfono si está presente
+    // Validar el número de teléfono (exactamente 10 dígitos)
     if (inputs.telefono.value && !validatePhone(inputs.telefono.value)) {
       inputs.telefono.classList.add("error");
       formularioValido = false;
     }
 
-    // 2. Si hay fallas, detenemos el proceso
     if (!formularioValido) {
       alert("Por favor, completa todos los campos marcados en rojo.");
       return;
     }
 
-    // 3. Si todo está correcto, recolectamos los datos
     const datosFormulario = {
       nombre: inputs.nombre.value.trim(),
       apellido: inputs.apellido.value.trim(),
@@ -65,18 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
       fechaRegistro: new Date().toLocaleString(),
     };
 
-    // 4. Almacenar en LocalStorage
-    // Guardamos los datos convirtiendo el objeto en una cadena de texto JSON
-    localStorage.setItem(
-      "contactoEnvioExpress",
-      JSON.stringify(datosFormulario),
-    );
+    localStorage.setItem("contactoEnvioExpress", JSON.stringify(datosFormulario));
 
     alert(`¡Mensaje enviado correctamente!`);
     form.submit();
   });
 
-  // Opcional: Quitar el borde rojo en tiempo real mientras el usuario escribe
+  // Quitar el borde rojo en tiempo real mientras el usuario escribe
   for (const clave in inputs) {
     inputs[clave].addEventListener("input", function () {
       if (this.value.trim() !== "") {
@@ -85,13 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Función auxiliar para validar formato de correo
   function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   }
 
-  // Función auxiliar para validar formato de teléfono
   function validatePhone(phone) {
     const regex = /^\d{10}$/;
     return regex.test(phone);

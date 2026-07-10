@@ -1,223 +1,300 @@
-/* ============================================================
-   catalogo.css — Página individual de servicio
-   Requiere: /src/css/variables.css cargado antes
-============================================================ */
-body {                                          /*se cargan las tipografias*/
-  font-family: var(--fuente-cuerpo);
-}
+/* ==========================================================================
+   catalogo.css
+   Depende de: variables.css y layout.css (importados ANTES en el HTML)
+   ========================================================================== */
 
-h1 {
-  font-family: var(--fuente-titulo);
-}
+/* ==========================================================================
+   SECCIÓN PRINCIPAL
+   ========================================================================== */
 
-h2, h3, h4, h5 {
-  font-family: var(--fuente-secciones);
-}
-
-input, textarea, select, label {
-  font-family: var(--fuente-formularios);
-}
-/* ── Sección hero ─────────────────────────────────────────── */
 .catalogo-hero {
-  background-color: var(--blanco);
+  padding: 0 0 var(--section-gap) 0;
+  padding-top: 40px; /* para compensar el espacio de la navbar */
+  background: var(--blanco);
 }
 
-/* ── Título ───────────────────────────────────────────────── */
+
+/* ==========================================================================
+   VOLVER
+   ========================================================================== */
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+
+  font-size: 15px;
+  font-weight: 600; 
+  color: var(--gris-texto); 
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  color: var(--verde);
+  transform: translateX(-3px);
+}
+
+
+/* ==========================================================================
+   TÍTULO
+   ========================================================================== */
+
 .servicio-titulo {
-  font-size: 2.5rem;
+  font-family: var(--fuente-titulo);       
+  font-size: clamp(38px, 5vw, 56px);
   font-weight: 700;
-  color: var(--verde-principal) !important;
-  margin-bottom: 0.5rem;
+  color: var(--verde-titulo);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
 }
 
-/* ── Precio ───────────────────────────────────────────────── */
+/* ==========================================================================
+   PRECIO
+   ========================================================================== */
+
 .servicio-precio {
-  font-size: 1rem;
+  font-family: var(--fuente-secciones);    
+  font-size: 20px;
   font-weight: 600;
-  color: var(--verde-medio);
-  margin-bottom: 1rem;
+  color: var(--verde-principal);
+  margin-bottom: 24px;
 }
 
-/* ── Descripción ──────────────────────────────────────────── */
+/* ==========================================================================
+   DESCRIPCIÓN
+   ========================================================================== */
+
 .servicio-descripcion {
-  font-size: 0.9rem;
-  color: var(--gris-texto);
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
+  font-family: var(--fuente-cuerpo);       
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--gris-texto-local);
+  margin-bottom: 28px;
 }
 
-/* ── Lista numerada (cómo funciona) ───────────────────────── */
+/* ==========================================================================
+   PASOS
+   ========================================================================== */
+
 .servicio-lista {
-  padding-left: 1.2rem;
-  margin-bottom: 1rem;
+  counter-reset: paso;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .servicio-lista li {
-  font-size: 0.88rem;
-  color: var(--gris-texto);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  font-family: var(--fuente-cuerpo);       
+  position: relative;
+  padding: 18px 18px 18px 58px;
+  margin-bottom: 14px;
+  background: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: 14px;
+  transition: var(--transicion);           
 }
 
-/* ── Horario / Cobertura ──────────────────────────────────── */
-.servicio-detalle {
-  font-size: 0.88rem;
-  color: var(--gris-texto);
-  margin-bottom: 0.25rem;
+.servicio-lista li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
 }
 
-/* ── Beneficios ───────────────────────────────────────────── */
-.beneficios-titulo {
+.servicio-lista li::before {
+  counter-increment: paso;
+  content: counter(paso);
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 28px;
+  height: 28px;
+  background: var(--verde-principal);
+  color: var(--blanco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fuente-secciones);
   font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--gris-texto);
-  margin-bottom: 0.4rem;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   DETALLES (horario / cobertura)
+   ========================================================================== */
+
+.servicio-detalle {
+  font-family: var(--fuente-formularios);  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gris-texto-local);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.servicio-detalle strong {
+  color: var(--verde-titulo);
+}
+
+/* ==========================================================================
+   BENEFICIOS
+   ========================================================================== */
+
+.beneficios-titulo {
+  font-family: var(--fuente-secciones);    
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--verde-titulo);
+  margin-bottom: 16px;
+}
+
+.beneficios-lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
 .beneficios-lista li {
+  font-family: var(--fuente-secciones);    
+  background: var(--verde-ultra);
+  border: 1px solid var(--gris-borde);
+  border-radius: 12px;
+  padding: 16px;
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-  color: var(--gris-texto);
-  margin-bottom: 0.4rem;
-}
-
-.beneficios-lista .bi-check-circle-fill {
-  color: var(--verde-principal);
-  font-size: 1rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* ── Botón CTA con ripple ─────────────────────────────────── */
-.btn-cotizar {
-  position: relative;
-  overflow: hidden;          
-  display: block;
-  width: 100%;
-  background-color: var(--verde-principal);
-  color: var(--blanco) !important;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
   font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  border: none;
-  text-align: center;
+  color: var(--verde-titulo);
+  min-height: 100px;
+}
+
+.beneficios-lista li i {
+  font-size: 22px;
+  color: var(--verde-principal);
+}
+
+/* ==========================================================================
+   BOTÓN — ✅ ripple fix: position relative + overflow hidden
+   ========================================================================== */
+
+.btn-cotizar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;   /* necesario para que el ripple sea absolute */
+  overflow: hidden;     /* recorta el ripple dentro del botón */
+
+  width: 100%;
+
+  background-color: var(--verde-principal);
+  color: var(--blanco); /* blanco definido en variables.css */
+
+  padding: 14px 24px;
+  border-radius: 10px;
   text-decoration: none;
-  cursor: pointer;
-  transition: background-color var(--transicion);
+
+  font-family: var(--fuente-secciones);    /* Poppins */
+  font-weight: 600;
+
+  transition:
+    background-color .3s ease,
+    box-shadow .3s ease;
 }
 
 .btn-cotizar:hover {
-  background-color: var(--verde-medio);
-  color: var(--blanco) !important;
+  background-color: var(--verde-titulo);
+  color: var(--blanco);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
 }
 
-/* La "gota" del ripple —  */
-.btn-cotizar .ripple {
+.btn-cotizar:focus,
+.btn-cotizar:active {
+  background-color: var(--verde-titulo);
+  color: var(--blanco);
+  outline: none;
+}
+
+/* Ripple: siempre absolute para no empujar el contenido del botón */
+.ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);;
+  background: rgba(255, 255, 255, 0.35);
   transform: scale(0);
-  animation: ripple-anim 0.4s linear;
-  pointer-events: none;
+  animation: ripple-effect 0.55s linear forwards;
+  pointer-events: none; /* evita que el ripple intercepte más clics */
 }
 
-@keyframes ripple-anim {
+@keyframes ripple-effect {
   to {
     transform: scale(4);
     opacity: 0;
   }
 }
 
-/* ── Imagen con zoom constante ────────────────────────────── */
+/* ==========================================================================
+   IMAGEN
+   ========================================================================== */
+
 .servicio-img-wrapper {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;          /* recorta el zoom para que no se desborde */
-  aspect-ratio: 4 / 3;      /* proporción fija, ajusta si necesitas */
-  background-color: var(--verde-ultra);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.servicio-img-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  background: var(--verde-ultra);
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .servicio-img {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 100%;
+  max-width: 650px;
+  border-radius: 20px;
   object-fit: cover;
-  animation: zoom-suave 8s ease-in-out infinite alternate;
+  box-shadow: var(--sombra-navbar);        /* usa sombra de variables.css */
+  transition: var(--transicion);
 }
 
-/* Zoom que va y regresa suavemente en bucle */
-@keyframes zoom-suave {
-  from { transform: scale(1);    }
-  to   { transform: scale(1.06); }
+.servicio-img:hover {
+  transform: scale(1.03);
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 991px) {
-  .servicio-titulo {
-    font-size: 2rem;
-  }
-}
-/*evita que sobre espacio en el footer me paso varias veces xd*/
-body {
-  min-height: unset !important;
-  display: block !important;
-}
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
 
-.catalogo-hero {
-  padding-bottom: 0;
-}
-/* En catalogo.css */
-.servicio-descripcion,
-.servicio-lista li,
-.servicio-detalle,
-.beneficios-lista li {
-  text-align: justify;
-}
-/* ── Espacio para navbar flotante fija ───────────────────── */
-.catalogo-hero {
-  margin-top: 100px;
-}
-
-/* ── Breakpoint 375px ────────────────────────────────────── */
-@media (max-width: 375px) {
-  .catalogo-hero {
-    margin-top: 80px;
+@media (max-width: 992px) {
+  .beneficios-lista {
+    grid-template-columns: 1fr;
   }
 
-  .servicio-titulo {
-    font-size: 1.6rem;
-  }
-
-  .servicio-img-wrapper {
-    aspect-ratio: 3 / 2;
+  .servicio-img {
+    max-width: 500px;
   }
 }
 
-/* ── Breakpoint 768px ────────────────────────────────────── */
 @media (max-width: 768px) {
-  .catalogo-hero {
-    margin-top: 90px;
-  }
+  /* --section-gap y --navbar-offset ya se reducen solos en layout.css */
 
   .servicio-titulo {
-    font-size: 1.8rem;
-  }
-}
-
-/* ── Breakpoint 1280px+ ──────────────────────────────────── */
-@media (min-width: 1280px) {
-  .catalogo-hero {
-    margin-top: 110px;
+    font-size: 40px;
   }
 
-  .servicio-titulo {
-    font-size: 3rem;
+  .servicio-img {
+    margin-top: 20px;
   }
-}
-
-/* Evita espacio vacío por el sticky footer flex */
-.catalogo-hero {
-  flex: 0 0 auto !important;
 }

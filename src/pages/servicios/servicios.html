@@ -1,299 +1,407 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <script type="module" src="/@vite/client"></script>
+  <head>
+    <script type="module" src="/@vite/client"></script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Servicios — Mensajería Total</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servicios — Mensajería Total</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="/src/css/variables.css">
-  <link rel="stylesheet" href="/src/css/navbar.css">
-  <link rel="stylesheet" href="/src/css/layout.css">
-  <link rel="stylesheet" href="/src/css/footer.css">
-  <link rel="stylesheet" href="servicios.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/navbar.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/footer.css" />
+    <link rel="stylesheet" href="servicios.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-<div id="navbar"></div>
-
-<main class="page-container">
-
-  <!-- ═══════════════════════════════════════════
+    <main class="page-container">
+      <!-- ═══════════════════════════════════════════
        CARDS DE SERVICIOS
   ═══════════════════════════════════════════ -->
-  <section class="servicios-section">
-    <div class="container">
-      <div class="row g-4">
-
-        <!-- Express -->
-        <div class="col-12 col-lg-6">
-          <div class="servicio-card position-relative">
-            <span class="badge-servicio badge-popular">Más popular</span>
-            <div class="row g-0 align-items-center">
-              <div class="col-4">
-                <div class="card-img-placeholder">
-                  <img src="/src/assets/repart1.jpg" alt="Express">
+      <section class="servicios-section">
+        <div class="container">
+          <div class="row g-4">
+            <!-- Express -->
+            <div class="col-12 col-lg-6">
+              <div class="servicio-card position-relative">
+                <span class="badge-servicio badge-popular">Más popular</span>
+                <div class="row g-0 align-items-center">
+                  <div class="col-4">
+                    <div class="card-img-placeholder">
+                      <img src="/src/assets/repart1.svg" alt="Express" />
+                    </div>
+                  </div>
+                  <div class="col-8 ps-3">
+                    <h5>Express</h5>
+                    <p>
+                      Entregas urgentes el mismo día. Ideal para paquetes
+                      pequeños y documentos que no pueden esperar.
+                    </p>
+                    <ul class="servicio-features">
+                      <li>
+                        <i class="bi bi-check2"></i> Menos de 1 hora en CDMX
+                      </li>
+                      <li>
+                        <i class="bi bi-check2"></i> Notificación al entregar
+                      </li>
+                      <li><i class="bi bi-check2"></i> Hasta 5 kg</li>
+                      <li><i class="bi bi-check2"></i> Acuse de recibo</li>
+                    </ul>
+                    <div
+                      class="d-flex align-items-center justify-content-between mt-3 gap-1"
+                    >
+                      <div>
+                        <span class="precio-desde">Desde</span>
+                        <span class="precio-monto">$120 mxn</span>
+                      </div>
+                      <a href="./catalogo/express.html" class="btn-cotizar"
+                        >Ver más</a
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-8 ps-3">
-                <h5>Express</h5>
-                <p>Entregas urgentes el mismo día. Ideal para paquetes pequeños y documentos que no pueden esperar.</p>
-                <ul class="servicio-features">
-                  <li><i class="bi bi-check2"></i> Menos de 1 hora en CDMX</li>
-                  <li><i class="bi bi-check2"></i> Notificación al entregar</li>
-                  <li><i class="bi bi-check2"></i> Hasta 5 kg</li>
-                  <li><i class="bi bi-check2"></i> Acuse de recibo</li>
-                </ul>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                  <div>
-                    <span class="precio-desde">Desde</span>
-                    <span class="precio-monto">$120 mxn</span>
+            </div>
+
+            <!-- Compartido -->
+            <div class="col-12 col-lg-6">
+              <div class="servicio-card position-relative">
+                <span class="badge-servicio badge-economico"
+                  >Más económico</span
+                >
+                <div class="row g-0 align-items-center">
+                  <div class="col-4">
+                    <div class="card-img-placeholder">
+                      <img src="/src/assets/repartidor2.svg" alt="Compartido" />
+                    </div>
                   </div>
-                  <a href="./catalogo/express.html" class="btn-cotizar">Ver más</a>
+                  <div class="col-8 ps-3">
+                    <h5>Compartido</h5>
+                    <p>
+                      Compartimos espacio en la unidad para que pagues menos y
+                      tu paquete llegue seguro el mismo día.
+                    </p>
+                    <ul class="servicio-features">
+                      <li><i class="bi bi-check2"></i> Entrega mismo día</li>
+                      <li><i class="bi bi-check2"></i> Seguro incluido</li>
+                      <li><i class="bi bi-check2"></i> Hasta 15 kg</li>
+                      <li>
+                        <i class="bi bi-check2"></i> Rastreo en tiempo real
+                      </li>
+                    </ul>
+                    <div
+                      class="d-flex align-items-center justify-content-between mt-3 gap-1"
+                    >
+                      <div>
+                        <span class="precio-desde">Desde</span>
+                        <span class="precio-monto">$80 mxn</span>
+                      </div>
+                      <a href="./catalogo/compartido.html" class="btn-cotizar"
+                        >Ver más</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Exclusivo -->
+            <div class="col-12 col-lg-6">
+              <div class="servicio-card position-relative">
+                <span class="badge-servicio badge-control">Mayor control</span>
+                <div class="row g-0 align-items-center">
+                  <div class="col-4">
+                    <div class="card-img-placeholder">
+                      <img src="/src/assets/repar3.svg" alt="Exclusivo" />
+                    </div>
+                  </div>
+                  <div class="col-8 ps-3">
+                    <h5>Exclusivo</h5>
+                    <p>
+                      Unidad dedicada exclusivamente para tu envío. Máximo
+                      seguridad, control total y disponibilidad todo el día.
+                    </p>
+                    <ul class="servicio-features">
+                      <li>
+                        <i class="bi bi-check2"></i> Unidad 100% exclusiva
+                      </li>
+                      <li>
+                        <i class="bi bi-check2"></i> Disponible todo el día
+                      </li>
+                      <li><i class="bi bi-check2"></i> Hasta 100 kg</li>
+                      <li>
+                        <i class="bi bi-check2"></i> Foto y firma de entrega
+                      </li>
+                    </ul>
+                    <div
+                      class="d-flex align-items-center justify-content-between mt-3 gap-1"
+                    >
+                      <div>
+                        <span class="precio-desde">Desde</span>
+                        <span class="precio-monto">$340 mxn</span>
+                      </div>
+                      <a href="./catalogo/exclusivo.html" class="btn-cotizar"
+                        >Ver más</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Extraordinario -->
+            <div class="col-12 col-lg-6">
+              <div class="servicio-card position-relative">
+                <span class="badge-servicio badge-volumen">Gran volumen</span>
+                <div class="row g-0 align-items-center">
+                  <div class="col-4">
+                    <div class="card-img-placeholder">
+                      <img src="/src/assets/repar4.svg" alt="Extraordinario" />
+                    </div>
+                  </div>
+                  <div class="col-8 ps-3">
+                    <h5>Extraordinario</h5>
+                    <p>
+                      Envíos especiales de carga pesada o de gran volumen.
+                      Logística personalizada para necesidades fuera de lo
+                      ordinaria.
+                    </p>
+                    <ul class="servicio-features">
+                      <li><i class="bi bi-check2"></i> Sin límite de peso</li>
+                      <li><i class="bi bi-check2"></i> Logística a medida</li>
+                      <li>
+                        <i class="bi bi-check2"></i> Cobertura amplia CDMX
+                      </li>
+                      <li>
+                        <i class="bi bi-check2"></i> Cotización personalizada
+                      </li>
+                    </ul>
+                    <div
+                      class="d-flex align-items-center justify-content-between mt-3 gap-1"
+                    >
+                      <div>
+                        <span class="precio-monto">Dif Precios</span>
+                      </div>
+                      <a
+                        href="./catalogo/extraordinario.html"
+                        class="btn-cotizar"
+                        >Ver más</a
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Compartido -->
-        <div class="col-12 col-lg-6">
-          <div class="servicio-card position-relative">
-            <span class="badge-servicio badge-economico">Más económico</span>
-            <div class="row g-0 align-items-center">
-              <div class="col-4">
-                <div class="card-img-placeholder">
-                  <img src="/src/assets/repartidor2.jpg" alt="Compartido">
-                </div>
-              </div>
-              <div class="col-8 ps-3">
-                <h5>Compartido</h5>
-                <p>Compartimos espacio en la unidad para que pagues menos y tu paquete llegue seguro el mismo día.</p>
-                <ul class="servicio-features">
-                  <li><i class="bi bi-check2"></i> Entrega mismo día</li>
-                  <li><i class="bi bi-check2"></i> Seguro incluido</li>
-                  <li><i class="bi bi-check2"></i> Hasta 15 kg</li>
-                  <li><i class="bi bi-check2"></i> Rastreo en tiempo real</li>
-                </ul>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                  <div>
-                    <span class="precio-desde">Desde</span>
-                    <span class="precio-monto">$80 mxn</span>
-                  </div>
-                  <a href="./catalogo/compartido.html" class="btn-cotizar">Ver más</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Exclusivo -->
-        <div class="col-12 col-lg-6">
-          <div class="servicio-card position-relative">
-            <span class="badge-servicio badge-control">Mayor control</span>
-            <div class="row g-0 align-items-center">
-              <div class="col-4">
-                <div class="card-img-placeholder">
-                  <img src="/src/assets/repar3.jpg" alt="Exclusivo">
-                </div>
-              </div>
-              <div class="col-8 ps-3">
-                <h5>Exclusivo</h5>
-                <p>Unidad dedicada exclusivamente para tu envío. Máximo seguridad, control total y disponibilidad todo el día.</p>
-                <ul class="servicio-features">
-                  <li><i class="bi bi-check2"></i> Unidad 100% exclusiva</li>
-                  <li><i class="bi bi-check2"></i> Disponible todo el día</li>
-                  <li><i class="bi bi-check2"></i> Hasta 100 kg</li>
-                  <li><i class="bi bi-check2"></i> Foto y firma de entrega</li>
-                </ul>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                  <div>
-                    <span class="precio-desde">Desde</span>
-                    <span class="precio-monto">$340 mxn</span>
-                  </div>
-                  <a href="./catalogo/exclusivo.html" class="btn-cotizar">Ver más</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Extraordinario -->
-        <div class="col-12 col-lg-6">
-          <div class="servicio-card position-relative">
-            <span class="badge-servicio badge-volumen">Gran volumen</span>
-            <div class="row g-0 align-items-center">
-              <div class="col-4">
-                <div class="card-img-placeholder">
-                  <img src="/src/assets/repar4.jpg" alt="Extraordinario">
-                </div>
-              </div>
-              <div class="col-8 ps-3">
-                <h5>Extraordinario</h5>
-                <p>Envíos especiales de carga pesada o de gran volumen. Logística personalizada para necesidades fuera de lo ordinaria.</p>
-                <ul class="servicio-features">
-                  <li><i class="bi bi-check2"></i> Sin límite de peso</li>
-                  <li><i class="bi bi-check2"></i> Logística a medida</li>
-                  <li><i class="bi bi-check2"></i> Cobertura amplia CDMX</li>
-                  <li><i class="bi bi-check2"></i> Cotización personalizada</li>
-                </ul>
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                  <div>
-                    <span class="precio-monto">Diferentes precios</span>
-                  </div>
-                  <a href="./catalogo/extraordinario.html" class="btn-cotizar">Ver más</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
+      <!-- ═══════════════════════════════════════════
        TABLA COMPARATIVA
   ═══════════════════════════════════════════ -->
-  <section class="comparativa-section">
-    <div class="container">
-      <p class="comparativa-label">COMPARATIVA</p>
-      <h2 class="section-title mb-4">¿Cuál servicio me conviene?</h2>
+      <section class="comparativa-section">
+        <div class="container">
+          <p class="comparativa-label">COMPARATIVA</p>
+          <h2 class="section-title mb-4">¿Cuál servicio me conviene?</h2>
 
-      <div class="table-responsive">
-        <table class="table tabla-comparativa">
-          <thead>
-            <tr>
-              <th>Característica</th>
-              <th class="text-center">Express</th>
-              <th class="text-center">Compartido</th>
-              <th class="text-center">Exclusivo</th>
-              <th class="text-center">Extraordinario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Tiempo de entrega</td>
-              <td class="text-center">Menos de 1 hora</td>
-              <td class="text-center">Mismo día</td>
-              <td class="text-center">A tu horario</td>
-              <td class="text-center">Acordado</td>
-            </tr>
-            <tr>
-              <td>Peso máximo</td>
-              <td class="text-center">5 kg</td>
-              <td class="text-center">15 kg</td>
-              <td class="text-center">100 kg</td>
-              <td class="text-center">Sin límite</td>
-            </tr>
-            <tr>
-              <td>Rastreo GPS</td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-            </tr>
-            <tr>
-              <td>Seguro incluido</td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-dash text-muted"></i></td>
-            </tr>
-            <tr>
-              <td>Unidad exclusiva</td>
-              <td class="text-center"><i class="bi bi-dash text-muted"></i></td>
-              <td class="text-center"><i class="bi bi-dash text-muted"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-            </tr>
-            <tr>
-              <td>Foto y firma</td>
-              <td class="text-center"><i class="bi bi-dash text-muted"></i></td>
-              <td class="text-center"><i class="bi bi-dash text-muted"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-              <td class="text-center"><i class="bi bi-check2-circle text-success"></i></td>
-            </tr>
-            <tr class="fila-precio">
-              <td><strong>Precio base</strong></td>
-              <td class="text-center"><strong>$120 mxn</strong></td>
-              <td class="text-center"><strong>$80 mxn</strong></td>
-              <td class="text-center"><strong>$340 mxn</strong></td>
-              <td class="text-center"><strong>Diferentes precios</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+          <div class="table-responsive">
+            <table class="table tabla-comparativa">
+              <thead>
+                <tr>
+                  <th>Característica</th>
+                  <th class="text-center">Express</th>
+                  <th class="text-center">Compartido</th>
+                  <th class="text-center">Exclusivo</th>
+                  <th class="text-center">Extraordinario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tiempo de entrega</td>
+                  <td class="text-center">Menos de 1 hora</td>
+                  <td class="text-center">Mismo día</td>
+                  <td class="text-center">A tu horario</td>
+                  <td class="text-center">Acordado</td>
+                </tr>
+                <tr>
+                  <td>Peso máximo</td>
+                  <td class="text-center">5 kg</td>
+                  <td class="text-center">15 kg</td>
+                  <td class="text-center">100 kg</td>
+                  <td class="text-center">Sin límite</td>
+                </tr>
+                <tr>
+                  <td>Rastreo GPS</td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Seguro incluido</td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-dash text-muted"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Unidad exclusiva</td>
+                  <td class="text-center">
+                    <i class="bi bi-dash text-muted"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-dash text-muted"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Foto y firma</td>
+                  <td class="text-center">
+                    <i class="bi bi-dash text-muted"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-dash text-muted"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="bi bi-check2-circle text-success"></i>
+                  </td>
+                </tr>
+                <tr class="fila-precio">
+                  <td><strong>Precio base</strong></td>
+                  <td class="text-center"><strong>$120 mxn</strong></td>
+                  <td class="text-center"><strong>$80 mxn</strong></td>
+                  <td class="text-center"><strong>$340 mxn</strong></td>
+                  <td class="text-center">
+                    <strong>Diferentes precios</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-  <!-- ═══════════════════════════════════════════
+      <!-- ═══════════════════════════════════════════
        FAQ
   ═══════════════════════════════════════════ -->
-  <section class="faq-section">
-    <div class="container">
-      <p class="comparativa-label">DUDAS FRECUENTES</p>
-      <h2 class="section-title mb-4">Preguntas frecuentes</h2>
+      <section class="faq-section" id="faq-section">
+        <div class="container">
+          <p class="comparativa-label">DUDAS FRECUENTES</p>
+          <h2 class="section-title mb-4">Preguntas frecuentes</h2>
 
-      <div class="row g-3">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <div class="faq-card">
+                <p class="faq-pregunta">¿Cuánto tarda un envío Express?</p>
+                <p class="faq-respuesta">
+                  Menos de 1 hora dentro de CDMX y Área Metropolitana,
+                  dependiendo del tráfico y la distancia.
+                </p>
+              </div>
+            </div>
 
-        <div class="col-12 col-md-6">
-          <div class="faq-card">
-            <p class="faq-pregunta">¿Cuánto tarda un envío Express?</p>
-            <p class="faq-respuesta">Menos de 1 hora dentro de CDMX y Área Metropolitana, dependiendo del tráfico y la distancia.</p>
+            <div class="col-12 col-md-6">
+              <div class="faq-card">
+                <p class="faq-pregunta">¿Cómo puedo rastrear mi envío?</p>
+                <p class="faq-respuesta">
+                  Recibes un número de guía por WhatsApp al confirmar tu pedido.
+                  Puedes rastrearlo en la sección "Rastreo" del sitio.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="faq-card">
+                <p class="faq-pregunta">¿Los envíos están asegurados?</p>
+                <p class="faq-respuesta">
+                  Sí, todos los servicios incluyen seguro básico. Para carga de
+                  alto valor, te recomendamos el servicio Exclusivo.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="faq-card">
+                <p class="faq-pregunta">¿Hacen envíos fuera de CDMX?</p>
+                <p class="faq-respuesta">
+                  Cubrimos CDMX y Área Metropolitana. Para rutas especiales
+                  fuera de esta zona, contáctanos directamente.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="faq-card">
+                <p class="faq-pregunta">
+                  ¿Qué documentos necesito para enviar?
+                </p>
+                <p class="faq-respuesta">
+                  Solo necesitas el nombre del destinatario, dirección completa
+                  y tu número de contacto. Nosotros te guiamos.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="faq-card">
+                <p class="faq-pregunta">
+                  ¿Puedo programar un envío para después?
+                </p>
+                <p class="faq-respuesta">
+                  Sí, puedes programar tu envío con anticipación a través de
+                  nuestra sección de Cotizar o escribiéndonos por WhatsApp.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+    </main>
 
-        <div class="col-12 col-md-6">
-          <div class="faq-card">
-            <p class="faq-pregunta">¿Cómo puedo rastrear mi envío?</p>
-            <p class="faq-respuesta">Recibes un número de guía por WhatsApp al confirmar tu pedido. Puedes rastrearlo en la sección "Rastreo" del sitio.</p>
-          </div>
-        </div>
+    <div id="footer"></div>
 
-        <div class="col-12 col-md-6">
-          <div class="faq-card">
-            <p class="faq-pregunta">¿Los envíos están asegurados?</p>
-            <p class="faq-respuesta">Sí, todos los servicios incluyen seguro básico. Para carga de alto valor, te recomendamos el servicio Exclusivo.</p>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="faq-card">
-            <p class="faq-pregunta">¿Hacen envíos fuera de CDMX?</p>
-            <p class="faq-respuesta">Cubrimos CDMX y Área Metropolitana. Para rutas especiales fuera de esta zona, contáctanos directamente.</p>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="faq-card">
-            <p class="faq-pregunta">¿Qué documentos necesito para enviar?</p>
-            <p class="faq-respuesta">Solo necesitas el nombre del destinatario, dirección completa y tu número de contacto. Nosotros te guiamos.</p>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="faq-card">
-            <p class="faq-pregunta">¿Puedo programar un envío para después?</p>
-            <p class="faq-respuesta">Sí, puedes programar tu envío con anticipación a través de nuestra sección de Cotizar o escribiéndonos por WhatsApp.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<div id="footer"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/src/js/navbar.js"></script>
-<script src="/src/js/footer.js"></script>
-<script src="/src/pages/servicios/catalogo/catalogo.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/js/navbar.js"></script>
+    <script src="/src/js/sesion.js"></script>
+    <script src="/src/js/footer.js"></script>
+    <script src="/src/pages/servicios/servicios.js"></script>
+  </body>
 </html>

@@ -1,0 +1,91 @@
+.contenedor-principal-historial {
+  min-height: 70vh;
+  padding-top: 150px !important;
+}
+
+.titulo-historial {
+  font-family: var(--fuente-secciones);
+  color: var(--verde-principal) !important;
+}
+
+/* Línea divisoria  */
+.linea-divisoria-verde {
+  border: none;
+  height: 2px;
+  background-color: var(--verde-principal);
+  opacity: 1;
+  margin: 0;
+}
+
+/* Control del tamaño de los iconos/vectores de transporte */
+.imagen-servicio {
+  max-height: 90px;
+  object-fit: contain;
+}
+
+/* Tipografía de la descripción del paquete */
+.info-pedido {
+  font-size: 0.9rem;
+}
+
+.nombre-servicio {
+  font-family: var(--fuente-secciones);
+}
+
+/* Evita saltos de línea raros en el botón de reordenar */
+.enlace-volver-pedir {
+  white-space: nowrap;
+}
+
+/* Botón personalizado de acción */
+.boton-ver {
+  background-color: var(--verde-principal) !important;
+  min-width: 80px;
+  transition:
+    background-color var(--transicion),
+    transform 0.1s ease;
+}
+
+/* Efecto hover interactivo para el botón */
+.boton-ver:hover {
+  background-color: var(--verde-medio) !important;
+  color: var(--blanco);
+}
+
+.boton-ver:active {
+  transform: scale(0.98);
+}
+
+/* --- Estilos para el estado sin pedidos --- */
+.mensaje-vacio {
+  font-family: var(--fuente-secciones);
+  color: var(--gris-texto);
+  font-weight: 500;
+}
+
+.boton-cotizar-vacio {
+  background-color: var(--verde-principal) !important;
+  font-family: var(--fuente-secciones);
+  border: none;
+  transition: background-color var(--transicion);
+}
+
+.boton-cotizar-vacio:hover {
+  background-color: var(--verde-medio) !important;
+  color: var(--blanco) !important;
+}
+
+/* Estado "esperando CP" para Estado/Colonia: gris e itálica mientras
+   el usuario no ha llenado un código postal válido todavía */
+#estadoOrigen:placeholder-shown,
+#coloniaOrigen:placeholder-shown,
+#estadoDestino:placeholder-shown,
+#coloniaDestino:placeholder-shown {
+  font-style: italic;
+  color: var(--gris-texto-local);
+  background-color: var(--gris-suave);
+}
+
+.modal-header {
+  border-bottom: 2px solid var(--verde-principal);
+}

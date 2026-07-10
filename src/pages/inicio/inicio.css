@@ -1,32 +1,33 @@
 /* ==========================================================================
-   VARIABLES LOCALES — solo las que no están en variables.css global
-   ========================================================================== */
-
-/* ==========================================================================
    HERO SECTION
    ========================================================================== */
 
 .hero-section {
   background-color: var(--blanco);
-  padding: 64px 0;              
+  padding: 72px 0;
+  overflow: hidden;
 }
 
 .hero-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 48px;
+  gap: 64px;
   max-width: var(--page-max-width);
+  width: 100%;
   margin: 0 auto;
-  padding: 0 var(--page-padding-x);            
+  padding: 0 var(--page-padding-x);
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 /* — IZQUIERDA — */
 .hero-left {
   flex: 1 1 460px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px;
 }
 
 .hero-tag {
@@ -72,8 +73,25 @@
 
 .hero-btns {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
+}
+
+.btn-hero-primary,
+.btn-hero-outline {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--fuente-cuerpo);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 12px;
+  box-sizing: border-box;
+  transition: transform var(--transicion), box-shadow var(--transicion), background-color var(--transicion), color var(--transicion);
 }
 
 .btn-hero-primary {
@@ -82,15 +100,12 @@
   background-color: var(--verde-principal);
   color: var(--blanco);
   border: none;
-  padding: 14px 30px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: var(--fuente-cuerpo);
-  text-decoration: none;
-  cursor: pointer;
+  padding: 0 30px;
   box-shadow: 0 6px 20px rgba(13, 167, 74, 0.30);
-  transition: transform var(--transicion), box-shadow var(--transicion), background-color var(--transicion);
+}
+.btn-hero-primary .arrow {
+  font-size: 18px;
+  line-height: 1;
 }
 .btn-hero-primary:hover {
   background-color: var(--verde-medio);
@@ -105,17 +120,7 @@
   background-color: transparent;
   color: var(--verde-principal);
   border: 2px solid var(--verde-principal);
-  padding: 12px 26px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: var(--fuente-cuerpo);
-  text-decoration: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  transition: background var(--transicion), color var(--transicion), transform var(--transicion);
+  padding: 0 26px;
 }
 .btn-hero-outline:hover {
   background-color: var(--verde-principal);
@@ -125,13 +130,13 @@
 
 .hero-stats {
   display: flex;
-  gap: 36px;
+  gap: 40px;
   padding-top: 24px;
   border-top: 1px solid var(--verde-ultra);
   flex-wrap: wrap;
 }
 
-.hero-stat { display: flex; flex-direction: column; gap: 2px; }
+.hero-stat { display: flex; flex-direction: column; gap: 3px; }
 
 .hero-stat-n {
   font-family: var(--fuente-secciones);
@@ -147,45 +152,36 @@
   color: var(--gris-texto);
   opacity: 0.55;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 /* ==========================================================================
-   DERECHA
-   Un solo contenedor visual, sin padding doble
+   DERECHA — imagen limpia, sin sombra ni fondo
    ========================================================================== */
 .hero-right {
-  flex: 0 0 400px;
+  flex: 1 1 380px;
+  min-width: 0;
+  max-width: 460px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .hero-img-wrap {
-  background-color: var(--verde-ultra);
-  border-radius: 28px;
-  padding: 28px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 16px 48px rgba(13, 167, 74, 0.15), 0 4px 12px rgba(0,0,0,0.06);
+  max-width: 460px;
 }
-
 
 .hero-image {
   width: 100%;
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 16px;
-  background-color: transparent;
-  padding: 0;
-  box-shadow: none;
+  border-radius: 24px;
 }
-
-
 
 /* ==========================================================================
    TARJETAS — ¿Por qué elegirnos?
@@ -348,13 +344,13 @@
 
 @media (max-width: 768px) {
   .hero-section { padding: 48px 0; }
-  .hero-inner { flex-direction: column; text-align: center; padding: 0 20px; }
+  .hero-inner { flex-direction: column; text-align: center; padding: 0 20px; gap: 40px; }
   .hero-tag { margin: 0 auto; }
-  .hero-text { max-width: 100%; }
+  .hero-text { max-width: 100%; margin: 0 auto; }
   .hero-btns { justify-content: center; }
   .hero-stats { justify-content: center; }
-  .hero-right { flex: unset; width: 100%; }
-  .hero-img-wrap { max-width: 320px; margin: 0 auto; }
+  .hero-right { flex: unset; width: 100%; max-width: 100%; order: -1; }
+  .hero-img-wrap { max-width: 340px; margin: 0 auto; }
   .cta-overlay { font-size: 1.5rem; }
   .step-arrow { display: none; }
   .steps-wrapper { flex-direction: column; gap: 28px; }
@@ -365,4 +361,3 @@
   .cta-overlay { font-size: 1.2rem; }
   .slogan-intro { font-size: 0.9rem; }
 }
-
