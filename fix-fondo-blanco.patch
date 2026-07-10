@@ -1,0 +1,72 @@
+diff --git a/index.html b/index.html
+index 95ff691..33617ea 100644
+--- a/index.html
++++ b/index.html
+@@ -28,6 +28,7 @@
+     <!-- 4. CSS propio de esta página — cambia el nombre según la página -->
+     <!-- CSS de componentes compartidos -->
+     <link rel="stylesheet" href="/src/css/navbar.css" />
++    <link rel="stylesheet" href="/src/css/layout.css" />
+     <link rel="stylesheet" href="/src/css/footer.css" />
+ 
+     <!-- 4. CSS propio de esta página -->
+diff --git a/src/css/navbar.css b/src/css/navbar.css
+index 1e7b3bb..b337195 100644
+--- a/src/css/navbar.css
++++ b/src/css/navbar.css
+@@ -17,7 +17,6 @@
+ 
+ body {
+   font-family: var(--fuente-cuerpo);
+-  background-color: var(--gris-suave);
+   min-height: 100vh;
+ }
+ 
+diff --git a/src/pages/aboutUs.html b/src/pages/aboutUs.html
+index d3802bc..b5df163 100644
+--- a/src/pages/aboutUs.html
++++ b/src/pages/aboutUs.html
+@@ -21,6 +21,7 @@
+     <!-- Variables globales primero -->
+     <link rel="stylesheet" href="/src/css/variables.css" />
+     <link rel="stylesheet" href="/src/css/navbar.css" />
++    <link rel="stylesheet" href="/src/css/layout.css" />
+     <link rel="stylesheet" href="/src/css/footer.css" />
+     <link rel="stylesheet" href="/src/css/aboutUs.css" />
+   </head>
+diff --git a/src/pages/carrito/carrito.html b/src/pages/carrito/carrito.html
+index b9d5d21..bee40ac 100644
+--- a/src/pages/carrito/carrito.html
++++ b/src/pages/carrito/carrito.html
+@@ -14,6 +14,7 @@
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+   <link rel="stylesheet" href="/src/css/variables.css">
+   <link rel="stylesheet" href="/src/css/navbar.css">
++  <link rel="stylesheet" href="/src/css/layout.css">
+   <link rel="stylesheet" href="/src/css/footer.css">
+   <link rel="stylesheet" href="carrito.css">
+ 
+diff --git a/src/pages/perfil/perfil.html b/src/pages/perfil/perfil.html
+index 1d2188b..87d3efa 100644
+--- a/src/pages/perfil/perfil.html
++++ b/src/pages/perfil/perfil.html
+@@ -18,6 +18,7 @@
+     />
+     <link rel="stylesheet" href="/src/css/variables.css" />
+     <link rel="stylesheet" href="/src/css/navbar.css" />
++    <link rel="stylesheet" href="/src/css/layout.css" />
+     <link rel="stylesheet" href="/src/css/footer.css" />
+     <link rel="stylesheet" href="perfil.css" />
+   </head>
+diff --git a/src/pages/registro/registro.html b/src/pages/registro/registro.html
+index 31eb331..367369f 100644
+--- a/src/pages/registro/registro.html
++++ b/src/pages/registro/registro.html
+@@ -18,6 +18,7 @@
+     />
+     <link rel="stylesheet" href="/src/css/variables.css" />
+     <link rel="stylesheet" href="/src/css/navbar.css" />
++    <link rel="stylesheet" href="/src/css/layout.css" />
+     <link rel="stylesheet" href="/src/css/footer.css" />
+     <link rel="stylesheet" href="registro.css" />
+   </head>

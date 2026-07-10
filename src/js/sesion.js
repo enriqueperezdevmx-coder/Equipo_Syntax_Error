@@ -26,6 +26,7 @@ function guardarSesion(usuario) {
 
 function cerrarSesion() {
   localStorage.removeItem("sesionActiva");
+  sessionStorage.removeItem("jwt_token"); // token guardado por iniciarSesion()
   window.location.href = "/index.html";
 }
 
@@ -99,25 +100,33 @@ function engancharFormulariosLogin() {
   );
 }
 
-function manejarLogin(e, idCorreo, idPassword) {
+async function manejarLogin(e, idCorreo, idPassword) {
   e.preventDefault();
 
   const correo = document.getElementById(idCorreo).value.trim().toLowerCase();
   const password = document.getElementById(idPassword).value;
 
-  const usuariosGuardados = JSON.parse(
-    localStorage.getItem("usuariosMensajeria") || "[]",
-  );
+  // sesion.js se carga como script clásico (no type="module") en todas las
+  // páginas, así que usamos import() dinámico para poder usar el cliente
+  // real del backend sin tener que tocar el <script> en 14 HTMLs.
+  const { iniciarSesion } = await import("/src/api/servicioUsuario.js");
 
-  const usuario = usuariosGuardados.find(
-    (u) => u.correo === correo && u.password === password,
-  );
+  try {
+    // Pega contra POST /api/auth/login. Si es correcto, ya guarda el JWT
+    // en sessionStorage (lo hace iniciarSesion internamente).
+    const datos = await iniciarSesion({ correo, password });
 
-  if (!usuario) {
-    alert("Correo o contraseña incorrectos.");
-    return;
+    // Guardamos una copia ligera de los datos del usuario para pintar el
+    // navbar/perfil sin tener que llamar al backend en cada página.
+    guardarSesion({
+      nombre: datos.name,
+      apellido: datos.lastName,
+      correo: datos.email,
+      telefono: datos.phone,
+    });
+
+    window.location.href = "/src/pages/perfil/perfil.html";
+  } catch (error) {
+    alert(error.message || "Correo o contraseña incorrectos.");
   }
-
-  guardarSesion(usuario);
-  window.location.href = "/src/pages/perfil/perfil.html";
 }

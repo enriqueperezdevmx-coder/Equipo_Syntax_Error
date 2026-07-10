@@ -156,7 +156,7 @@
 }
 
 /* ==========================================================================
-   DERECHA — imagen con profundidad sutil, sin caja
+   DERECHA — imagen limpia, sin sombra ni fondo
    ========================================================================== */
 .hero-right {
   flex: 1 1 380px;
@@ -168,7 +168,6 @@
 }
 
 .hero-img-wrap {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,26 +175,12 @@
   max-width: 460px;
 }
 
-/* Blob difuminado de marca detrás de la imagen — da contexto sin encajonar */
-.hero-img-wrap::before {
-  content: "";
-  position: absolute;
-  inset: 6% 8%;
-  background: radial-gradient(circle at 50% 45%, var(--verde-ultra) 0%, rgba(219, 244, 227, 0) 70%);
-  filter: blur(6px);
-  z-index: 0;
-  border-radius: 50%;
-}
-
 .hero-image {
-  position: relative;
-  z-index: 1;
   width: 100%;
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 20px;
-  box-shadow: 0 24px 60px rgba(15, 40, 25, 0.14);
+  border-radius: 24px;
 }
 
 /* ==========================================================================
