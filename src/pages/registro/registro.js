@@ -152,18 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // 2. Mensaje de éxito y redirección
-                mostrarAlerta('✅ ¡Registro exitoso! Cuenta creada...', 'success');
+                mostrarAlerta('✅ ¡Registro exitoso! Redirigiendo a inicio...', 'success');
 
                 // Dejamos un instante para que el usuario lea el mensaje antes de redirigir
                 setTimeout(() => {
-                    // Lo mandamos al historial, que es donde vive el login del navbar
-                    window.location.href = '/src/pages/historial/historial.html';
+                    window.location.href = '/index.html';
                 }, 2000);
+
             } catch (error) {
-                // El backend responde con 400/409 y mensaje si el correo ya existe
-                // o si algún campo no pasó las validaciones del lado del servidor
-                mostrarAlerta(`❌ ${error.message}`, 'danger');
-            } finally {
+                // Si el backend responde con error, cae aquí, avisa en pantalla y reactiva el botón
+                mostrarAlerta(`❌ ${error.message || 'Error al procesar el registro'}`, 'danger');
                 btnSubmit.disabled = false;
                 btnSubmit.textContent = textoOriginalBtn;
             }

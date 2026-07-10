@@ -48,8 +48,17 @@ export default defineConfig({
         // cual dentro de dist/ (si le ponemos una carpeta la duplica).
         { src: 'src/assets/*', dest: '.' },
         { src: 'src/componentes/navbar/navbar.html', dest: '.' },
+        { src: 'src/api/servicioUsuario.js', dest: '.' },
         { src: 'src/componentes/navbar/footer.html', dest: '.' },
         { src: 'src/pages/inicio/inicio.html', dest: '.' },
+        { src: 'src/css/variables.css', dest: '.' },
+        { src: 'src/css/navbar.css', dest: '.' },
+        { src: 'src/css/footer.css', dest: '.' },
+        { src: 'src/css/layout.css', dest: '.' },
+        { src: 'src/pages/inicio/inicio.css', dest: '.' },
+        { src: 'src/js/sesion.js', dest: '.' },
+
+
 
         // Scripts clásicos (sin type="module") que varias páginas cargan con
         // <script src="..."> normal. Vite no los detecta ni los empaqueta

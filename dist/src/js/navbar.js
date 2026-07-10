@@ -22,7 +22,6 @@ async function cargarNavbar() {
     }
   });
 
-  // ... (tu lógica de scroll)
 
   // NUEVO: avisamos a toda la página que el navbar ya está listo
   document.dispatchEvent(new CustomEvent("navbarCargado"));

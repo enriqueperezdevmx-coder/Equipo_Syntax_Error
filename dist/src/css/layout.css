@@ -1,0 +1,99 @@
+/* ==========================================================================
+   layout.css
+   ========================================================================= */
+
+:root {
+  --page-max-width: 1140px;
+  --page-padding-x: 24px;
+
+  /* separación navbar → contenido */
+  --navbar-offset: 120px;
+
+  /* separación entre secciones */
+  --section-gap: 80px;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================= */
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--blanco);
+}
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================= */
+
+.page-container {
+  margin-top: var(--navbar-offset);
+}
+
+/* ==========================================================================
+   CONTENEDOR PERSONALIZADO
+   ========================================================================= */
+
+.section-wrap {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-x);
+}
+
+/* ==========================================================================
+   BOOTSTRAP
+   ========================================================================= */
+
+.container,
+.container-fluid {
+  max-width: var(--page-max-width) !important;
+  padding-left: var(--page-padding-x) !important;
+  padding-right: var(--page-padding-x) !important;
+}
+
+/* ==========================================================================
+   SECCIONES
+   ========================================================================= */
+
+.page-section {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+/* ==========================================================================
+   TITULOS
+   ========================================================================= */
+
+.section-title {
+  font-family: var(--fuente-secciones);
+  font-weight: 800;
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: var(--verde-principal);
+}
+
+.section-subtitle {
+  color: var(--gris-texto);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding-x: 20px;
+    --navbar-offset: 85px;
+    --section-gap: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-padding-x: 16px;
+    --navbar-offset: 75px;
+    --section-gap: 36px;
+  }
+}
