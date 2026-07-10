@@ -6,8 +6,7 @@
 //const BASE_URL = "http://localhost:8080/api";
 const BASE_URL = "/api";
 /**
- * Registra un nuevo usuario.
- * Pega a POST /api/users/register (UserController ya existente en el backend).
+
  * @param {{nombres: string, apellidos: string, correo: string, celular: string, password: string}} datos
  * @returns {Promise<object>} el UserResponse que regresa el backend
  */
