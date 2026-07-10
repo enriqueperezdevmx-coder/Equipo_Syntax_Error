@@ -7,6 +7,17 @@ const { viteStaticCopy } = require('vite-plugin-static-copy');
 // index.html de la raíz, así que aquí declaramos las 14 páginas reales como
 // entradas de rollupOptions.input para que `npm run build` las incluya todas.
 export default defineConfig({
+  server: {
+    // En dev, el front corre en Vite (5173) y el back en Spring Boot (8080).
+    // Sin este proxy, fetch("/api/...") pega contra el propio Vite y nunca
+    // llega al backend real (esto era lo que rompía el registro/login).
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     rollupOptions: {
       input: {
